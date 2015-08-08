@@ -1,26 +1,14 @@
 # View Wireframes
 
-## New Session
-![new-session]
+## Main Page
+![main-page]
 
-## Feed Show (landing page)
-![feed-show]
+## Park Show
+![park_show]
 
-## Blog Show
-![blog-show]
+## Parks Index item
+![parks-index-item]
 
-## Post Show
-![post-show]
-
-## Post Form
-![post-form]
-
-## Search Results
-![search-results]
-
-[new-session]: ./wireframes/new_session.png
-[feed-show]: ./wireframes/feed_show.png
-[blog-show]: ./wireframes/blog_show.png
-[post-show]: ./wireframes/post_show.png
-[post-form]: ./wireframes/post_form.png
-[search-results]: ./wireframes/search_results.png
+[main-page]: ./wireframes/main_page.png
+[park_show]: ./wireframes/park_show.png
+[parks-index-item]: ./wireframes/parks_index_item.png

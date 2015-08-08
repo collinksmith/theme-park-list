@@ -5,20 +5,21 @@
 [heroku]: http://flux-capacitr.herokuapp.com
 
 ## Minimum Viable Product
-Flux-capacitr is a clone of Tumblr built on Rails and Backbone. Users can:
+Theme Park List is a clone of Nomadlist built on Rails and Backbone. Users can:
 
 <!-- This is a Markdown checklist. Use it to keep track of your progress! -->
 
-- [x] Create accounts
-- [x] Create sessions (log in)
-- [x] Create blogs
-- [x] Create blog posts
-- [ ] View blogs and posts
-- [ ] Subscribe to blogs
-- [ ] View a feed of subscribed blogs
-- [ ] Tag blog posts
-- [ ] Search for blogs by title
-- [ ] Search for posts by tag
+- [ ] View a list of theme parks with their basic info
+- [ ] Filter the list based on predetermined options
+- [ ] Sort the list by any attribute
+- [ ] Search for theme parks by name
+- [ ] View a map of theme parks
+- [ ] View calculated scores for each theme park
+- [ ] View specific data and information for each theme park
+- [ ] Create accounts
+- [ ] Create sessions (log in)
+- [ ] Write reviews
+- [ ] Save/favorite theme parks
 
 ## Design Docs
 * [View Wireframes][views]
@@ -73,15 +74,15 @@ collections, but they will fetch from the new `search` routes.
 [Details][phase-five]
 
 ### Bonus Features (TBD)
-- [ ] "Like" button and counter for posts
-- [ ] Custom blog urls
-- [ ] Pagination/infinite scroll
-- [ ] Activity history (e.g. likes, reblogs, taggings)
-- [ ] Post types (image posts, quote posts, etc)
-- [ ] Reblogging
-- [ ] Multiple sessions/session management
-- [ ] User avatars
+- [ ] See and filter by cost of flights from user's current location
+- [ ] Places to sleep near each theme park
+- [ ] Users can submit information to be edited and/or aggregated
+- [ ] Forum, with a link to relevant threads on each park's show view
+- [ ] Infinite scroll
 - [ ] Typeahead search bar
+- [ ] Nav bar appears on scroll up
+- [ ] Button to bring up a relevant youtube video on each park's show view
+- [ ] Activity history (previously viewed theme parks)
 
 [phase-one]: ./docs/phases/phase1.md
 [phase-two]: ./docs/phases/phase2.md
