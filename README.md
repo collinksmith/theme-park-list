@@ -2,10 +2,10 @@
 
 [Heroku link][heroku]
 
-[heroku]: http://flux-capacitr.herokuapp.com
+[heroku]: https://theme-park-list.herokuapp.com/
 
 ## Minimum Viable Product
-Theme Park List is a clone of Nomadlist built on Rails and Backbone. Users can:
+Theme Park List inspired by of Nomadlist and is built on Rails and Backbone. Users can:
 
 <!-- This is a Markdown checklist. Use it to keep track of your progress! -->
 
