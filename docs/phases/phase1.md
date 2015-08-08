@@ -2,27 +2,28 @@
 
 ## Rails
 ### Models
-* User
-* Blog
-* Post
+* Park
 
 ### Controllers
-* UsersController (create, new)
-* SessionsController (create, new, destroy)
-* BlogsController (create, new, show)
-* PostsController (create, new, show)
+* Api::ParksController (index, show)
 
 ### Views
-* users/new.html.erb
-* session/new.html.erb
-* blogs/new.html.erb
-* blogs/show.html.erb
+* parks/index.json.jbuilder
+* parks/show.json.jbuilder
+* parks/_park.json.jbuilder
 
 ## Backbone
 ### Models
+* Park
 
 ### Collections
+* Parks
 
 ### Views
+* ParksIndex
+* ParksIndexItem
+* ParkShow
+* ParkScore
+* ParkInfo
 
 ## Gems/Libraries

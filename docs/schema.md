@@ -1,39 +1,27 @@
 # Schema Information
 
-## blogs
-column name | data type | details
-------------|-----------|-----------------------
-id          | integer   | not null, primary key
-owner_id    | integer   | not null, foreign key (references users)
-title       | string    | not null
+## parks
+column name      | data type | details
+-----------------|-----------|-----------------------
+id               | integer   | not null, primary key
+name             | string    | not null, unique
+location         | string    | not null
+tripadv_rating   | integer   |
+roller_coasters  | integer   |
+water_rides      | integer   |
+user_rating      | integer   |
+atmosphere       | integer   |
+family_friendly  | integer   |
+intesity         | integer   |
+wait_times       | integer   |
 
-## followings
+## costs
 column name | data type | details
 ------------|-----------|-----------------------
 id          | integer   | not null, primary key
-blog_id     | integer   | not null, foreign key (references blogs)
-follower_id | integer   | not null, foreign key (references users)
-
-## posts
-column name | data type | details
-------------|-----------|-----------------------
-id          | integer   | not null, primary key
-author_id   | integer   | not null, foreign key (references users)
-title       | string    | not null
-body        | string    |
-
-## tags
-column name | data type | details
-------------|-----------|-----------------------
-id          | integer   | not null, primary key
-label       | string    | not null, unique
-
-## taggings
-column name | data type | details
-------------|-----------|-----------------------
-id          | integer   | not null, primary key
-post_id     | integer   | not null, foreign key (references posts)
-tag_id      | integer   | not null, foreign key (references tags)
+park_id     | integer   | not null, foreign key (references parks)
+amount      | integer   | not null
+type        | integer   | not null
 
 ## users
 column name     | data type | details
@@ -43,3 +31,23 @@ email           | string    | not null, unique
 password_digest | string    | not null
 session_token   | string    | not null, unique
 
+## reviews
+column name     | data type | details
+----------------|-----------|-----------------------
+id              | integer   | not null, primary key
+author_id       | integer   | not null, foreign key (references users)
+park_id         | integer   | not null, foreign key (references parks)
+overall         | integer   | not null
+atmosphere      | integer   |
+family_friendly | integer   | 
+intesity        | integer   |
+wait_times      | integer   |
+title           | string    |
+body            | text      |
+
+## followings
+column name | data type | details
+------------|-----------|-----------------------
+id          | integer   | not null, primary key
+park_id     | integer   | not null, foreign key (references parks)
+follower_id | integer   | not null, foreign key (references users)

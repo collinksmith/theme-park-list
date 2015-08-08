@@ -2,19 +2,33 @@
 
 ## Rails
 ### Models
+* User
+* Review
+* Following
 
 ### Controllers
-Api::PostsController (feed)
+* UsersController (create, new)
+* SessionsController (create, new)
+* ReviewsController (create, update, destroy, show, index)
 
 ### Views
-posts/feed.json.jbuilder
+* users/show.json.jbuilder
+* reviews/index.json.jbuilder
+* reviews/show.json.jbuilder
+* reviews/_review.json.jbuilder
 
 ## Backbone
 ### Models
+* Review
+* User
 
 ### Collections
+* Reviews
 
 ### Views
-* FeedShow (composite view, contains PostsIndex subview)
+* ReviewsIndex
+* ReviewsIndexItem
+* UserShow
 
 ## Gems/Libraries
+* BCrypt

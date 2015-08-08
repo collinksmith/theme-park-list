@@ -13,9 +13,6 @@
 ### Collections
 
 ### Views
-* PostForm
+* ParksNav
 
 ## Gems/Libraries
-* Filepicker
-* Markdown-js
-* Bootstrap Markdown

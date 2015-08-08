@@ -4,8 +4,7 @@
 ### Models
 
 ### Controllers
-Api::BlogsController (search)
-Api::PostsController (search)
+
 
 ### Views
 
@@ -15,8 +14,8 @@ Api::PostsController (search)
 ### Collections
 
 ### Views
-* BlogSearchItem
-* SearchShow (composite view, contains BlogsIndex and PostsIndex subviews)
+* ParksMap
+* ParksNearby
 
 ## Gems/Libraries
-
+* Map library (TBD)
