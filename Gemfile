@@ -12,6 +12,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'bcrypt-ruby', require: 'bcrypt'
 gem 'backbone-on-rails'
 gem 'ejs'
+gem 'newrelic_rpm'
 
 group :development, :test do
   gem 'spring'
