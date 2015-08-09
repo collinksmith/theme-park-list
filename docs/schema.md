@@ -6,6 +6,7 @@ column name          | data type | details
 id                   | integer   | not null, primary key
 name                 | string    | not null, unique
 location             | string    | not null
+image_url            | string    |
 tripadv_rating       | integer   |
 roller_coasters      | integer   |
 water_rides          | integer   |

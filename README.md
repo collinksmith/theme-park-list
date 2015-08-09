@@ -1,4 +1,4 @@
-# Theme-Park-List
+# Theme Park List
 
 [Heroku link][heroku]
 
