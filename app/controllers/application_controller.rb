@@ -27,7 +27,7 @@ class ApplicationController < ActionController::Base
   def require_login
     unless logged_in?
       flash[:errors] = "Must be loggied in to access this page."
-      redirect_to root
+      redirect_to root_url
     end
   end
 end

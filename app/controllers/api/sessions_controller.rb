@@ -10,17 +10,16 @@ class Api::SessionsController < ApplicationController
 
     if @user
       login!(@user)
-      redirect_to links_url
     else
       flash.now[:errors] = "Invalid credentials"
       @user = User.new
-      render json: @user
     end
+    render json: @user
   end
 
   def destroy
     @user = current_user
     logout!
-    render json: @user
+    redirect_to root_url
   end
 end
