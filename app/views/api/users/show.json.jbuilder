@@ -1,0 +1,1 @@
+json.(@user, :id, :email, :password_digest, :session_token)

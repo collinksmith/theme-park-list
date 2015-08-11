@@ -6,27 +6,42 @@ ThemeParkList.Views.Auth = Backbone.View.extend({
     "click #log-in": "showLogIn"
   },
 
-  initialize: function () {
-
-  },
-
   showSignUp: function (event) {
-    var view = new ThemeParkList.Views.SignUp();
+    var signUpView = new ThemeParkList.Views.SignUp();
     var modal = new Backbone.BootstrapModal({
-      content: view,
+      content: signUpView,
       title: "Sign Up",
       okText: "Sign Up!",
       okFocus: false,
       cancelText: false,
       animate: true,
       enterTriggersOk: true
-    }).open();
+    }).open(this.signUp.bind(this, signUpView));
+  },
+
+  signUp: function (signUpView) {
+    var newUserData = signUpView.$el.serializeJSON();
+
+    if (newUserData["password"] === newUserData["password-confirmation"]) {
+      delete newUserData["password-confirmation"];
+      var newUser = new ThemeParkList.Models.User();
+      newUser.save(newUserData, {
+        success: function () {
+          Backbone.history.navigate("", {trigger: true})
+        },
+        error: function () {
+          // TODO: add error messages
+        }
+      });
+    } else {
+      // TODO: add error message
+    }
   },
 
   showLogIn: function () {
-    var view = new ThemeParkList.Views.LogIn();
+    var logInView = new ThemeParkList.Views.LogIn();
     var modal = new Backbone.BootstrapModal({
-      content: view,
+      content: logInView,
       title: "Log In",
       okText: "Log In!",
       okFocus: false,
