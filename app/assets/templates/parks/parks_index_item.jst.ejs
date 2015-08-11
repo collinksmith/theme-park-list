@@ -1,3 +1,4 @@
-<img class="park-image"
-     src="/assets/park_images/<%= park.escape('image_url') %>"
-     alt="<%= park.escape('title') %> image">
+<div class="park-image"
+     style="background-image: url('/assets/park_images/<%= this.model.escape('image_url') %>')">
+</div>
+<div class="park-name"><%= park.escape('name') %></div>

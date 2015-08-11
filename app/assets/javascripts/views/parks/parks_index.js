@@ -1,8 +1,6 @@
 ThemeParkList.Views.ParksIndex = Backbone.CompositeView.extend({
   template: JST["parks/parks_index"],
 
-  className: "parks",
-
   initialize: function () {
     this.collection.each(this.addParkView.bind(this));
     this.listenTo(this.collection, "add", this.addParkView);
@@ -17,6 +15,6 @@ ThemeParkList.Views.ParksIndex = Backbone.CompositeView.extend({
 
   addParkView: function (park) {
     var parkView = new ThemeParkList.Views.ParksIndexItem({ model: park });
-    this.addSubview(".parks-items", parkView);
+    this.addSubview(".parks", parkView);
   }
 });
