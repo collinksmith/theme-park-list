@@ -1,22 +1,25 @@
-<label>Email
-  <input type="text"
-         class="form-control"
-         name="user[email]">
-</label>
-<br>
+<div class="form-group">
+  <label for="form_email">Email</label>
+    <input type="text"
+           class="form-control"
+           name="user[email]"
+           id="user_email">
+</div>
 
-<label>Password
-  <input type="password"
-         class="form-control"
-         name="user[password]">
-</label>
-<br>
-  
-<% if (new_form) { %>
-  <label>Confirm Password
+<div class="form-group">
+  <label for="user_password">Password</label>
     <input type="password"
            class="form-control"
-           name="password-confirmation">
-  </label>
-  <br>  
+           name="user[password]"
+           id="user_password">
+</div>
+    
+<% if (new_form) { %>
+  <div class="form-group">
+    <label for="password-confirmation">Confirm Password</label>
+      <input type="password"
+             class="form-control"
+             name="password-confirmation"
+             id="password-confirmation">
+  </div>
 <% } %>
