@@ -7,10 +7,14 @@ ThemeParkList.Routers.Router = Backbone.Router.extend({
     this.$rootEl = options.$rootEl;
     this.collection = options.collection;
     var authView = new ThemeParkList.Views.Auth();
+    this.explore();
   },
 
   explore: function () {
-    var exploreView = new ThemeParkList.Views.Explore({ collection: this.collection });
+    this.collection.fetch()
+    var exploreView = new ThemeParkList.Views.
+                          Explore({ collection: this.collection });
+
     this._swapView(exploreView);
   },
 
