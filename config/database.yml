@@ -12,6 +12,6 @@ development:
   username: tpl_admin
   password: rctioot3bge
 
-test:
-  <<: *default
-  database: theme_park_list_test
+# test:
+#   <<: *default
+#   database: theme_park_list_test

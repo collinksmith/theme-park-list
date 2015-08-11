@@ -11,10 +11,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150811025208) do
+ActiveRecord::Schema.define(version: 20150811183350) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "parks", force: :cascade do |t|
+    t.string   "name",            null: false
+    t.float    "latitude",        null: false
+    t.float    "longitude",       null: false
+    t.string   "city",            null: false
+    t.string   "state"
+    t.string   "country"
+    t.string   "image_url"
+    t.integer  "tripadv_rating"
+    t.integer  "roller_coasters"
+    t.integer  "water_rides"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.integer  "rides"
+  end
+
+  add_index "parks", ["name"], name: "index_parks_on_name", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",           null: false

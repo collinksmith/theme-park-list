@@ -5,11 +5,11 @@ column name          | data type | details
 ---------------------|-----------|-----------------------
 id                   | integer   | not null, primary key
 name                 | string    | not null, unique
-city                 | string    |
+latitude             | float     | not null
+longitude            | float     | not null
+city                 | string    | not null
 state                | string    |
 country              | string    |
-lat                  | float     | not null
-long                 | float     | not null
 image_url            | string    |
 tripadv_rating       | integer   |
 roller_coasters      | integer   |
