@@ -1,6 +1,8 @@
 ThemeParkList.Views.ParksIndex = Backbone.CompositeView.extend({
   template: JST["parks/parks_index"],
 
+  className = "parks",
+
   initialize: function () {
     this.collection.each(addParkView.bind(this));
     this.listenTo(this.collection, "add", addParkView);

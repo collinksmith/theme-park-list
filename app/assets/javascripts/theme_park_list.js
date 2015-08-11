@@ -5,9 +5,11 @@ window.ThemeParkList = {
   Routers: {},
   initialize: function() {
     var $rootEl = $("#content");
+    var parks = new ThemeParkList.Collections.Parks();
     new ThemeParkList.Routers.Router({
       $rootEl: $rootEl,
-    })
+      collection: parks
+    });
   }
 };
 

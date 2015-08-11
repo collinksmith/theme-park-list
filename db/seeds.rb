@@ -6,16 +6,18 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-# { name: ,
-# latitude: ,
-# longitude: ,
-# city: ,
-# state: ,
-# country: ,
-# image_url: ,
-# tripadv_rating: ,
-# roller_coasters: ,
-# water_rides: }
+{ name: ,
+latitude: ,
+longitude: ,
+city: ,
+state: ,
+country: ,
+operating_season: ,
+image_url: ,
+tripadv_rating: ,
+rides: ,
+roller_coasters: ,
+water_rides: }
 
 PARKS = [{ name: "Six Flags Magic Mountain",
            latitude: 34.42,
