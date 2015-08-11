@@ -7,7 +7,7 @@ ThemeParkList.Views.Auth = Backbone.View.extend({
   },
 
   showSignUp: function (event) {
-    var signUpView = new ThemeParkList.Views.SignUp();
+    var signUpView = new ThemeParkList.Views.AuthModal({ new_user: true });
     var modal = new Backbone.BootstrapModal({
       content: signUpView,
       title: "Sign Up",
@@ -17,7 +17,7 @@ ThemeParkList.Views.Auth = Backbone.View.extend({
       animate: true,
       enterTriggersOk: true,
       okCloses: false
-    }).open(this.signUp.bind(this, signUpView, modal));
+    }).open(this.signUp.bind(this, signUpView));
   },
 
   signUp: function (signUpView) {
@@ -29,14 +29,13 @@ ThemeParkList.Views.Auth = Backbone.View.extend({
 
       newUser.save(newUserData, {
         success: function () {
-          debugger;
           window.location.reload(true);
         },
         error: function (model, response) {
           var errors = _(response.responseJSON);
           errors.each(function (error) {
-            signUpView.addError(error)
-          })
+            signUpView.addError(error);
+          });
         }
       });
     } else {
@@ -45,7 +44,7 @@ ThemeParkList.Views.Auth = Backbone.View.extend({
   },
 
   showLogIn: function () {
-    var logInView = new ThemeParkList.Views.LogIn();
+    var logInView = new ThemeParkList.Views.AuthModal({ new_user: false });
     var modal = new Backbone.BootstrapModal({
       content: logInView,
       title: "Log In",
@@ -69,9 +68,9 @@ ThemeParkList.Views.Auth = Backbone.View.extend({
       error: function (model, response) {
         var errors = _(response.responseJSON);
         errors.each(function (error) {
-          logInView.addError(error)
-        })
+          logInView.addError(error);
+        });
       }
-    })
+    });
   }
 });

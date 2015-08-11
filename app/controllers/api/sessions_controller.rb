@@ -12,9 +12,8 @@ class Api::SessionsController < ApplicationController
       login!(@user)
       render json: @user
     else
-      # flash.now[:errors] = "Invalid credentials"
       @user = User.new
-      render json: "Invalid credentials"
+      render json: ["Invalid credentials"].to_json, status: 422
     end
   end
 
