@@ -22,7 +22,7 @@ ThemeParkList.Views.Auth = Backbone.View.extend({
   signUp: function (signUpView) {
     var newUserData = signUpView.$el.serializeJSON();
 
-    if (newUserData["password"] === newUserData["password-confirmation"]) {
+    if (newUserData["user"]["password"] === newUserData["password-confirmation"]) {
       delete newUserData["password-confirmation"];
       var newUser = new ThemeParkList.Models.User();
       newUser.save(newUserData, {
@@ -48,6 +48,20 @@ ThemeParkList.Views.Auth = Backbone.View.extend({
       cancelText: false,
       animate: true,
       enterTriggersOk: true
-    }).open();
+    }).open(this.logIn.bind(this, logInView));
+  },
+
+  logIn: function (logInView) {
+    var userData = logInView.$el.serializeJSON();
+    var newSession = new ThemeParkList.Models.Session();
+
+    newSession.save(userData, {
+      success: function () {
+        Backbone.history.navigate("", {trigger: true})
+      },
+      error: function () {
+        // TODO: add error messages
+      }
+    })
   }
 });
