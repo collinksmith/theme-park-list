@@ -1,7 +1,6 @@
 ThemeParkList.Views.Nav = Backbone.View.extend({
   template: JST['nav/nav'],
-  tagName: "nav",
-  className: "navbar",
+  el: 'body',
 
   initialize: function () {
 
