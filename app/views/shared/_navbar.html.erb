@@ -4,8 +4,12 @@
       <a class="navbar-brand" href="#">Theme Park List</a>
     </div>
     <ul class="nav navbar-nav navbar-right">
-      <li id="log-in"><a href="#">Log In</a></li>
-      <li id="sign-up"><a href="#">Sign Up</a></li>
+      <% if logged_in? %>
+        <li id="log-out"><a href="#">Log Out</a></li>
+      <% else %>
+        <li id="log-in"><a href="#">Log In</a></li>
+        <li id="sign-up"><a href="#">Sign Up</a></li>
+      <% end %>
     </ul>
   </div>
 </nav>
