@@ -10,11 +10,12 @@ class Api::SessionsController < ApplicationController
 
     if @user
       login!(@user)
+      render json: @user
     else
-      flash.now[:errors] = "Invalid credentials"
+      # flash.now[:errors] = "Invalid credentials"
       @user = User.new
+      render json: "Invalid credentials"
     end
-    render json: @user
   end
 
   def destroy

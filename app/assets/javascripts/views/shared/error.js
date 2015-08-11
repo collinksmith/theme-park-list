@@ -4,7 +4,7 @@ ThemeParkList.Views.Error = Backbone.View.extend({
 
   initialize: function (options) {
     this.error = options.error
-  }
+  },
 
   render: function () {
     this.$el.html(this.error);

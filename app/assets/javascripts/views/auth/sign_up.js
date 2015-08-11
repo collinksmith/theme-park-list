@@ -1,19 +1,15 @@
-ThemeParkList.Views.SignUp = Backbone.View.extend({
+ThemeParkList.Views.SignUp = Backbone.CompositeView.extend({
   template: JST["auth/auth_form"],
   tagName: "form",
-  className: "form-group",
-
-  events: {
-    "click .ok": "signUp"
-  },
 
   render: function () {
     this.$el.html(this.template({ new_form: true }));
+    this.attachSubviews();
     return this;
   },
 
-  signUp: function (event) {
-    event.preventDefault();
-    console.log('test');
+  addError: function (error) {
+    var errorView = new ThemeParkList.Views.Error({ error: error });
+    this.addSubview(".errors", errorView);
   }
 });

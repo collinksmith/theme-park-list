@@ -15,28 +15,32 @@ ThemeParkList.Views.Auth = Backbone.View.extend({
       okFocus: false,
       cancelText: false,
       animate: true,
-      enterTriggersOk: true
-    }).open(this.signUp.bind(this, signUpView));
+      enterTriggersOk: true,
+      okCloses: false
+    }).open(this.signUp.bind(this, signUpView, modal));
   },
 
   signUp: function (signUpView) {
     var newUserData = signUpView.$el.serializeJSON();
 
-
     if (newUserData["user"]["password"] === newUserData["password-confirmation"]) {
-      // debugger; 
       delete newUserData["password-confirmation"];
       var newUser = new ThemeParkList.Models.User();
+
       newUser.save(newUserData, {
         success: function () {
+          debugger;
           window.location.reload(true);
         },
-        error: function () {
-          // TODO: add error messages
+        error: function (model, response) {
+          var errors = _(response.responseJSON);
+          errors.each(function (error) {
+            signUpView.addError(error)
+          })
         }
       });
     } else {
-      // TODO: add error message
+      signUpView.addError("Passwords don't match.");
     }
   },
 
@@ -49,7 +53,8 @@ ThemeParkList.Views.Auth = Backbone.View.extend({
       okFocus: false,
       cancelText: false,
       animate: true,
-      enterTriggersOk: true
+      enterTriggersOk: true,
+      okCloses: false
     }).open(this.logIn.bind(this, logInView));
   },
 
@@ -61,8 +66,11 @@ ThemeParkList.Views.Auth = Backbone.View.extend({
       success: function () {
         window.location.reload(true);
       },
-      error: function () {
-        // TODO: add error messages
+      error: function (model, response) {
+        var errors = _(response.responseJSON);
+        errors.each(function (error) {
+          logInView.addError(error)
+        })
       }
     })
   }
