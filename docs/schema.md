@@ -10,11 +10,6 @@ image_url            | string    |
 tripadv_rating       | integer   |
 roller_coasters      | integer   |
 water_rides          | integer   |
-user_rating          | integer   |
-atmosphere           | integer   |
-family_friendliness  | integer   |
-intesity             | integer   |
-wait_times           | integer   |
 
 ## costs
 column name | data type | details
@@ -38,13 +33,21 @@ column name         | data type | details
 id                  | integer   | not null, primary key
 author_id           | integer   | not null, foreign key (references users)
 park_id             | integer   | not null, foreign key (references parks)
-overall             | integer   | not null
-atmosphere          | integer   |
-family_friendliness | integer   | 
-intesity            | integer   |
-wait_times          | integer   |
 title               | string    |
 body                | text      |
+
+## park_ratings
+column name         | data type | details
+--------------------|-----------|--------------------------
+id                  | integer   | not null, primary key
+park_id             | integer   | not null, foreign key (references parks)
+review_id           | integer   | not null, foreign key (references reviews)
+overall             | integer   | not null
+atmosphere          | integer   |
+family_friendliness | integer   |
+intesity            | integer   |
+wait_times          | integer   |
+
 
 ## followings
 column name | data type | details
