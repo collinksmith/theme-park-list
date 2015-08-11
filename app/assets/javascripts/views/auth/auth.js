@@ -15,6 +15,11 @@ ThemeParkList.Views.Auth = Backbone.View.extend({
     var modal = new Backbone.BootstrapModal({
       content: view,
       title: "Sign Up",
+      okText: "Sign Up!",
+      okFocus: false,
+      cancelText: false,
+      animate: true,
+      enterTriggersOk: true
     }).open();
   },
 
@@ -22,7 +27,12 @@ ThemeParkList.Views.Auth = Backbone.View.extend({
     var view = new ThemeParkList.Views.LogIn();
     var modal = new Backbone.BootstrapModal({
       content: view,
-      title: "Log In"
+      title: "Log In",
+      okText: "Log In!",
+      okFocus: false,
+      cancelText: false,
+      animate: true,
+      enterTriggersOk: true
     }).open();
   }
 });
