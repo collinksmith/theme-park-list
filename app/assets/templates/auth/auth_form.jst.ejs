@@ -1,0 +1,23 @@
+<form>
+  <label>Email
+    <input type="text"
+           name="email">
+  </label>
+  <br>
+
+  <label>Password
+    <input type="password"
+           name="password">
+  </label>
+  <br>
+    
+  <% if (new_form) { %>
+    <label>Confirm Password
+      <input type="password"
+             name="confirm_password">
+    </label>
+    <br>  
+  <% } %>
+
+  <input type="submit" value="Sign Up!">
+</form>

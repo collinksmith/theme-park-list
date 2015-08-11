@@ -5,9 +5,8 @@ window.ThemeParkList = {
   Routers: {},
   initialize: function() {
     var $rootEl = $("#content");
-    new ThemParkList.Routers.Router({
-      $rootEl = $rootEl,
-      collection = collection
+    new ThemeParkList.Routers.Router({
+      $rootEl: $rootEl,
     })
   }
 };
