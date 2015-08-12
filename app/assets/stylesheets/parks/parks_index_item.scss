@@ -1,5 +1,6 @@
 $brightness: 0.5;
-$blur: 1px;
+$normal-blur: 1px;
+$hover-blur: 5px;
 
 .parks-index-item {
   float: left;
@@ -8,7 +9,7 @@ $blur: 1px;
   line-height: 180px;
   position: relative;
   margin: 10px;
-  text-align: center;
+  overflow: hidden;
 }
 
 .park-image {
@@ -17,26 +18,67 @@ $blur: 1px;
   position: absolute;
   background-size: 100% 100%;
 
-  filter: blur($blur) brightness($brightness);
+  filter: blur($normal-blur) brightness($brightness);
   // Browser Specific
-  -webkit-filter: blur($blur) brightness($brightness);
-  -moz-filter: blur($blur) brightness($brightness);
-  -o-filter: blur($blur) brightness($brightness);
-  -ms-filter: blur($blur) brightness($brightness);
+  -webkit-filter: blur($normal-blur) brightness($brightness);
+  -moz-filter: blur($normal-blur) brightness($brightness);
+  -o-filter: blur($normal-blur) brightness($brightness);
+  -ms-filter: blur($normal-blur) brightness($brightness);
+}
+
+.parks-index-item-content {
+  font-size: 16px;
+  color: $overlay_font-color;
+  position: relative;
+}
+
+.parks-index-item-normal {
+  font-weight: bold;
+  text-align: center;
+  position: relative;
+}
+
+.parks-index-item-hover {
+  display: none;
+  position: relative;
+}
+
+.attribute-list {
+  list-style: none;
+  font-size: 14px;
+  line-height: normal;
+  display: block;
+  transform: translateY(10%);
+
+  margin: 0;
+  padding: 0px;
+  li {  
+    padding: 10px;
+    padding-left: 15px;
+  }
 }
 
 .park-name {
-  position: relative;
-  color: $overlay_font-color;
   display: inline-block;
   line-height: normal;
   vertical-align: middle;
-  font-weight: bold;
-  font-size: 16px;
 }
 
 .parks-index-item:hover {
-  .park-name {
+  .parks-index-item-normal {
     display: none;
+  }
+
+  .parks-index-item-hover {
+    display: block;
+  }
+
+  .park-image {
+    filter: blur($hover-blur) brightness($brightness);
+    // Browser Specific
+    -webkit-filter: blur($hover-blur) brightness($brightness);
+    -moz-filter: blur($hover-blur) brightness($brightness);
+    -o-filter: blur($hover-blur) brightness($brightness);
+    -ms-filter: blur($hover-blur) brightness($brightness);
   }
 }

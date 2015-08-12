@@ -1,4 +1,17 @@
 <div class="park-image"
      style="background-image: url('/assets/park_images/<%= this.model.escape('image_url') %>')">
 </div>
-<div class="park-name"><%= park.escape('name') %></div>
+<div class="parks-index-item-content">
+  <div class="parks-index-item-normal">
+    <div class="park-name"><%= park.escape('name') %></div>
+  </div>
+
+  <div class="parks-index-item-hover">
+      <ul class="attribute-list">
+        <li>TripAdvisor Score</li>
+        <li>Weather</li>
+        <li>Intensty</li>
+        <li>Atmosphere</li>
+      </ul>
+  </div>
+</div>
