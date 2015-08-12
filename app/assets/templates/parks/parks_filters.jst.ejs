@@ -1,13 +1,83 @@
-<div class="row">
+<div class="row filter-row">
   <div class="col-xs-4">
     <p>
       <label for="amount">Price range:</label>
       <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
     </p>
-    <div id="slider-range" class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all"></div>
+    <div id="slider-range" 
+         class="ui-slider ui-slider-horizontal
+                ui-widget ui-widget-content ui-corner-all">
+    </div>
+  </div>
+  <div class="col-xs-4 btn-container">
+    <div class="btn-group" role="group" >
+      <button type="button" class="btn btn-md btn-default">Cool</button>
+      <button type="button" class="btn btn-md btn-default">Warm</button>
+      <button type="button" class="btn btn-md btn-default">Hot</button>
+    </div>
+  </div>
+
+  <div class="col-xs-4 btn-container">
+    <div class="btn-group" role="group">
+      <button type="button" class="btn btn-md btn-default">Some Water Rides</button>
+      <button type="button" class="btn btn-md btn-default">Many Water Rides</button>
+    </div>
   </div>
 </div>
 
-<div class="row">
+<div class="row filter-row">
+  <div class="col-xs-4 btn-container">
+    <div class="btn-group" role="group">
+      <button type="button" class="btn btn-md btn-default">< $200</button>
+      <button type="button" class="btn btn-md btn-default">< $400</button>
+    </div>
+  </div>
 
+  <div class="col-xs-4 btn-container">
+    <div class="btn-group" role="group">
+      <button type="button" class="btn btn-md btn-default">Gentle</button>
+      <button type="button" class="btn btn-md btn-default">Middle</button>
+      <button type="button" class="btn btn-md btn-default">Intense</button>
+    </div>
+  </div>
+
+  <div class="col-xs-4 btn-container">
+    <div class="btn-group" role="group">
+      <button type="button" class="btn btn-md btn-default">Some Roller Coasters</button>
+      <button type="button" class="btn btn-md btn-default">Many Roller Coasters</button>
+    </div>
+  </div>
+</div>
+
+<div class="row filter-row">
+  <div class="col-xs-4 filter-res-container">
+    <p class="filter-res">113 Theme Parks Found</p>
+  </div>
+
+  <div class="col-xs-8">
+    <button type="button" class="btn btn-md btn-filter">Filter Theme Parks</button>
+  </div>
+</div>
+
+<div class="row filter-row">
+  <div class="col-xs-4">
+    <div class="btn-group" role="group">
+      <button type="button" class="btn btn-sort">SORT BY</button>
+      <button type="button" class="btn btn-sort">TRIPADVISOR SCORE</button>
+    </div>        
+  </div>
+
+  <div class="col-md-2 col-md-offset-4">
+    <div class="btn-group" role="group">
+      <button type="button" class="btn btn-md btn-default">°F</button>
+      <button type="button" class="btn btn-md btn-default">°C</button>
+    </div>
+  </div>
+  
+  <div class="col-md-2">
+    <div class="btn-group" role="group">
+      <button type="button" class="btn btn-md btn-default">Grid</button>
+      <button type="button" class="btn btn-md btn-default">Map</button>
+    </div>
+  </div>
 </div>

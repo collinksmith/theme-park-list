@@ -21,12 +21,16 @@ ThemeParkList.Views.ParksFilters = Backbone.View.extend({
       min: 20,
       max: 300,
       values: [ 20, 300 ]
-    })
-    $( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) +
-      " - $" + $( "#slider-range" ).slider( "values", 1 ) );
+    });
+
+    // Set initial values for price indicator
+    this.$( "#amount" ).
+      val( "$" + this.$( "#slider-range" ).slider( "values", 0 ) +
+           " - $" + this.$( "#slider-range" ).slider( "values", 1 ) );
   },
 
+  // Update values for price indicator
   handleSlide: function (event, ui) {
-    $( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
+    this.$( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
   }
 });
