@@ -74,9 +74,22 @@
     <div class="btn-container">
       <div class="btn-group" role="group">
         <button type="button" class="btn btn-sort" id="sort-by">SORT BY</button>
-        <button type="button" class="btn btn-sort" id="sort-selector">
-          TRIPADVISOR SCORE
-        </button>
+          
+        <div class="btn-group" role="group">
+          <button type="button" 
+                  class="btn btn-default dropdown-toggle"
+                  id="sort-selector"
+                  data-toggle="dropdown" 
+                  aria-haspopup="true" 
+                  aria-expanded="false">
+            TRIPADVISOR SCORE
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu">
+            <li><a href="#">Dropdown link</a></li>
+            <li><a href="#">Dropdown link</a></li>
+          </ul>
+        </div>
       </div>        
     </div>
   </div>

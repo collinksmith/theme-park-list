@@ -41,10 +41,12 @@
 #btn-filter {
   width: 100%;
   color: white;
-}
+  background-color: $gray-text-color;
+  border: none;
 
-#btn-filter:hover {
-  background: $primary-brand-color;
+  &:hover {
+    background: $primary-brand-color;
+  }
 }
 
 #sort-by {
@@ -55,5 +57,24 @@
 
 #sort-selector {
   background: $primary-brand-color;
+  color: white;
+  border: 1px solid $primary-brand-color;
+}
+
+.dropdown-menu {
+  background: $primary-brand-color;
+
+  li a:hover {
+    color: white;
+    background: $secondary-brand-color;
+  }
+
+  li a {
+    color: white;
+    background: $primary-brand-color;
+  }
+}
+
+.caret {
   color: white;
 }
