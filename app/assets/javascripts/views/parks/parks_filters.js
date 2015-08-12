@@ -30,6 +30,7 @@ ThemeParkList.Views.ParksFilters = Backbone.View.extend({
 
   // Update values for price indicator
   handleSlide: function (event, ui) {
-    this.$( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
+    this.$("#amount-left").html("$" + ui.values[0]);
+    this.$("#amount-right").html("$" + ui.values[1]);
   }
 });
