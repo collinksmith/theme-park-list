@@ -12,8 +12,9 @@
   display: inline-block;
 }
 
-.btn-filter {
+#btn-filter {
   width: 100%;
+  color: white;
 }
 
 .filter-res {
@@ -24,3 +25,10 @@
   text-align: center;
 }
 
+#btn-filter:hover {
+  background: $primary-brand-color;
+}
+
+#btn-filter {
+
+}
