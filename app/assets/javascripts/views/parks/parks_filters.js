@@ -4,7 +4,8 @@ ThemeParkList.Views.ParksFilters = Backbone.View.extend({
 
   events: {
     "slide #slider-range": "handleSlide",
-    "click button": "selectFilter"
+    "click .filter-group": "selectFilter",
+    "click .format-group": "selectFormat"
   },
 
   render: function () {
@@ -33,12 +34,26 @@ ThemeParkList.Views.ParksFilters = Backbone.View.extend({
   },
 
   selectFilter: function (event) {
-    var newFilter = $(event.currentTarget);
+    var newFilter = $(event.target);
 
     newFilter.siblings().each(function (index, filterButton) {
       $(filterButton).removeClass("selected-filter")
     });
 
     newFilter.toggleClass("selected-filter");
+  },
+
+  selectFormat: function (event) {
+    var newFormat = $(event.target);
+
+    newFormat.siblings().each(function (index, formatButton) {
+      $(formatButton).removeClass("selected-format")
+    });
+
+    newFormat.addClass("selected-format")
+  },
+
+  selectButton: function (event, className) {
+
   }
 });

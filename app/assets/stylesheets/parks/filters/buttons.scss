@@ -12,12 +12,12 @@
   display: inline-block;
 }
 
-.filter-res {
-  font-weight: bold;
-}
-
 .filter-res-container {
   text-align: center;
+}
+
+.filter-res {
+  font-weight: bold;
 }
 
 .btn {
@@ -37,6 +37,11 @@
 }
 
 .btn.selected-filter {
+  background: $primary-brand-color;
+  color: white;
+}
+
+.btn.selected-format {
   background: $primary-brand-color;
   color: white;
 }
