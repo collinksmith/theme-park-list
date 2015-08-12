@@ -1,2 +1,19 @@
 #slider-range {
+  clear: both;
+}
+
+#amount-left {
+  float: left;
+}
+
+#amount-right {
+  float: right;
+}
+
+.cost-text-container {
+  text-align: center;
+}
+
+.cost-text {
+  display: inline-block;
 }

@@ -24,9 +24,8 @@ ThemeParkList.Views.ParksFilters = Backbone.View.extend({
     });
 
     // Set initial values for price indicator
-    this.$( "#amount" ).
-      val( "$" + this.$( "#slider-range" ).slider( "values", 0 ) +
-           " - $" + this.$( "#slider-range" ).slider( "values", 1 ) );
+    this.$("#amount-left").html("$" + this.$("#slider-range").slider("values", 0));
+    this.$("#amount-right").html("$" + this.$("#slider-range").slider("values", 1));
   },
 
   // Update values for price indicator
