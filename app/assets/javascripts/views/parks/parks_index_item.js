@@ -3,8 +3,6 @@ ThemeParkList.Views.ParksIndexItem = Backbone.View.extend({
   className: "parks-index-item",
 
   initialize: function () {
-    // this.$el.css("background-image",
-    //           "url('/assets/park_images/" + this.model.escape('image_url') + "')")
   },
 
   render: function () {

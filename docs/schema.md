@@ -4,14 +4,13 @@
 column name          | data type | details
 ---------------------|-----------|-----------------------
 id                   | integer   | not null, primary key
-name                 | string    | not null, unique
+name                 | string    | not null
 latitude             | float     | not null
 longitude            | float     | not null
 city                 | string    | not null
 state                | string    |
 country              | string    |
-opening_date         | string    |
-closing_date         | string    |
+url                  | string    |
 image_url            | string    |
 tripadv_rating       | integer   |
 rides                | integer   |
