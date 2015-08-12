@@ -12,11 +12,6 @@
   display: inline-block;
 }
 
-#btn-filter {
-  width: 100%;
-  color: white;
-}
-
 .filter-res {
   font-weight: bold;
 }
@@ -25,10 +20,40 @@
   text-align: center;
 }
 
+.btn {
+  &:hover, &:active:hover {
+    background-color: white;
+    border-color: #282323;
+    color: $gray-text-color;
+  }
+
+  &:focus {
+    background: $primary-brand-color;
+    color: white;
+  }
+
+  .selected {
+    background: $primary-brand-color;
+    color: white;
+  }
+}
+
+#btn-filter {
+  width: 100%;
+  color: white;
+}
+
 #btn-filter:hover {
   background: $primary-brand-color;
 }
 
-#btn-filter {
+#sort-by {
+  background: white;
+  border: 1px solid $primary-brand-color;
+  color: $primary-brand-color;
+}
 
+#sort-selector {
+  background: $primary-brand-color;
+  color: white;
 }
