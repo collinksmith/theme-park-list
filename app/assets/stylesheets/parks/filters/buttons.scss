@@ -20,6 +20,15 @@
   text-align: center;
 }
 
+.selected-filter {
+  background: $primary-brand-color;
+  color: white;
+
+  btn:hover {
+    color: white;
+  }
+}
+
 .btn {
   &:hover, &:active:hover {
     background-color: white;
@@ -27,9 +36,11 @@
     color: $gray-text-color;
   }
 
+
+
   &:focus {
-    background: $primary-brand-color;
     color: white;
+    background: $primary-brand-color;
   }
 
   .selected {

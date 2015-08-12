@@ -3,10 +3,8 @@ ThemeParkList.Views.ParksFilters = Backbone.View.extend({
   className: "container filters",
 
   events: {
-    "slide #slider-range": "handleSlide"
-  },
-
-  initialize: function () {
+    "slide #slider-range": "handleSlide",
+    "click button": "selectFilter"
   },
 
   render: function () {
@@ -32,5 +30,15 @@ ThemeParkList.Views.ParksFilters = Backbone.View.extend({
   handleSlide: function (event, ui) {
     this.$("#amount-left").html("$" + ui.values[0]);
     this.$("#amount-right").html("$" + ui.values[1]);
+  },
+
+  selectFilter: function (event) {
+    var newFilter = $(event.currentTarget);
+
+    newFilter.siblings().each(function (index, filterButton) {
+      $(filterButton).removeClass("selected-filter")
+    });
+
+    newFilter.addClass("selected-filter");
   }
 });
