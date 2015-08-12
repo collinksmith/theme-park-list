@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.serializejson.min.js
+//= require jquery-ui/slider
 //= require underscore
 //= require backbone
 //= require backbone.bootstrap-modal

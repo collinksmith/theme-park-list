@@ -13,6 +13,7 @@ gem 'bcrypt-ruby', require: 'bcrypt'
 gem 'backbone-on-rails'
 gem 'ejs'
 gem 'newrelic_rpm'
+gem 'jquery-ui-rails'
 
 group :development, :test do
   gem 'spring'
