@@ -20,33 +20,25 @@
   text-align: center;
 }
 
-.selected-filter {
-  background: $primary-brand-color;
-  color: white;
-
-  btn:hover {
-    color: white;
-  }
-}
-
 .btn {
+  font-weight: bold;
+  color: $gray-text-color;
+
   &:hover, &:active:hover {
     background-color: white;
     border-color: #282323;
     color: $gray-text-color;
   }
 
-
-
   &:focus {
-    color: white;
-    background: $primary-brand-color;
+    color: $gray-text-color;
+    background: none;
   }
+}
 
-  .selected {
-    background: $primary-brand-color;
-    color: white;
-  }
+.btn.selected-filter {
+  background: $primary-brand-color;
+  color: white;
 }
 
 #btn-filter {

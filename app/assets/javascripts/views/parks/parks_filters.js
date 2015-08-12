@@ -39,6 +39,6 @@ ThemeParkList.Views.ParksFilters = Backbone.View.extend({
       $(filterButton).removeClass("selected-filter")
     });
 
-    newFilter.addClass("selected-filter");
+    newFilter.toggleClass("selected-filter");
   }
 });
