@@ -4,12 +4,12 @@
 }
 
 .btn-container {
-  position: relative;
+  width: 100%;
+  text-align: center;
 }
 
 .btn-group {
-  position: absolute;
-  margin: 0 auto;
+  display: inline-block;
 }
 
 .btn-filter {
