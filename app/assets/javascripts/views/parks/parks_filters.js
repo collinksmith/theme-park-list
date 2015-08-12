@@ -1,6 +1,6 @@
 ThemeParkList.Views.ParksFilters = Backbone.View.extend({
   template: JST['parks/parks_filters'],
-  className: "container",
+  className: "container filters",
 
   events: {
     "slide #slider-range": "handleSlide"

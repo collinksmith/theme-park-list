@@ -20,5 +20,14 @@
 
 .amount {
   border: 0;
-  color: #006900;
+  color: $green-brand;
+}
+
+.ui-widget-header {
+  background: $green-brand;
+}
+
+/* TODO: disable this at the source instead of overwriting it */
+.ui-state-focus, .btn:focus, .btn:focus:active {
+  outline: none;
 }
