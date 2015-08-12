@@ -10,8 +10,11 @@ longitude            | float     | not null
 city                 | string    | not null
 state                | string    |
 country              | string    |
+opening_date         | string    |
+closing_date         | string    |
 image_url            | string    |
 tripadv_rating       | integer   |
+rides                | integer   |
 roller_coasters      | integer   |
 water_rides          | integer   |
 
