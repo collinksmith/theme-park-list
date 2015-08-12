@@ -51,9 +51,5 @@ ThemeParkList.Views.ParksFilters = Backbone.View.extend({
     });
 
     newFormat.addClass("selected-format")
-  },
-
-  selectButton: function (event, className) {
-
   }
 });
