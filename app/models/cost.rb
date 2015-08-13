@@ -11,7 +11,9 @@
 #
 
 class Cost < ActiveRecord::Base
+  COST_TYPES = %w{ adult_ticket child_ticket senior_ticket season_pass }
   validates :park_id, :amount, :cost_type, presence: true
+  validates :cost_type, inclusion: { in: COST_TYPES }
 
   belongs_to :park
 end
