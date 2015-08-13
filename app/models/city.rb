@@ -16,33 +16,42 @@ class City < ActiveRecord::Base
   has_many :parks
   has_many :weather_data
 
-  WINTER = %w{ dec jan feb }
-  SPRING = %w{ mar apr may }
-  SUMMER = %w{ jun jul aug }
-  FALL = %w{ sep oct nov }
-  YEAR = WINTER + SPRING + SUMMER + FALL
-
-  def avg_high(season)
-    return weather_data.where(month: season).average("avg_high").to_f
+  def avg_high(season_data)
+    avg_high = season_data.average("avg_high")
+    return avg_high.nil? ? nil : avg_high.to_f
   end
 
-  def avg_low(season)
-    return weather_data.where(month: season).average("avg_low").to_f
+  def avg_low(season_data)
+    avg_low = season_data.average("avg_low")
+    return avg_low.nil? ? nil : avg_low.to_f
   end
 
-  def avg_precip(season)
-    return weather_data.where(month: season).average("avg_precip").to_f
+  def avg_precip(season_data)
+    avg_precip = season_data.average("avg_precip")
+    return avg_precip.nil? ? nil : avg_precip.to_f
   end
 
   def weather_score(season)
-    high, low, precip = avg_high(season), avg_low(season), avg_precip(season)
+    season_data = get_season_data(season)
+    high, low, precip = avg_high(season_data), avg_low(season_data), avg_precip(season_data)
 
-    return ((high_score(high) +
-             low_score(low) +
-             precip_score(precip)) / 3).round
+    scores = []
+    scores << high_score(high) unless high.nil?
+    scores << low_score(low) unless low.nil?
+    scores << precip_score(precip) unless precip.nil?
+
+    return scores.empty? ? nil : average_values(scores)
   end
 
   private
+
+  def average_values(values)
+    values.inject(:+) / values.length
+  end
+
+  def get_season_data(season)
+    return weather_data.where(month: season)
+  end
 
   def high_score(high)
     case high
