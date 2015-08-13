@@ -1,7 +1,7 @@
-json.(park, :id, :name, :latitude, :longitude, :city, :state, :country, 
-            :image_url, :tripadv_rating, :roller_coasters, :water_rides)
+json.(park, :id, :name, :latitude, :longitude, :city_id, :image_url, :url,
+            :tripadv_rating, :rides, :roller_coasters, :water_rides)
 
-json.weather
+json.weather do
   park.set_weather(season)
   json.score = park.weather_score
   json.high = park.avg_high

@@ -30,6 +30,7 @@ class Park < ActiveRecord::Base
   YEAR = WINTER + SPRING + SUMMER + FALL
 
   def set_weather(season)
+    
     city.set_weather(seasons[season])
   end
 

@@ -18,29 +18,11 @@ class City < ActiveRecord::Base
 
   attr_reader :avg_high, :avg_low, :avg_precip, :weather_score
 
-  # def avg_high(season_data)
-    
-    # avg_high = season_data.average("avg_high")
-    # return avg_high.nil? ? nil : avg_high.to_f
-  # end
-
-  # def avg_low(season_data)
-    # avg_low = season_data.average("avg_low")
-    # return avg_low.nil? ? nil : avg_low.to_f
-  # end
-
-  # def avg_precip(season_data)
-    # avg_precip = season_data.average("avg_precip")
-    # return avg_precip.nil? ? nil : avg_precip.to_f
-  # end
-
   def set_weather(season)
     season_avg = get_season_avg(season)
     self.avg_high = season_avg.high
     self.avg_low = season_avg.low
     self.avg_precip = season_avg.precip
-    # debugger
-    # high, low, precip = avg_high(season_data), avg_low(season_data), avg_precip(season_data)
 
     scores = []
     scores << high_score(season_avg.high) unless season_avg.high.nil?
@@ -61,7 +43,7 @@ class City < ActiveRecord::Base
     return weather_data.select("AVG(avg_high) AS high,
                                 AVG(avg_low) AS low,
                                 AVG(avg_precip) AS precip").
-                                where(month: SUMMER).to_a[0]
+                                where(month: season).to_a[0]
   end
 
   def high_score(high)

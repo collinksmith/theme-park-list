@@ -1,6 +1,7 @@
 class Api::ParksController < ApplicationController
   def index
     @parks = Park.all
+    # Default to getting weather data for the entire year.
     @season = params[:season] || "year"
   end
 
