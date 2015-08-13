@@ -17,28 +17,33 @@ class City < ActiveRecord::Base
   has_many :weather_data
 
   def avg_high(season_data)
-    avg_high = season_data.average("avg_high")
-    return avg_high.nil? ? nil : avg_high.to_f
+    self.
+    # avg_high = season_data.average("avg_high")
+    # return avg_high.nil? ? nil : avg_high.to_f
   end
 
   def avg_low(season_data)
-    avg_low = season_data.average("avg_low")
-    return avg_low.nil? ? nil : avg_low.to_f
+    # avg_low = season_data.average("avg_low")
+    # return avg_low.nil? ? nil : avg_low.to_f
   end
 
   def avg_precip(season_data)
-    avg_precip = season_data.average("avg_precip")
-    return avg_precip.nil? ? nil : avg_precip.to_f
+    # avg_precip = season_data.average("avg_precip")
+    # return avg_precip.nil? ? nil : avg_precip.to_f
   end
 
   def weather_score(season)
-    season_data = get_season_data(season)
-    high, low, precip = avg_high(season_data), avg_low(season_data), avg_precip(season_data)
+    season_avg = get_season_avg(season)
+    self.high = season_avg.high
+    self.low = season_avg.low
+    self.precip = season_avg.precip
+    # debugger
+    # high, low, precip = avg_high(season_data), avg_low(season_data), avg_precip(season_data)
 
     scores = []
-    scores << high_score(high) unless high.nil?
-    scores << low_score(low) unless low.nil?
-    scores << precip_score(precip) unless precip.nil?
+    scores << high_score(season_avg.high) unless season_avg.high.nil?
+    scores << low_score(season_avg.low) unless season_avg.low.nil?
+    scores << precip_score(season_avg.precip) unless season_avg.precip.nil?
 
     return scores.empty? ? nil : average_values(scores)
   end
@@ -49,8 +54,11 @@ class City < ActiveRecord::Base
     values.inject(:+) / values.length
   end
 
-  def get_season_data(season)
-    return weather_data.where(month: season)
+  def get_season_avg(season)
+    return weather_data.select("AVG(avg_high) AS high,
+                                AVG(avg_low) AS low,
+                                AVG(avg_precip) AS precip").
+                                where(month: SUMMER).to_a[0]
   end
 
   def high_score(high)
