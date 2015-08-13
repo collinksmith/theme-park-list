@@ -28,28 +28,34 @@ class Park < ActiveRecord::Base
   SUMMER = %w{ jun jul aug }
   FALL = %w{ sep oct nov }
   YEAR = WINTER + SPRING + SUMMER + FALL
-  
+
+  def set_weather(season)
+    city.set_weather(seasons[season])
+  end
+
+  def avg_high
+    return city.avg_high
+  end
+
+  def avg_low
+    return city.avg_low
+  end
+
+  def avg_precip
+    return city.avg_precip
+  end
+
+  def weather_score
+    return city.weather_score
+  end
+
+  private
+
   def seasons
-    {"winter": WINTER,
-     "spring": SPRING,
-     "summer": SUMMER,
-     "winter": WINTER,
-     "year": YEAR}
-  end
-
-  def avg_high(season)
-    return city.avg_high(seasons[season])
-  end
-
-  def avg_low(season)
-    return city.avg_low(seasons[season])
-  end
-
-  def avg_precip(season)
-    return city.avg_precip(seasons[season])
-  end
-
-  def weather_score(season)
-    return city.weather_score(seasons[season])
+    {"winter" => WINTER,
+     "spring" => SPRING,
+     "summer" => SUMMER,
+     "winter" => WINTER,
+     "year" => YEAR}
   end
 end
