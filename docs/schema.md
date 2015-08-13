@@ -28,6 +28,7 @@ column name | data type | details
 ------------|-----------|-----------------------
 id          | integer   | not null, primary key
 city_id     | integer   | not null, foreign key (references cities)
+month       | string    | not null
 avg_high    | float     | 
 avg_low     | float     | 
 avg_precip  | float     | 
