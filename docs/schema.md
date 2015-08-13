@@ -19,26 +19,26 @@ water_rides          | integer   |
 column name | data type | details
 ------------|-----------|-----------------------
 id          | integer   | not null, primary key
-city        | string    | not null
+name        | string    | not null
 state       | string    |
 country     | string    | not null
-
-## costs
-column name | data type | details
-------------|-----------|-----------------------
-id          | integer   | not null, primary key
-park_id     | integer   | not null, foreign key (references parks)
-amount      | integer   | not null
-type        | integer   | not null
 
 ## weather data
 column name | data type | details
 ------------|-----------|-----------------------
 id          | integer   | not null, primary key
 city_id     | integer   | not null, foreign key (references cities)
-avg_high    | integer   | 
-avg_low     | integer   | 
-avg_precip  | integer   | 
+avg_high    | float     | 
+avg_low     | float     | 
+avg_precip  | float     | 
+
+## costs
+column name | data type | details
+------------|-----------|-----------------------
+id          | integer   | not null, primary key
+park_id     | integer   | not null, foreign key (references parks)
+amount      | decimal   | not null
+cost_type   | string    | not null
 
 ## users
 column name     | data type | details
