@@ -4,18 +4,24 @@
 column name          | data type | details
 ---------------------|-----------|-----------------------
 id                   | integer   | not null, primary key
+city_id              | integer   | not null, foreign key (references cities)
 name                 | string    | not null
 latitude             | float     | not null
 longitude            | float     | not null
-city                 | string    | not null
-state                | string    |
-country              | string    |
 url                  | string    |
 image_url            | string    |
 tripadv_rating       | integer   |
 rides                | integer   |
 roller_coasters      | integer   |
 water_rides          | integer   |
+
+## cities
+column name | data type | details
+------------|-----------|-----------------------
+id          | integer   | not null, primary key
+city        | string    | not null
+state       | string    |
+country     | string    |
 
 ## costs
 column name | data type | details
@@ -24,6 +30,15 @@ id          | integer   | not null, primary key
 park_id     | integer   | not null, foreign key (references parks)
 amount      | integer   | not null
 type        | integer   | not null
+
+## weather data
+column name | data type | details
+------------|-----------|-----------------------
+id          | integer   | not null, primary key
+city_id     | integer   | not null, foreign key (references cities)
+avg_high    | integer   | not null
+avg_low     | integer   | not null
+avg_precip  | integer   | not null
 
 ## users
 column name     | data type | details
@@ -41,19 +56,11 @@ author_id           | integer   | not null, foreign key (references users)
 park_id             | integer   | not null, foreign key (references parks)
 title               | string    |
 body                | text      |
-
-## park_ratings
-column name         | data type | details
---------------------|-----------|--------------------------
-id                  | integer   | not null, primary key
-park_id             | integer   | not null, foreign key (references parks)
-review_id           | integer   | not null, foreign key (references reviews)
 overall             | integer   | not null
 atmosphere          | integer   |
 family_friendliness | integer   |
 intesity            | integer   |
 wait_times          | integer   |
-
 
 ## followings
 column name | data type | details
