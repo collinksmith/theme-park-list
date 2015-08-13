@@ -21,7 +21,7 @@ column name | data type | details
 id          | integer   | not null, primary key
 city        | string    | not null
 state       | string    |
-country     | string    |
+country     | string    | not null
 
 ## costs
 column name | data type | details
@@ -36,9 +36,9 @@ column name | data type | details
 ------------|-----------|-----------------------
 id          | integer   | not null, primary key
 city_id     | integer   | not null, foreign key (references cities)
-avg_high    | integer   | not null
-avg_low     | integer   | not null
-avg_precip  | integer   | not null
+avg_high    | integer   | 
+avg_low     | integer   | 
+avg_precip  | integer   | 
 
 ## users
 column name     | data type | details
