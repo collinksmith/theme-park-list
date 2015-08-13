@@ -19,8 +19,5 @@
 @import "jquery-ui/slider";
 @import "jquery-ui/core";
 @import "jquery-ui/theme";
-@import "parks/parks_index";
-@import "parks/parks_index_item";
-@import "parks/filters/filters";
-@import "parks/filters/buttons";
-@import "parks/filters/slider";
+@import "parks/**/*";
+
