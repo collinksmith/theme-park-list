@@ -22,4 +22,26 @@ class Park < ActiveRecord::Base
 
   belongs_to :city
   has_many :costs
+
+  WINTER = %w{ dec jan feb }
+  SPRING = %w{ mar apr may }
+  SUMMER = %w{ jun jul aug }
+  FALL = %w{ sep oct nov }
+  YEAR = WINTER + SPRING + SUMMER + FALL
+
+  def avg_high(season)
+    return city.avg_high(season)
+  end
+
+  def avg_low(season)
+    return city.avg_low(season)
+  end
+
+  def avg_precip(season)
+    return city.avg_precip(season)
+  end
+
+  def weather_score(season)
+    return city.weather_score(season)
+  end
 end
