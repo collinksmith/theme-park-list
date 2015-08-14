@@ -27,10 +27,11 @@ class Park < ActiveRecord::Base
             'jul', 'aug', 'sep', 'oct', 'nov', 'dec')"
   }
 
-  def self.with_weather_data(season = :year)
+  def self.with_weather_data(season)
+    season ||= :year
     months = SEASONS[season]
 
-    self.find_by_sql(<<-SQL)
+    self.joins(:costs, :city).find_by_sql(<<-SQL)
       SELECT
         p.*, w.high, w.low, w.precip
       FROM (

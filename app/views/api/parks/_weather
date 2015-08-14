@@ -1,6 +1,0 @@
-json.weather do
-  json.score weather.weather_score
-  json.high weather.high
-  json.low weather.low
-  json.precip weather.precip
-end

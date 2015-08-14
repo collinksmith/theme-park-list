@@ -13,6 +13,7 @@
 #
 
 class WeatherDatum < ActiveRecord::Base
+  MONTHS = %w{jan feb mar apr jun jul aug sep oct nov dec}
   validates :city_id, presence: true
   validates :month, inclusion: { in: MONTHS }
 

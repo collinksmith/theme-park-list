@@ -8,12 +8,25 @@
 .m-content {
   position: absolute;
   z-index: 2;
-  top: 25%;
+  top: 0;
   right: 0;
   background: white;
   width: 50%;
+  height: 100%;
+}
+
+.show-header {
+  background: $secondary-brand-color;
+  text-align: center;
+  height: 300px;
+  top: 0;
+}
+
+.show-name {
+  color: white;
+  margin: 0;
+  padding: 20px;
 }
 
 body {
-  position: relative;
 }
