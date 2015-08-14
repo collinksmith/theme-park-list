@@ -1,3 +1,3 @@
 json.array! @parks do |park|
-  json.partial! "park", park: park, season: @season
+  json.partial! "park", park: park
 end
