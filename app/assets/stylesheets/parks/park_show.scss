@@ -1,0 +1,19 @@
+.m-background {
+  background: rgba(128, 128, 128, 0.6);
+  position: absolute;
+  top: 0; bottom: 0; left: 0; right: 0;
+  z-index: 1;
+}
+
+.m-content {
+  position: absolute;
+  z-index: 2;
+  top: 25%;
+  right: 0;
+  background: white;
+  width: 50%;
+}
+
+body {
+  position: relative;
+}
