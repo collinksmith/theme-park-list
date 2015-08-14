@@ -3,13 +3,15 @@ ThemeParkList.Models.Park = Backbone.Model.extend({
 
   parse: function (response) {
     if (response.costs) {
+      debugger;
       this.costs().set(response.costs);
       delete response.costs;
     }
     if (response.weather) {
-      this.weather().set(response.weather);
+      this.weather(response.weather);
       delete response.weather;
     }
+
     return response;
   },
 
@@ -20,10 +22,12 @@ ThemeParkList.Models.Park = Backbone.Model.extend({
     return this._costs;
   },
 
-  weather: function () {
-    if (!this._weather) {
-      this._weather = new ThemeParkList.Collections.
-                               WeatherData([], { park: this });
+  weather: function (weather_data) {
+    if (weather_data) {
+      this._weather = { score: weather_data.score ,
+                        high: weather_data.high,
+                        low:  weather_data.low,
+                        precip: weather_data.precip }
     }
     return this._weather;
   }

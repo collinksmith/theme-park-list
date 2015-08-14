@@ -36,7 +36,7 @@ class Park < ActiveRecord::Base
         p.*, w.high, w.low, w.precip
       FROM (
         SELECT 
-          parks.id AS id, 
+          parks.id AS id,
           AVG(avg_high) AS high,
           AVG(avg_low) AS low,
           AVG(avg_precip) AS precip
