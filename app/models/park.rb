@@ -45,19 +45,6 @@ class Park < ActiveRecord::Base
       GROUP BY
         parks.id, cities.id, weather_data.city_id, costs.id
     SQL
-
-    # TODO: convert SQL query to ActiveRecord query interface
-    # results = self.
-    #   select("parks.*, cities.id,
-    #           AVG(weather_data.avg_high) AS high, 
-    #           AVG(weather_data.avg_low) AS low,
-    #           AVG(weather_data.avg_precip) AS precip").
-    #   references(:weather_data).
-    #   includes(:costs, :city, :weather_data).
-    #   group("parks.id").
-    # if months
-    #   results = results.where(weather_data: {month: months})
-    # end
   end
 
   validates :name, :latitude, :longitude, :city_id, presence: true
