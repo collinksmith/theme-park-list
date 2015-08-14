@@ -32,20 +32,125 @@ class Park < ActiveRecord::Base
 
     self.find_by_sql(<<-SQL)
       SELECT
-        parks.*, costs.*, cities.id, weather_data.city_id AS wc_id, 
+        p.*, w.high, w.low, w.precip
+      FROM (
+        SELECT 
+          parks.id AS id, 
+          AVG(avg_high) AS high,
+          AVG(avg_low) AS low,
+          AVG(avg_precip) AS precip
+        FROM parks INNER JOIN cities ON parks.city_id = cities.id
+          LEFT OUTER JOIN weather_data ON weather_data.city_id = cities.id
+        WHERE
+          weather_data.month IS NULL OR 
+          weather_data.month IN ('jun', 'jul', 'aug')
+        GROUP BY parks.id
+        ) w
+        INNER JOIN parks p ON w.id = p.id
+      SQL
+
+ 
+
+
+    # self.find_by_sql(<<-SQL)
+    #   SELECT
+    #     parks.name, cities.id, weather_data.city_id AS wc_id, 
+    #     AVG(avg_high) AS high,
+    #     AVG(avg_low) AS low,
+    #     AVG(avg_precip) AS precip
+    #   FROM
+    #     parks INNER JOIN cities ON parks.city_id = cities.id
+    #     LEFT OUTER JOIN weather_data ON weather_data.city_id = cities.id
+    #   WHERE
+    #     weather_data.month IN ('jun', 'jul', 'aug')
+    #   GROUP BY
+    #     parks.id, cities.id, weather_data.city_id
+    # SQL
+
+
+    # self.find_by_sql(<<-SQL)
+    #   SELECT
+    #     parks.*, costs.*, cities.id, weather_data.city_id AS wc_id, 
+    #     AVG(avg_high) AS high,
+    #     AVG(avg_low) AS low,
+    #     AVG(avg_precip) AS precip
+    #   FROM
+    #     parks INNER JOIN cities ON parks.city_id = cities.id
+    #     LEFT OUTER JOIN weather_data ON weather_data.city_id = cities.id
+    #     INNER JOIN costs ON costs.park_id = parks.id
+    #   WHERE
+    #     weather_data.month IN #{months}
+    #   GROUP BY
+    #     parks.id, cities.id, weather_data.city_id, costs.id
+    # SQL
+  end
+
+  def test
+    Park.find_by_sql(<<-SQL)
+      SELECT
+        parks.name, cities.id, weather_data.city_id AS wc_id, 
         AVG(avg_high) AS high,
         AVG(avg_low) AS low,
         AVG(avg_precip) AS precip
       FROM
         parks INNER JOIN cities ON parks.city_id = cities.id
         LEFT OUTER JOIN weather_data ON weather_data.city_id = cities.id
-        INNER JOIN costs ON costs.park_id = parks.id
       WHERE
-        weather_data.month IN #{months}
+        weather_data.month IN ('jun', 'jul', 'aug')
       GROUP BY
-        parks.id, cities.id, weather_data.city_id, costs.id
+        parks.id, cities.id, weather_data.city_id
     SQL
-  end
+
+    # Park.find_by_sql(<<-SQL)
+    #   SELECT
+    #     costs.*
+    #   FROM 
+    #     parks LEFT OUTER JOIN costs ON parks.id = costs.park_id
+    #   GROUP BY
+    #      costs.park_id
+    # SQL
+
+    WORKING
+    Park.find_by_sql(<<-SQL)
+      SELECT
+        p.name, w.high, w.low, w.precip
+      FROM (
+        SELECT 
+          parks.id AS id, 
+          AVG(avg_high) AS high,
+          AVG(avg_low) AS low,
+          AVG(avg_precip) AS precip
+        FROM parks INNER JOIN cities ON parks.city_id = cities.id
+          LEFT OUTER JOIN weather_data ON weather_data.city_id = cities.id
+        GROUP BY parks.id
+        ) w
+        JOIN parks p ON w.id = p.id
+    SQL
+
+    Park.find_by_sql(<<-SQL)
+      SELECT
+        p.name, c.amount, c.type, c.cid
+      FROM (
+        SELECT 
+          costs.park_id AS id, 
+          costs.amount AS amount,
+          costs.cost_type AS type,
+          costs.id AS cid
+        FROM parks LEFT OUTER JOIN costs ON costs.park_id = parks.id
+        GROUP BY parks.id, costs.amount
+        ) c
+        JOIN parks p ON c.id = p.id
+    SQL
+
+    Park.find_by_sql(<<-SQL)
+      SELECT
+        p.name, c.amount, c.cost_type
+      FROM
+        parks p LEFT OUTER JOIN costs c ON p.id = c.park_id
+      GROUP BY p.id
+    SQL
+
+  end 
 
   validates :name, :latitude, :longitude, :city_id, presence: true
 
