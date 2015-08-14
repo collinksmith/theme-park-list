@@ -6,7 +6,6 @@ ThemeParkList.Views.ParksIndexItem = Backbone.View.extend({
   },
 
   render: function () {
-    var i = this.model.escape('image_url');
     this.$el.html(this.template({ park: this.model }));
     return this;
   }
