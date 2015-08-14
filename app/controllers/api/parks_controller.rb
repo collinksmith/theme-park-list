@@ -1,6 +1,6 @@
 class Api::ParksController < ApplicationController
   def index
-    @parks = Park.with_weather_data(params[:season])
+    @parks = Park.with_weather_data()
   end
 
   def show

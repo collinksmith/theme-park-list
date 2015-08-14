@@ -19,41 +19,79 @@
 
 class Park < ActiveRecord::Base
   SEASONS = {
-    winter: %w{ dec jan feb },
-    spring: %w{ mar apr may },
-    summer: %w{ jun jul aug },
-    fall: %w{ sep oct nov }
+    winter: "('dec', 'jan', 'feb')",
+    spring: "('mar', 'apr', 'may')",
+    summer: "('jun', 'jul', 'aug')",
+    fall: "('sep', 'oct', 'nov')",
+    year: <<-YEAR
+            ('jan', 'feb', 'mar', 'apr', 'may', 'jun',
+            'jul', 'aug', 'sep', 'oct', 'nov', 'dec')
+          YEAR
   }
 
-  def self.with_weather_data(season)
+  def self.with_weather_data(season = :year)
     months = SEASONS[season]
-    # debugger
-    results = self.
-      select("parks.*, 
-              AVG(weather_data.avg_high) AS high, 
-              AVG(weather_data.avg_low) AS low,
-              AVG(weather_data.avg_precip) AS precip").
-      references(:weather_data).
-      includes(:costs, :city, :weather_data).
-      group("parks.id").group("weather_data.city_id").group("costs.id").group("cities.id").
-      group("weather_data.id")
+
+    # TODO: convert SQL query to ActiveRecord query interface
+    # results = self.
+    #   select("parks.*, cities.id,
+    #           AVG(weather_data.avg_high) AS high, 
+    #           AVG(weather_data.avg_low) AS low,
+    #           AVG(weather_data.avg_precip) AS precip").
+    #   references(:weather_data).
+    #   includes(:costs, :city, :weather_data).
+    #   group("parks.id").
+    # if months
+    #   results = results.where(weather_data: {month: months})
+    # end
 
     self.find_by_sql(<<-SQL)
       SELECT
-        parks.*, AVG(avg_high) AS high, AVG(avg_low) AS low, AVG(avg_precip) AS precip
+        parks.*, costs.*, cities.id, weather_data.city_id AS wc_id, 
+        AVG(avg_high) AS high,
+        AVG(avg_low) AS low,
+        AVG(avg_precip) AS precip
       FROM
         parks INNER JOIN cities ON parks.city_id = cities.id
-        LEFT OUTER JOIN weather_data ON cities.id = weather_data.city_id
+        LEFT OUTER JOIN weather_data ON weather_data.city_id = cities.id
+        INNER JOIN costs ON costs.park_id = parks.id
+      WHERE
+        weather_data.month IN #{months}
       GROUP BY
-        parks.id
+        parks.id, cities.id, weather_data.city_id, costs.id
+    SQL
+  end
+
+  ######
+
+  def testing
+    Park.find_by_sql(<<-SQL)
+      SELECT
+        parks.name, cities.name, AVG(avg_high) AS high
+      FROM
+        parks INNER JOIN cities ON parks.city_id = cities.id
+        INNER JOIN weather_data ON cities.id = weather_data.city_id
+      GROUP BY
+        parks.id, cities.id
     SQL
 
-    if months
-      results = results.where(weather_data: {month: months})
-    end
-
-    results
+    Park.find_by_sql(<<-SQL, "('jun', 'jul', 'aug')")
+      SELECT
+        parks.*, cities.id, weather_data.city_id AS wc_id, 
+        AVG(avg_high) AS high,
+        AVG(avg_low) AS low,
+        AVG(avg_precip) AS precip
+      FROM
+        parks INNER JOIN cities ON parks.city_id = cities.id
+        LEFT OUTER JOIN weather_data ON weather_data.city_id = cities.id
+      WHERE
+        weather_data.month IN ?
+      GROUP BY
+        parks.id, cities.id, weather_data.city_id
+    SQL
   end
+
+  #######
 
   validates :name, :latitude, :longitude, :city_id, presence: true
 
