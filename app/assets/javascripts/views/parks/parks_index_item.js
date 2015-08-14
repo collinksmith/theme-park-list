@@ -6,9 +6,6 @@ ThemeParkList.Views.ParksIndexItem = Backbone.View.extend({
     "click": "addParkShowView"
   },
 
-  initialize: function () {
-  },
-
   render: function () {
     this.$el.html(this.template({ park: this.model }));
     return this;

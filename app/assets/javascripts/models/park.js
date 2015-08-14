@@ -3,7 +3,6 @@ ThemeParkList.Models.Park = Backbone.Model.extend({
 
   parse: function (response) {
     if (response.costs) {
-      debugger;
       this.costs().set(response.costs);
       delete response.costs;
     }
@@ -11,7 +10,6 @@ ThemeParkList.Models.Park = Backbone.Model.extend({
       this.weather(response.weather);
       delete response.weather;
     }
-
     return response;
   },
 
