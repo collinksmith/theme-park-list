@@ -18,39 +18,58 @@
 #
 
 class Park < ActiveRecord::Base
+  SEASONS = {
+    winter: %w{ dec jan feb },
+    spring: %w{ mar apr may },
+    summer: %w{ jun jul aug },
+    fall: %w{ sep oct nov }
+  }
+
+  def self.with_weather_data(season)
+    months = SEASONS[season]
+    # debugger
+    results = self.
+      select("parks.*, 
+              AVG(weather_data.avg_high) AS high, 
+              AVG(weather_data.avg_low) AS low,
+              AVG(weather_data.avg_precip) AS precip").
+      references(:weather_data).
+      includes(:costs, :city, :weather_data).
+      group("parks.id").group("weather_data.city_id").group("costs.id").group("cities.id").
+      group("weather_data.id")
+
+    self.find_by_sql(<<-SQL)
+      SELECT
+        parks.*, AVG(avg_high) AS high, AVG(avg_low) AS low, AVG(avg_precip) AS precip
+      FROM
+        parks INNER JOIN cities ON parks.city_id = cities.id
+        LEFT OUTER JOIN weather_data ON cities.id = weather_data.city_id
+      GROUP BY
+        parks.id
+    SQL
+
+    if months
+      results = results.where(weather_data: {month: months})
+    end
+
+    results
+  end
+
   validates :name, :latitude, :longitude, :city_id, presence: true
 
   belongs_to :city
   has_many :costs
   has_many :weather_data, through: :city
 
-  WINTER = %w{ dec jan feb }
-  SPRING = %w{ mar apr may }
-  SUMMER = %w{ jun jul aug }
-  FALL = %w{ sep oct nov }
-  YEAR = WINTER + SPRING + SUMMER + FALL
-
-  scope :summer, -> { includes(:weather_data).where(weather_data: {month: SUMMER}) }
-
   attr_reader :avg_high, :avg_low, :avg_precip, :weather_score
-
-  # def self.season_relation
-  #   City.find_by_sql(<<-SQL
-  #     SELECT AVG(avg_high) AS high, AVG(avg_low) AS low, AVG(avg_precip) AS precip
-  #     FROM cities
-  #     LEFT OUTER JOIN weather_data ON weather_data.id = cities.id
-  #     WHERE weather_data.month IN ('jun, jul, aug')
-  #     SQL
-  #     )
-  # end
 
   def set_weather
     self.avg_high = (weather_data.inject(0) { |sum, n| sum + n.avg_high }) / 
                      weather_data.length
     self.avg_low = (weather_data.inject(0) { |sum, n| sum + n.avg_low }) / 
-                     weather_data.length
+                    weather_data.length
     self.avg_precip = (weather_data.inject(0) { |sum, n| sum + n.avg_precip }) / 
-                     weather_data.length
+                       weather_data.length
 
     scores = []
     scores << high_score(self.avg_high) unless self.avg_high.nil?
@@ -60,42 +79,11 @@ class Park < ActiveRecord::Base
     self.weather_score =  scores.empty? ? nil : average_values(scores)
   end
 
-
-  # def set_weather(season)
-  #   debugger
-  #   season_avg = get_season_avg(seasons[season])
-  #   self.avg_high = season_avg.high
-  #   self.avg_low = season_avg.low
-  #   self.avg_precip = season_avg.precip
-
-  #   scores = []
-  #   scores << high_score(season_avg.high) unless season_avg.high.nil?
-  #   scores << low_score(season_avg.low) unless season_avg.low.nil?
-  #   scores << precip_score(season_avg.precip) unless season_avg.precip.nil?
-
-  #   self.weather_score =  scores.empty? ? nil : average_values(scores)
-  # end
-
   private
   attr_writer :avg_high, :avg_low, :avg_precip, :weather_score
 
   def average_values(values)
     values.inject(:+) / values.length
-  end
-
-  def get_season_avg(season)
-    return weather_data.select("AVG(avg_high) AS high,
-                                AVG(avg_low) AS low,
-                                AVG(avg_precip) AS precip").
-                                where(month: season).to_a[0]
-  end
-
-  def seasons
-    {"winter" => WINTER,
-     "spring" => SPRING,
-     "summer" => SUMMER,
-     "winter" => WINTER,
-     "year" => YEAR}
   end
 
   def high_score(high)
