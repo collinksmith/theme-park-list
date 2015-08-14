@@ -1,11 +1,12 @@
 class Api::ParksController < ApplicationController
   def index
-    @parks = Park.with_weather_data(params[:season])
-    @parks2 = Park.includes(:costs, :city)
+    @parks = Park.includes(:costs, :city)
+    @parks_with_weather = Park.with_weather_data(params[:season])
   end
 
   def show
     @park = Park.find(params[:id])
-    @season = params[:season] || "year"
+    @park_with_weather = Park.with_weather_data(params[:season]).
+                         select { |park| park.id == params[:id].to_i }.first
   end
 end

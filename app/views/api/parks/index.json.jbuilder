@@ -1,5 +1,4 @@
-json.array! @parks do |park|
-  json.partial! "park", park: park
-  my_park = @parks2.select { |park2| park2.id == park.id }[0]
-  json.partial! "park2", park: my_park
+json.array! @parks_with_weather do |park_with_weather|
+  park = @parks.select { |park2| park2.id == park_with_weather.id }.first
+  json.partial! "park", park: park, park_with_weather: park_with_weather
 end
