@@ -68,22 +68,6 @@ class Park < ActiveRecord::Base
 
   attr_reader :avg_high, :avg_low, :avg_precip
 
-  def set_weather
-    self.avg_high = (weather_data.inject(0) { |sum, n| sum + n.avg_high }) / 
-                     weather_data.length
-    self.avg_low = (weather_data.inject(0) { |sum, n| sum + n.avg_low }) / 
-                    weather_data.length
-    self.avg_precip = (weather_data.inject(0) { |sum, n| sum + n.avg_precip }) / 
-                       weather_data.length
-
-    scores = []
-    scores << high_score(self.avg_high) unless self.avg_high.nil?
-    scores << low_score(self.avg_low) unless self.avg_low.nil?
-    scores << precip_score(self.avg_precip) unless self.avg_precip.nil?
-
-    self.weather_score =  scores.empty? ? nil : average_values(scores)
-  end
-
   def weather_score
     scores = []
     scores << high_score(self.high) unless self.high.nil?
