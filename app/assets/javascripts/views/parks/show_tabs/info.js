@@ -1,5 +1,5 @@
-ThemeParkList.Views.Scores = Backbone.View.extend({
-  template: JST["parks/show_tabs/scores"],
+ThemeParkList.Views.Info = Backbone.View.extend({
+  template: JST["parks/show_tabs/info"],
 
   render: function () {
     this.$el.html(this.template({ park: this.model }));
