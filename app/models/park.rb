@@ -22,6 +22,7 @@ class Park < ActiveRecord::Base
 
   belongs_to :city
   has_many :costs
+  has_many :weather_data, through: :city
 
   WINTER = %w{ dec jan feb }
   SPRING = %w{ mar apr may }
@@ -29,27 +30,47 @@ class Park < ActiveRecord::Base
   FALL = %w{ sep oct nov }
   YEAR = WINTER + SPRING + SUMMER + FALL
 
+  scope :summer, -> { includes(:weather_data).where(weather_data: {month: SUMMER}) }
+
+  attr_reader :avg_high, :avg_low, :avg_precip, :weather_score
+
+  # def self.season_relation
+  #   City.find_by_sql(<<-SQL
+  #     SELECT AVG(avg_high) AS high, AVG(avg_low) AS low, AVG(avg_precip) AS precip
+  #     FROM cities
+  #     LEFT OUTER JOIN weather_data ON weather_data.id = cities.id
+  #     WHERE weather_data.month IN ('jun, jul, aug')
+  #     SQL
+  #     )
+  # end
+
   def set_weather(season)
-    city.set_weather(seasons[season])
-  end
+    season_avg = get_season_avg(seasons[season])
+    self.avg_high = season_avg.high
+    self.avg_low = season_avg.low
+    self.avg_precip = season_avg.precip
 
-  def avg_high
-    return city.avg_high
-  end
+    scores = []
+    scores << high_score(season_avg.high) unless season_avg.high.nil?
+    scores << low_score(season_avg.low) unless season_avg.low.nil?
+    scores << precip_score(season_avg.precip) unless season_avg.precip.nil?
 
-  def avg_low
-    return city.avg_low
-  end
-
-  def avg_precip
-    return city.avg_precip
-  end
-
-  def weather_score
-    return city.weather_score
+    self.weather_score =  scores.empty? ? nil : average_values(scores)
   end
 
   private
+  attr_writer :avg_high, :avg_low, :avg_precip, :weather_score
+
+  def average_values(values)
+    values.inject(:+) / values.length
+  end
+
+  def get_season_avg(season)
+    return weather_data.select("AVG(avg_high) AS high,
+                                AVG(avg_low) AS low,
+                                AVG(avg_precip) AS precip").
+                                where(month: season).to_a[0]
+  end
 
   def seasons
     {"winter" => WINTER,
@@ -57,5 +78,72 @@ class Park < ActiveRecord::Base
      "summer" => SUMMER,
      "winter" => WINTER,
      "year" => YEAR}
+  end
+
+  def high_score(high)
+    case high
+    when (95..Float::INFINITY)
+      return 35
+    when (85...95)
+      return 75
+    when (70...85)
+      return 100
+    when (60...70)
+      return 75
+    when (50...60)
+      return 50
+    when (40...50)
+      return 35
+    when (-Float::INFINITY...40)
+      return 15
+    end
+  end
+
+  def low_score(low)
+    case low
+    when (95..Float::INFINITY)
+      return 25
+    when (85...95)
+      return 45
+    when (70...85)
+      return 75
+    when (60...70)
+      return 100
+    when (50...60)
+      return 75
+    when (35...50)
+      return 50
+    when (20...35)
+      return 35
+    when (-Float::INFINITY...20)
+      return 15
+    end
+  end
+
+  def precip_score(precip)
+    case precip
+    when (0...0.5)
+      return 100
+    when (0.5...1)
+      return 90
+    when (1...1.5)
+      return 80
+    when (1.5...2)
+      return 70
+    when (2...2.5)
+      return 60
+    when (2.5...3)
+      return 50
+    when (3...3.5)
+      return 40
+    when (3.5...4)
+      return 30
+    when (4...5)
+      return 25
+    when (5...6)
+      return 20
+    when (6...Float::INFINITY)
+      return 10
+    end
   end
 end

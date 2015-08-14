@@ -18,6 +18,16 @@ class City < ActiveRecord::Base
 
   attr_reader :avg_high, :avg_low, :avg_precip, :weather_score
 
+  # def self.season_relation
+  #   City.find_by_sql(<<-SQL
+  #     SELECT AVG(avg_high) AS high, AVG(avg_low) AS low, AVG(avg_precip) AS precip
+  #     FROM cities
+  #     LEFT OUTER JOIN weather_data ON weather_data.id = cities.id
+  #     WHERE weather_data.month IN ('jun, jul, aug')
+  #     SQL
+  #     )
+  # end
+
   def set_weather(season)
     season_avg = get_season_avg(season)
     self.avg_high = season_avg.high
