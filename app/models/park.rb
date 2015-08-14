@@ -23,27 +23,12 @@ class Park < ActiveRecord::Base
     spring: "('mar', 'apr', 'may')",
     summer: "('jun', 'jul', 'aug')",
     fall: "('sep', 'oct', 'nov')",
-    year: <<-YEAR
-            ('jan', 'feb', 'mar', 'apr', 'may', 'jun',
-            'jul', 'aug', 'sep', 'oct', 'nov', 'dec')
-          YEAR
+    year: "('jan', 'feb', 'mar', 'apr', 'may', 'jun',
+            'jul', 'aug', 'sep', 'oct', 'nov', 'dec')"
   }
 
   def self.with_weather_data(season = :year)
     months = SEASONS[season]
-
-    # TODO: convert SQL query to ActiveRecord query interface
-    # results = self.
-    #   select("parks.*, cities.id,
-    #           AVG(weather_data.avg_high) AS high, 
-    #           AVG(weather_data.avg_low) AS low,
-    #           AVG(weather_data.avg_precip) AS precip").
-    #   references(:weather_data).
-    #   includes(:costs, :city, :weather_data).
-    #   group("parks.id").
-    # if months
-    #   results = results.where(weather_data: {month: months})
-    # end
 
     self.find_by_sql(<<-SQL)
       SELECT
@@ -60,38 +45,20 @@ class Park < ActiveRecord::Base
       GROUP BY
         parks.id, cities.id, weather_data.city_id, costs.id
     SQL
+
+    # TODO: convert SQL query to ActiveRecord query interface
+    # results = self.
+    #   select("parks.*, cities.id,
+    #           AVG(weather_data.avg_high) AS high, 
+    #           AVG(weather_data.avg_low) AS low,
+    #           AVG(weather_data.avg_precip) AS precip").
+    #   references(:weather_data).
+    #   includes(:costs, :city, :weather_data).
+    #   group("parks.id").
+    # if months
+    #   results = results.where(weather_data: {month: months})
+    # end
   end
-
-  ######
-
-  def testing
-    Park.find_by_sql(<<-SQL)
-      SELECT
-        parks.name, cities.name, AVG(avg_high) AS high
-      FROM
-        parks INNER JOIN cities ON parks.city_id = cities.id
-        INNER JOIN weather_data ON cities.id = weather_data.city_id
-      GROUP BY
-        parks.id, cities.id
-    SQL
-
-    Park.find_by_sql(<<-SQL, "('jun', 'jul', 'aug')")
-      SELECT
-        parks.*, cities.id, weather_data.city_id AS wc_id, 
-        AVG(avg_high) AS high,
-        AVG(avg_low) AS low,
-        AVG(avg_precip) AS precip
-      FROM
-        parks INNER JOIN cities ON parks.city_id = cities.id
-        LEFT OUTER JOIN weather_data ON weather_data.city_id = cities.id
-      WHERE
-        weather_data.month IN ?
-      GROUP BY
-        parks.id, cities.id, weather_data.city_id
-    SQL
-  end
-
-  #######
 
   validates :name, :latitude, :longitude, :city_id, presence: true
 
@@ -99,7 +66,7 @@ class Park < ActiveRecord::Base
   has_many :costs
   has_many :weather_data, through: :city
 
-  attr_reader :avg_high, :avg_low, :avg_precip, :weather_score
+  attr_reader :avg_high, :avg_low, :avg_precip
 
   def set_weather
     self.avg_high = (weather_data.inject(0) { |sum, n| sum + n.avg_high }) / 
@@ -113,6 +80,15 @@ class Park < ActiveRecord::Base
     scores << high_score(self.avg_high) unless self.avg_high.nil?
     scores << low_score(self.avg_low) unless self.avg_low.nil?
     scores << precip_score(self.avg_precip) unless self.avg_precip.nil?
+
+    self.weather_score =  scores.empty? ? nil : average_values(scores)
+  end
+
+  def weather_score
+    scores = []
+    scores << high_score(self.high) unless self.high.nil?
+    scores << low_score(self.low) unless self.low.nil?
+    scores << precip_score(self.precip) unless self.precip.nil?
 
     self.weather_score =  scores.empty? ? nil : average_values(scores)
   end
