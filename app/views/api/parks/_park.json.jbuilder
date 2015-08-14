@@ -2,7 +2,7 @@ json.(park, :id, :name, :latitude, :longitude, :city_id, :image_url, :url,
             :tripadv_rating, :rides, :roller_coasters, :water_rides)
 
 json.weather do
-  park.set_weather(season)
+  park.set_weather
   json.score park.weather_score
   json.high park.avg_high
   json.low park.avg_low

@@ -44,19 +44,37 @@ class Park < ActiveRecord::Base
   #     )
   # end
 
-  def set_weather(season)
-    season_avg = get_season_avg(seasons[season])
-    self.avg_high = season_avg.high
-    self.avg_low = season_avg.low
-    self.avg_precip = season_avg.precip
+  def set_weather
+    self.avg_high = (weather_data.inject(0) { |sum, n| sum + n.avg_high }) / 
+                     weather_data.length
+    self.avg_low = (weather_data.inject(0) { |sum, n| sum + n.avg_low }) / 
+                     weather_data.length
+    self.avg_precip = (weather_data.inject(0) { |sum, n| sum + n.avg_precip }) / 
+                     weather_data.length
 
     scores = []
-    scores << high_score(season_avg.high) unless season_avg.high.nil?
-    scores << low_score(season_avg.low) unless season_avg.low.nil?
-    scores << precip_score(season_avg.precip) unless season_avg.precip.nil?
+    scores << high_score(self.avg_high) unless self.avg_high.nil?
+    scores << low_score(self.avg_low) unless self.avg_low.nil?
+    scores << precip_score(self.avg_precip) unless self.avg_precip.nil?
 
     self.weather_score =  scores.empty? ? nil : average_values(scores)
   end
+
+
+  # def set_weather(season)
+  #   debugger
+  #   season_avg = get_season_avg(seasons[season])
+  #   self.avg_high = season_avg.high
+  #   self.avg_low = season_avg.low
+  #   self.avg_precip = season_avg.precip
+
+  #   scores = []
+  #   scores << high_score(season_avg.high) unless season_avg.high.nil?
+  #   scores << low_score(season_avg.low) unless season_avg.low.nil?
+  #   scores << precip_score(season_avg.precip) unless season_avg.precip.nil?
+
+  #   self.weather_score =  scores.empty? ? nil : average_values(scores)
+  # end
 
   private
   attr_writer :avg_high, :avg_low, :avg_precip, :weather_score
