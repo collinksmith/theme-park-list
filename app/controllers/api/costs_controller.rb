@@ -1,6 +1,5 @@
 class Api::CostsController < ApplicationController
   def show
-    # debugger
     @cost = Cost.find(params[:id])
     render json: @cost
   end
