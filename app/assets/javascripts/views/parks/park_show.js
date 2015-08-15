@@ -2,12 +2,14 @@ ThemeParkList.Views.ParkShow = Backbone.CompositeView.extend({
   template: JST['parks/park_show'],
 
   events: {
-    "click .show-tab": "updatePanel"
+    "click .show-tab": "updatePanel",
+    "click .m-background": "remove",
   },
 
   initialize: function () {
     var scoresView = new ThemeParkList.Views.Scores({ model: this.model });
     this.addSubview(".show-panel", scoresView);
+    $(document).on("keyup", this.handleKeyup.bind(this));
   },
 
   render: function () {
@@ -18,12 +20,12 @@ ThemeParkList.Views.ParkShow = Backbone.CompositeView.extend({
 
   updatePanel: function (event) {
     $newTab = $(event.currentTarget);
-    if ($newTab.hasClass("active")) { return }
+    if ($newTab.hasClass("active")) { return; }
     $newTab.parent().find(".active").removeClass("active");
     $newTab.addClass("active");
 
 
-    var newSubview
+    var newSubview;
     switch ($newTab.text()) {
       case "Scores":
         newSubview = new ThemeParkList.Views.Scores({ model: this.model });
@@ -42,8 +44,14 @@ ThemeParkList.Views.ParkShow = Backbone.CompositeView.extend({
     this.swapInSubview(newSubview);
   },
 
+  handleKeyup: function (event) {
+    if (event.keyCode === 27) {
+      this.remove();
+    }
+  },
+
   swapInSubview: function (newSubview) {
     this.removeModelSubview(".show-panel", this.model);
     this.addSubview(".show-panel", newSubview);
   }
-})
+});
