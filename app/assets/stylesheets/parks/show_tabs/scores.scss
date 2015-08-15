@@ -1,9 +1,43 @@
-.details {
-  position: relative;
+.show-details {
+  width: 100%;
 }
 
-.details tr {
+.show-details tr {
   display: inline-block;
-  width: 50%;
-  position: absolute
+  width: 50%; 
+}
+
+.show-details td {
+  display: inline-block;
+  box-sizing: border-box;
+}
+
+.show-details td:first-child {
+  width: 55%;
+}
+
+.rating {
+  width: 40%;
+}
+
+.progress {
+  transform: translateY(50%);
+  
+ 
+}
+
+.progress-success .bar {
+  background: green;
+}
+
+.progress-warning .bar {
+  background: yellow;
+}
+
+.progress-danger .bar {
+  background: red;
+}
+
+.bar {
+  height: 100%;
 }

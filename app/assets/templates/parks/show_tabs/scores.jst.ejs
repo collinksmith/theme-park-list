@@ -1,11 +1,15 @@
 <tbody>
   <tr>
     <td>Trip Advisor Rating: </td>
-    <td><%= park.escape('tripadv_rating') %></td>
+    <td class="rating"><%= park.escape('tripadv_rating') %>
+    </td>
   </tr>
   <tr>
     <td>Weather Score: </td>
-    <% debugger; %>
-    <td><%= park.escape('weather_score') %></td>
+    <td class="rating">
+      <div class="progress <%= park.scoreClass(park.weather().score) %>">
+        <div class="bar" style="width: <%= park.weather().score %>%"></div>
+      </div>
+    </td>
   </tr>
 </tbody>

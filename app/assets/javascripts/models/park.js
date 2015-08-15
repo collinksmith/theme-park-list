@@ -28,5 +28,15 @@ ThemeParkList.Models.Park = Backbone.Model.extend({
                         precip: weather_data.precip }
     }
     return this._weather;
+  },
+
+  scoreClass: function (score) {
+    if (score >= 75) {
+      return "progress-success"
+    } else if (score >= 50) {
+      return "progress-warning"
+    } else {
+      return "progress-danger"
+    }
   }
 });
