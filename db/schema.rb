@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150813172258) do
+ActiveRecord::Schema.define(version: 20150815214212) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,18 +35,19 @@ ActiveRecord::Schema.define(version: 20150813172258) do
   add_index "costs", ["park_id"], name: "index_costs_on_park_id", using: :btree
 
   create_table "parks", force: :cascade do |t|
-    t.string   "name",            null: false
-    t.float    "latitude",        null: false
-    t.float    "longitude",       null: false
+    t.string   "name",                null: false
+    t.float    "latitude",            null: false
+    t.float    "longitude",           null: false
     t.string   "image_url"
     t.integer  "tripadv_rating"
     t.integer  "roller_coasters"
     t.integer  "water_rides"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
     t.integer  "rides"
     t.string   "url"
     t.integer  "city_id"
+    t.integer  "num_tripadv_ratings"
   end
 
   add_index "parks", ["name"], name: "index_parks_on_name", using: :btree
