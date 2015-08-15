@@ -1,7 +1,10 @@
 <tbody>
   <tr>
     <td>Trip Advisor Rating: </td>
-    <td class="rating"><%= park.escape('tripadv_rating') %>
+    <td class="rating">
+      <div class="progress <%= park.scoreClass(park.escape('tripadv_rating')) %>">
+        <div class="bar" style="width: <%= park.escape('tripadv_rating') %>%"></div>
+      </div>
     </td>
   </tr>
   <tr>

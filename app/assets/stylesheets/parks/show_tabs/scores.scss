@@ -4,24 +4,28 @@
 
 .show-details tr {
   display: inline-block;
-  width: 50%; 
+  width: 50%;
+  padding: 1.8em 0;
 }
 
 .show-details td {
-  display: inline-block;
-  box-sizing: border-box;
+  display: block;
+  float: left;
+  font-weight: bold;
 }
 
 .show-details td:first-child {
-  width: 55%;
+  width: 60%;
+  padding-left: 1em;
 }
 
 .rating {
   width: 40%;
+  padding-right: 1em;
 }
 
 .progress {
-  transform: translateY(50%);
+  margin: 0;
 }
 
 .progress-success .bar {
