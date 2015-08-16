@@ -1,18 +1,14 @@
 <tbody>
   <tr>
     <td>Trip Advisor Rating: </td>
-    <td class="rating">
-      <div class="progress <%= park.scoreClass(park.escape('tripadv_rating')) %>">
-        <div class="bar" style="width: <%= park.escape('tripadv_rating') %>%"></div>
-      </div>
-    </td>
+    <%= JST["parks/show_tabs/_score_bar"]({
+        score: park.escape("tripadv_rating"), scoreClass: park.scoreClass
+      }) %>
   </tr>
   <tr>
-    <td>Weather Score: </td>
-    <td class="rating">
-      <div class="progress <%= park.scoreClass(park.weather().score) %>">
-        <div class="bar" style="width: <%= park.weather().score %>%"></div>
-      </div>
-    </td>
+    <td>Weather Score:</td>
+    <%= JST["parks/show_tabs/_score_bar"]({
+      score: park.weather().score, scoreClass: park.scoreClass
+    }) %>
   </tr>
 </tbody>
