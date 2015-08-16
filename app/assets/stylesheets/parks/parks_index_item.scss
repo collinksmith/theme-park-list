@@ -6,6 +6,7 @@ $hover-blur: 5px;
   float: left;
   width: 31%;
   line-height: 180px;
+  height: 180px;
   position: relative;
   margin: 0.5em;
   overflow: hidden;
@@ -74,6 +75,20 @@ $hover-blur: 5px;
   }
 }
 
+.park-extra-info {
+  line-height: 1em;
+
+  div {
+    padding: 1em;
+  }
+  
+  .top-left {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+  }
+}
+
 .parks-index-item:hover {
   .parks-index-item-normal {
     display: none;
@@ -92,3 +107,4 @@ $hover-blur: 5px;
     -ms-filter: blur($hover-blur) brightness($brightness);
   }
 }
+
