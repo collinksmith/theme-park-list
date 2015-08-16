@@ -3,7 +3,10 @@
 </div>
 <div class="parks-index-item-content">
   <div class="parks-index-item-normal">
-    <div class="park-name"><%= park.escape('name') %></div>
+    <div class="park-basic-info">
+      <p><%= park.escape('name') %></p>
+      <p><%= park.escape('city') %>, <%= park.escape('state') %></p>
+    </div>
   </div>
 
   <div class="parks-index-item-hover">
