@@ -14,6 +14,7 @@ gem 'backbone-on-rails'
 gem 'ejs'
 gem 'newrelic_rpm'
 gem 'jquery-ui-rails'
+gem 'kaminari'
 
 group :development, :test do
   gem 'spring'
