@@ -4,13 +4,12 @@ ThemeParkList.Views.ParksIndexItem = Backbone.View.extend({
 
   events: {
     "click": "addParkShowView",
-    "mouseenter": "toggleScoreBars",
-    "mouseleave": "toggleScoreBars"
+    "mouseenter": "addScoreBars",
+    "mouseleave": "removeScoreBars"
   },
 
   render: function () {
     this.$el.html(this.template({ park: this.model }));
-    this.toggleScoreBars();
     return this;
   },
 
@@ -19,10 +18,15 @@ ThemeParkList.Views.ParksIndexItem = Backbone.View.extend({
     $("body").append(parkShowView.render().$el);
   },
 
-  toggleScoreBars: function () {
-    console.log("toggling bars");
-    this.$(".bar").animate({
-      width: "toggle"
-    }, 500);
+  addScoreBars: function () {
+    console.log("adding bars");
+    // debugger;
+    this.$(".bar").each(function(index, bar) {
+      var $bar = $(bar);
+      var score = $bar.data("score");
+      $bar.animate({
+        width: score
+      }, 500);
+    });
   }
 });
