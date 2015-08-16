@@ -114,7 +114,18 @@ $hover-blur: 5px;
     margin: 0.5em;
 
     .coaster-img {
-      width: 1.5em;
+      width: 1.4em;
+    }
+  }
+
+  .bottom-right {
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    margin: 0.5em;
+
+    .water-img {
+      width: 1.4em;
     }
   }
 }
