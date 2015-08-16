@@ -5,6 +5,7 @@ ThemeParkList.Views.ParksIndex = Backbone.CompositeView.extend({
     this.collection.each(this.addParkView.bind(this));
     this.listenTo(this.collection, "add", this.addParkView);
     this.listenTo(this.collection, "sync", this.render);
+    $(window).scroll(this.fetchIfAtBottom.bind(this));
   },
 
   render: function () {
@@ -16,5 +17,14 @@ ThemeParkList.Views.ParksIndex = Backbone.CompositeView.extend({
   addParkView: function (park) {
     var parkView = new ThemeParkList.Views.ParksIndexItem({ model: park });
     this.addSubview(".parks", parkView);
+  },
+
+  fetchIfAtBottom: function () {
+    if ((window.innerHeight + window.scrollY) >= $(document).height()) {
+      this.collection.fetch({
+        remove: false,
+        data: { page: this.collection.page + 1 }
+      })
+    }
   }
 });
