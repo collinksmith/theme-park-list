@@ -27,9 +27,11 @@ class Park < ActiveRecord::Base
             'jul', 'aug', 'sep', 'oct', 'nov', 'dec')"
   }
 
-  def self.with_weather_data(season)
+  def self.with_weather_data(season, page, per = 25)
     season ||= :year
     months = SEASONS[season]
+
+    offset = (page - 1) * per
 
     self.joins(:costs, :city).find_by_sql(<<-SQL)
       SELECT
@@ -48,6 +50,8 @@ class Park < ActiveRecord::Base
         GROUP BY parks.id
         ) w
         INNER JOIN parks p ON w.id = p.id
+        LIMIT #{per}
+        OFFSET #{offset}
       SQL
   end
 
