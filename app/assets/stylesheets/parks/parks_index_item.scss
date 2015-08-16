@@ -78,6 +78,10 @@ $hover-blur: 5px;
 .park-extra-info {
   line-height: 0.7em;
 
+  span.right {
+    vertical-align: center;
+  }
+
   .top-left {
     position: absolute;
     top: 0px;
@@ -101,6 +105,17 @@ $hover-blur: 5px;
     top: 0px;
     right: 0px;
     margin: 1em;
+  }
+
+  .bottom-left {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    margin: 0.5em;
+
+    .coaster-img {
+      width: 1.5em;
+    }
   }
 }
 
