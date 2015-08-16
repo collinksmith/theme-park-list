@@ -83,7 +83,6 @@ $hover-blur: 5px;
     top: 0px;
     left: 0px;
 
-
     div {
       position: absolute;
       height: 32px;
@@ -95,6 +94,13 @@ $hover-blur: 5px;
       padding-top: 6px;
       margin: 0.5em;
     }
+  }
+
+  .top-right {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    margin: 1em;
   }
 }
 

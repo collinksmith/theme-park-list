@@ -11,7 +11,10 @@
       <div class="top-left">
         <div><%= park.escape('id') %></div>
       </div>
-      <div class="top-right"></div>
+      <div class="top-right">
+        <span class="left"></span>
+        <span class="right"><%= Math.round(park.weather().high) %>&#176;F</span>
+      </div>
       <div class="bottom-left"></div>
       <div class="bottom-right"></div>
     </div>
