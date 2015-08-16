@@ -11,7 +11,10 @@ ThemeParkList.Routers.Router = Backbone.Router.extend({
   },
 
   explore: function () {
-    this.collection.fetch()
+    this.collection.fetch({
+      remove: false,
+      data: { page: 1 }
+    })
     var exploreView = new ThemeParkList.Views.
                           Explore({ collection: this.collection });
 
