@@ -20,10 +20,12 @@ ThemeParkList.Views.ParksIndex = Backbone.CompositeView.extend({
   },
 
   fetchIfAtBottom: function () {
-    if ((window.innerHeight + window.scrollY) >= $(document).height()) {
+    var page = this.collection.page
+    if ((window.innerHeight + window.scrollY) >= $(document).height() && 
+         page > 0 && page < this.collection.total_pages) {
       this.collection.fetch({
         remove: false,
-        data: { page: this.collection.page + 1 }
+        data: { page: page + 1 }
       })
     }
   }
