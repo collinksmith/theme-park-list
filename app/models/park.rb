@@ -46,7 +46,7 @@ class Park < ActiveRecord::Base
           LEFT OUTER JOIN weather_data ON weather_data.city_id = cities.id
         WHERE
           weather_data.month IS NULL OR 
-          weather_data.month IN ('jun', 'jul', 'aug')
+          weather_data.month IN #{months}
         GROUP BY parks.id
         ) w
         INNER JOIN parks p ON w.id = p.id
