@@ -43,6 +43,21 @@ $hover-blur: 5px;
 .parks-index-item-hover {
   display: none;
   position: relative;
+  margin: 2em;
+
+  .rating-row {
+    margin-bottom: 0.9em;
+  }
+
+  .rating-label {
+    float: left;
+    line-height: 1.2em;
+  }
+
+  .index-item-score-bar {
+    float: right;
+    width: 40%;
+  }
 }
 
 .attribute-list {

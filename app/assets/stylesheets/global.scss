@@ -3,3 +3,9 @@ $overlay-font-color: #ffffff;
 $primary-brand-color: #51b11d;
 $secondary-brand-color: #094F1A;
 $gray-text-color: #8D8D8D;
+
+.group:after {
+  content: "";
+  display: block;
+  clear: both;
+}
