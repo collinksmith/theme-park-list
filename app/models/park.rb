@@ -18,36 +18,6 @@
 #
 
 class Park < ActiveRecord::Base
-  
-
-  def self.with_weather_data(season, page, per = 25)
-    season ||= :year
-    months = SEASONS[season]
-
-    offset = (page - 1) * per
-
-    self.joins(:costs, :city).find_by_sql(<<-SQL)
-      SELECT
-        p.*, w.high, w.low, w.precip
-      FROM (
-        SELECT 
-          parks.id AS id,
-          AVG(avg_high) AS high,
-          AVG(avg_low) AS low,
-          AVG(avg_precip) AS precip
-        FROM parks INNER JOIN cities ON parks.city_id = cities.id
-          LEFT OUTER JOIN weather_data ON weather_data.city_id = cities.id
-        WHERE
-          weather_data.month IS NULL OR 
-          weather_data.month IN #{months}
-        GROUP BY parks.id
-        ) w
-        INNER JOIN parks p ON w.id = p.id
-        LIMIT #{per}
-        OFFSET #{offset}
-      SQL
-  end
-
   validates :name, :latitude, :longitude, :city_id, presence: true
 
   belongs_to :city
