@@ -26,6 +26,9 @@ ThemeParkList.Views.Explore = Backbone.CompositeView.extend({
       filters.push($(filterBtn).text());
     })
 
-    debugger;
+    this.collection.fetch({
+      remove: false,
+      data: { page: 1, filters: filters }
+    })
   }
 });
