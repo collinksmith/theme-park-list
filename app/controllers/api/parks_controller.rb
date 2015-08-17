@@ -44,6 +44,8 @@ class Api::ParksController < ApplicationController
     "hot" => "high >= 85",
     "some roller coasters" => "roller_coasters > 2",
     "many roller coasters" => "roller_coasters > 5",
+    "some water rides" => "water_rides > 2",
+    "many water rides" => "water_rides > 5"
   }
 
   def apply_filters(parks, filters)
