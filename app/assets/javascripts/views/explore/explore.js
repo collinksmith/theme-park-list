@@ -26,7 +26,6 @@ ThemeParkList.Views.Explore = Backbone.CompositeView.extend({
     this.parksIndexView = new ThemeParkList.Views.
                           ParksIndex({ collection: this.collection });
     this.addSubview(".parks-index", this.parksIndexView);
-    this.render();
   },
 
   filterParks: function () {
