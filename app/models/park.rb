@@ -18,14 +18,7 @@
 #
 
 class Park < ActiveRecord::Base
-  SEASONS = {
-    winter: "('dec', 'jan', 'feb')",
-    spring: "('mar', 'apr', 'may')",
-    summer: "('jun', 'jul', 'aug')",
-    fall: "('sep', 'oct', 'nov')",
-    year: "('jan', 'feb', 'mar', 'apr', 'may', 'jun',
-            'jul', 'aug', 'sep', 'oct', 'nov', 'dec')"
-  }
+  
 
   def self.with_weather_data(season, page, per = 25)
     season ||= :year

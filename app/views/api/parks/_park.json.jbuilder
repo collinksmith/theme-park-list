@@ -10,8 +10,8 @@ json.costs park.costs do |cost|
 end
 
 json.weather do
-  json.score park_with_weather.weather_score
-  json.high park_with_weather.high
-  json.low park_with_weather.low
-  json.precip park_with_weather.precip
+  json.score park.weather_score
+  json.high park.high
+  json.low park.low
+  json.precip park.precip
 end
