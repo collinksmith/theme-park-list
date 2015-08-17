@@ -3,6 +3,7 @@ window.ThemeParkList = {
   Collections: {},
   Views: {},
   Routers: {},
+  Mixins: {},
   initialize: function() {
     var $rootEl = $("#content");
     var parks = new ThemeParkList.Collections.Parks();
