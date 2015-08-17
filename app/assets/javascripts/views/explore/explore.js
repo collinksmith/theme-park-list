@@ -8,7 +8,7 @@ ThemeParkList.Views.Explore = Backbone.CompositeView.extend({
   initialize: function (options) {
     var filterView = new ThemeParkList.Views.ParksFilters();
     this.addSubview(".filters", filterView);
-    
+
     this.baseCollection = options.collection;
     this.listenTo(this.baseCollection, "sync", this.setFilteredCollection);
   },
@@ -34,8 +34,23 @@ ThemeParkList.Views.Explore = Backbone.CompositeView.extend({
     this.render();
   },
 
-  computeFilter: function () {
+  computeFilter: function (event) {
+    var filters = $(".selected_filter");
+    return this.evaluateFilters(filters)
+  },
 
+  evaluateFilters: function (filters) {
+    var filter = filters.shift();
+    var func = $(filter).data("func")
+    var args = $(filter).data("args")
+    return executeFunctionByName(func, args) && 
+           this.evaluateFilters(filters)
+  }
+
+  executeFunctionByName: function (functionName, /*, args */) {
+    var args = Array.prototype.slice.call(arguments, 2);
+    context = window["ThemeParkList"]["Models"]["Park"];
+    return context[functionName].apply(context, args);
   },
 
   render: function () {

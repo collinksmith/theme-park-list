@@ -38,5 +38,18 @@ ThemeParkList.Models.Park = Backbone.Model.extend({
     } else {
       return "progress-danger"
     }
+  },
+
+  isCool: function () {
+    return this.weather().avg_high < 60;
+  },
+
+  isWarm: function () {
+    avg_high = this.weather().avg_high;
+    return avg_high >= 60 && avg_high < 85;
+  },
+
+  isHot: function () {
+    return this.weather().avg_high >= 85;
   }
 });
