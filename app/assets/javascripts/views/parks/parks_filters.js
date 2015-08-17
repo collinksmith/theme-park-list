@@ -8,8 +8,12 @@ ThemeParkList.Views.ParksFilters = Backbone.View.extend({
     "click .format-group": "selectFormat"
   },
 
+  initialize: function () {
+    this.listenTo(this.collection, "sync", this.render);
+  },
+
   render: function () {
-    this.$el.html(this.template());
+    this.$el.html(this.template({ parks: this.collection }));
     this.addSlider();
     return this;
   },

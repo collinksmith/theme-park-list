@@ -5,6 +5,7 @@ class Api::ParksController < ApplicationController
 
     @parks = apply_filters(@parks, params[:filters]) if params[:filters]
     @total_pages = (@parks.all.length.to_f / 25).ceil
+    @total_items = (@parks.all.length)
     @parks = select_page(@parks, @page)
   end
 
