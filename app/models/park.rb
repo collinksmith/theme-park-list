@@ -18,6 +18,32 @@
 #
 
 class Park < ActiveRecord::Base
+  SEASONS = {
+    winter: "('dec', 'jan', 'feb')",
+    spring: "('mar', 'apr', 'may')",
+    summer: "('jun', 'jul', 'aug')",
+    fall: "('sep', 'oct', 'nov')",
+    year: "('jan', 'feb', 'mar', 'apr', 'may', 'jun',
+            'jul', 'aug', 'sep', 'oct', 'nov', 'dec')"
+  }
+
+  def self.with_weather_data_and_associations(season)
+    season ||= :year
+    months = SEASONS[season]
+
+    Park.
+      select("parks.*, 
+              AVG(avg_high) AS high, 
+              AVG(avg_low) AS low, 
+              AVG(avg_precip) AS precip").
+      joins("INNER JOIN cities ON parks.city_id = cities.id").
+      joins("LEFT JOIN weather_data ON weather_data.city_id = cities.id").
+      where("weather_data.city_id IS NULL OR 
+             weather_data.month IN #{months}").
+      group("id").
+      includes(:costs, :city)
+  end
+
   validates :name, :latitude, :longitude, :city_id, presence: true
 
   belongs_to :city
