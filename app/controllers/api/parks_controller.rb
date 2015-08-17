@@ -25,7 +25,7 @@ class Api::ParksController < ApplicationController
       group("id").
       includes(:costs, :city)
 
-
+    @parks = apply_filters(@parks, params[:filters])
 
     @parks = select_page(@parks, @page)
     @total_pages = (Park.all.length.to_f / 25).ceil
@@ -40,13 +40,18 @@ class Api::ParksController < ApplicationController
   private
 
   FILTERS = {
-    "cool" => "high < 65"
+    "cool" => "high < 65",
+    "warm" => "high >= 65 AND high < 85",
+    "hot" => "high >= 85",
+    "some roller coasters" => "roller_coasters > 2",
+    "many roller coasters" => "roller_coasters > 5",
   }
 
   def apply_filters(parks, filters)
     filters.each do |filter|
-      parks = parks.where("")
+      parks = parks.where(FILTERS[filter])
     end
+    parks
   end
 
   def apply_weather_filters(filters)
