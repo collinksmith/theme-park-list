@@ -4,8 +4,11 @@
 
 <div class="m-content">
   <div class="show-header">
-    <h1 class="show-name"><%= park.escape('name') %></h1>
-    
+    <h2 class="show-header-info"><%= park.escape('name') %></h2>
+    <h3 class="show-header-info"><%= park.escape('city') %>, <%= park.escape('state') %></h3>
+    <div class="park-image-background park-show-image"
+         style="background-image: url('/park_images/<%= park.escape('image_url') %>')">
+    </div>
   </div>
   <div class="show-tabs">
     <ul class="nav nav-tabs">
