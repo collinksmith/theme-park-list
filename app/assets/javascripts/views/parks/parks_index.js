@@ -9,6 +9,7 @@ ThemeParkList.Views.ParksIndex = Backbone.CompositeView.extend({
   },
 
   render: function () {
+    debugger;
     this.$el.html(this.template({ parks: this.collection }));
     this.attachSubviews();
     return this;

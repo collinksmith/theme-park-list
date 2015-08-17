@@ -6,9 +6,9 @@ ThemeParkList.Views.Explore = Backbone.CompositeView.extend({
   },
 
   initialize: function () {
-    var parksIndexView = new ThemeParkList.Views.
-                             ParksIndex({ collection: this.collection });
-    this.addSubview(".parks-index", parksIndexView);
+    this.parksIndexView = new ThemeParkList.Views.
+                          ParksIndex({ collection: this.collection });
+    this.addSubview(".parks-index", this.parksIndexView);
 
     var filterView = new ThemeParkList.Views.ParksFilters();
     this.addSubview(".filters", filterView);
@@ -20,15 +20,26 @@ ThemeParkList.Views.Explore = Backbone.CompositeView.extend({
     return this;
   },
 
+  updateParks: function () {
+    this.removeSubview(".parks-index", this.parksIndexView);
+    this.parksIndexView = new ThemeParkList.Views.
+                          ParksIndex({ collection: this.collection });
+    this.addSubview(".parks-index", this.parksIndexView);
+    this.render();
+  },
+
   filterParks: function () {
     var filters = [];
     $(".selected-filter").each(function (index, filterBtn) {
       filters.push($(filterBtn).text());
-    })
-
+    });
+    
+    this.collection = new ThemeParkList.Collections.Parks();
     this.collection.fetch({
       remove: false,
-      data: { page: 1, filters: filters }
-    })
+      data: { page: 1, filters: filters },
+    });
+
+    this.updateParks();
   }
 });

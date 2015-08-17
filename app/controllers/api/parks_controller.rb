@@ -25,7 +25,7 @@ class Api::ParksController < ApplicationController
       group("id").
       includes(:costs, :city)
 
-    @parks = apply_filters(@parks, params[:filters])
+    @parks = apply_filters(@parks, params[:filters]) if params[:filters]
 
     @parks = select_page(@parks, @page)
     @total_pages = (Park.all.length.to_f / 25).ceil
@@ -49,7 +49,7 @@ class Api::ParksController < ApplicationController
 
   def apply_filters(parks, filters)
     filters.each do |filter|
-      parks = parks.where(FILTERS[filter])
+      parks = parks.where(FILTERS[filter.downcase])
     end
     parks
   end
