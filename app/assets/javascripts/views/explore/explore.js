@@ -6,17 +6,16 @@ ThemeParkList.Views.Explore = Backbone.CompositeView.extend({
   },
 
   initialize: function (options) {
-    this.baseCollection = options.collection;
-
     var filterView = new ThemeParkList.Views.ParksFilters();
     this.addSubview(".filters", filterView);
+    
+    this.baseCollection = options.collection;
     this.listenTo(this.baseCollection, "sync", this.setFilteredCollection);
   },
 
   setFilteredCollection: function () {
     this.filteredCollection = this.baseCollection.filtered(
       function () { return true ;});
-
     this.parksIndexView = new ThemeParkList.Views.ParksIndex({ 
       collection: this.filteredCollection 
     });
