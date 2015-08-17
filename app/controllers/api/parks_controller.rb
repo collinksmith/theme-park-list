@@ -11,8 +11,9 @@ class Api::ParksController < ApplicationController
   def index
     params[:season] ||= :year
     months = SEASONS[params[:season]]
+    @page = params[:page].to_i
 
-    parks_with_weather_data = Park.
+    @parks = Park.
       select("parks.*, 
               AVG(avg_high) AS high, 
               AVG(avg_low) AS low, 
@@ -21,11 +22,12 @@ class Api::ParksController < ApplicationController
       joins("LEFT JOIN weather_data ON weather_data.city_id = cities.id").
       where("weather_data.city_id IS NULL OR 
              weather_data.month IN #{months}").
-      group("id")
+      group("id").
+      includes(:costs, :city)
 
-    @page = params[:page].to_i
-    @parks = parks_with_weather_data.includes(:costs, :city).page(@page)
 
+
+    @parks = select_page(@parks, @page)
     @total_pages = (Park.all.length.to_f / 25).ceil
   end
 
@@ -37,12 +39,23 @@ class Api::ParksController < ApplicationController
 
   private
 
-  # def get_where_clauses(filters)
-  #   filters = {
-  #     "Cool" => ,
-  #     "Warm" => ,
-  #     "Hot" => ,
+  FILTERS = {
+    "cool" => "high < 65"
+  }
 
-  #   }
-  # end
+  def apply_filters(parks, filters)
+    filters.each do |filter|
+      parks = parks.where("")
+    end
+  end
+
+  def apply_weather_filters(filters)
+
+  end
+
+  def select_page(parks, page, per = 25)
+    front = (page - 1) * per
+    back = front + per
+    parks.to_a.sort[front...back]
+  end
 end
