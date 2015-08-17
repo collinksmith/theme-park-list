@@ -1,6 +1,10 @@
 ThemeParkList.Views.Explore = Backbone.CompositeView.extend({
   template: JST["explore/explore"],
 
+  events: {
+    "click #btn-filter": "filterParks"
+  },
+
   initialize: function () {
     var parksIndexView = new ThemeParkList.Views.
                              ParksIndex({ collection: this.collection });
@@ -14,5 +18,14 @@ ThemeParkList.Views.Explore = Backbone.CompositeView.extend({
     this.$el.html(this.template());
     this.attachSubviews();
     return this;
+  },
+
+  filterParks: function () {
+    var filters = [];
+    $(".selected-filter").each(function (index, filterBtn) {
+      filters.push($(filterBtn).text());
+    })
+
+    debugger;
   }
 });
