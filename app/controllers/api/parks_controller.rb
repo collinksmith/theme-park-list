@@ -1,10 +1,12 @@
 class Api::ParksController < ApplicationController
   def index
     @page = params[:page].to_i
-    @parks = Park.with_weather_data_and_associations(params[:season])
+    season = params[:season]
+    @parks = Park.with_weather_data_and_associations(season)
 
-    @parks = apply_filters(@parks, params[:filters]) if params[:filters]
     @parks = apply_search(@parks, params[:query]) if params[:query]
+    @parks = apply_filters(@parks, params[:filters]) if params[:filters]
+    @parks = apply_sort(@parks, params[:sort], season) if params[:sort]
 
     @total_pages = (@parks.all.length.to_f / 25).ceil
     @total_items = (@parks.all.length)
@@ -29,6 +31,13 @@ class Api::ParksController < ApplicationController
     "many water rides" => "water_rides > 5"
   }
 
+  SORTS = {
+    "weather Score" => "weather_score",
+    "number of rides" => "rides",
+    "number of roller coasters" => "roller_coasters",
+    "number of water rides" => "water_rides"
+  }
+
   def apply_filters(parks, filters)
     filters.each do |filter|
       parks = parks.where(FILTERS[filter.downcase])
@@ -38,6 +47,24 @@ class Api::ParksController < ApplicationController
 
   def apply_search(parks, query)
     parks.where("LOWER(parks.name) LIKE '%#{query.downcase}%'")
+  end
+
+  def apply_sort(parks, sort, season)
+    # Convert parks to ActiveRecord relation if it was turned into an array
+    # when filtering
+    if parks.is_a?(Array)
+      parks = Park.with_weather_data_and_associations(season).
+              where(id: r.map(&:id))
+    end
+
+    sort = SORTS[sort.downcase]
+    if sort == "weather_score"
+      parks = parks.to_a.sort { |park| park.weather_score }
+    else
+      parks = parks.order(sort)
+    end
+
+    parks
   end
 
   def apply_weather_filters(filters)
