@@ -59,7 +59,7 @@ ThemeParkList.Views.Auth = Backbone.View.extend({
 
   logIn: function (logInView) {
     var userData = logInView.$el.serializeJSON();
-    var newSession = new ThemeParkList.Models.Session();
+    newSession = new ThemeParkList.Models.Session();
     
     newSession.save(userData, {
       success: function () {

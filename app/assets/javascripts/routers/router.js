@@ -13,7 +13,9 @@ ThemeParkList.Routers.Router = Backbone.Router.extend({
   },
 
   nav: function () {
-    var navView = new ThemeParkList.Views.Nav();
+    var navView = new ThemeParkList.Views.Nav({ 
+      CURRENT_USER: ThemeParkList.CURRENT_USER
+    });
     this.$navEl.html(navView.render().$el);
   },
 

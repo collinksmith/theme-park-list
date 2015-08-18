@@ -4,12 +4,17 @@
       <a class="navbar-brand" href="#">Theme Park List</a>
     </div>
     <ul class="nav navbar-nav navbar-right">
-      <% if logged_in? %>
-        <li><%= link_to "Log Out", api_session_url, method: :delete %></li>
-      <% else %>
+      <li>
+        <input type="text" id="searchbox">
+      </li>
+      <% if (CURRENT_USER) { %>
+        <li>
+          <a rel="nofollow" data-method="delete" href="/api/session">Log Out</a>
+        </li>
+      <% } else { %>
         <li id="log-in"><a href="#">Log In</a></li>
         <li id="sign-up"><a href="#">Sign Up</a></li>
-      <% end %>
+      <% } %>
     </ul>
   </div>
 </nav>
