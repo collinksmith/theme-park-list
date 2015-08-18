@@ -54,8 +54,8 @@ ThemeParkList.Views.Explore = Backbone.CompositeView.extend({
   },
 
   sortParks: function (event) {
-    var sort = $(event.currentTarget).children().text()
-    this.fetchParks({ page: 1, filters: this.filters, sort: sort })
+    this.sort = $(event.currentTarget).children().text()
+    this.fetchParks({ page: 1, filters: this.filters, sort: this.sort })
   },
 
   fetchParks: function (data) {
@@ -86,7 +86,7 @@ ThemeParkList.Views.Explore = Backbone.CompositeView.extend({
          page > 0 && page < this.collection.total_pages) {
       this.collection.fetch({
         remove: false,
-        data: { page: page + 1, filters: this.filters }
+        data: { page: page + 1, filters: this.filters, sort: this.sort }
       });
     }
   },
