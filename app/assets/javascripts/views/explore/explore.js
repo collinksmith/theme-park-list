@@ -3,7 +3,8 @@ ThemeParkList.Views.Explore = Backbone.CompositeView.extend({
 
   events: {
     "click #btn-filter": "filterParks",
-    "input #search-box": "search"
+    "input #search-box": "searchParks",
+    "click .sort-criterion": "sortParks"
   },
 
   initialize: function (options) {
@@ -38,12 +39,9 @@ ThemeParkList.Views.Explore = Backbone.CompositeView.extend({
     return this;
   },
 
-  updateParks: function () {
-    this.removeSubview("#parks-index", this.parksIndexView);
-    this.parksIndexView = new ThemeParkList.Views.ParksIndex({ 
-      collection: this.collection 
-    });
-    this.addSubview("#parks-index", this.parksIndexView);
+  searchParks: function (event) {
+    var query = $(event.currentTarget).val();
+    this.fetchParks({ page: 1, query: query })
   },
 
   filterParks: function () {
@@ -52,7 +50,12 @@ ThemeParkList.Views.Explore = Backbone.CompositeView.extend({
       filters.push($(filterBtn).text());
     });    
     this.filters = filters;
-    this.fetchParks({ page: 1, filters: filters });
+    this.fetchParks({ page: 1, filters: this.filters });
+  },
+
+  sortParks: function (event) {
+    var sort = $(event.currentTarget).children().text()
+    this.fetchParks({ page: 1, filters: this.filters, sort: sort })
   },
 
   fetchParks: function (data) {
@@ -68,11 +71,14 @@ ThemeParkList.Views.Explore = Backbone.CompositeView.extend({
     this.updateParks();
   },
 
-  search: function (event) {
-    var query = $(event.currentTarget).val();
-    console.log(query);
-    this.fetchParks({ page: 1, query: query })
+  updateParks: function () {
+    this.removeSubview("#parks-index", this.parksIndexView);
+    this.parksIndexView = new ThemeParkList.Views.ParksIndex({ 
+      collection: this.collection 
+    });
+    this.addSubview("#parks-index", this.parksIndexView);
   },
+
 
   fetchIfAtBottom: function () {
     var page = this.collection.page;
