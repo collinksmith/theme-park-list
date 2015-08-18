@@ -61,7 +61,7 @@ class Api::ParksController < ApplicationController
     if sort == "weather_score"
       parks = parks.to_a.sort { |park| park.weather_score }
     else
-      parks = parks.order(sort)
+      parks = parks.order("#{sort} DESC")
     end
 
     parks
@@ -74,6 +74,6 @@ class Api::ParksController < ApplicationController
   def select_page(parks, page, per = 25)
     front = (page - 1) * per
     back = front + per
-    parks.to_a.sort[front...back]
+    parks.to_a[front...back]
   end
 end
