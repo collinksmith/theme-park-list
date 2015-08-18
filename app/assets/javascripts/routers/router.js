@@ -5,18 +5,9 @@ ThemeParkList.Routers.Router = Backbone.Router.extend({
 
   initialize: function (options) {
     this.$rootEl = options.$rootEl;
-    this.$navEl = options.$navEl;
     this.collection = options.collection;
     var authView = new ThemeParkList.Views.Auth();
-    this.nav();
     this.explore();
-  },
-
-  nav: function () {
-    var navView = new ThemeParkList.Views.Nav({ 
-      CURRENT_USER: ThemeParkList.CURRENT_USER
-    });
-    this.$navEl.html(navView.render().$el);
   },
 
   explore: function () {
@@ -24,8 +15,10 @@ ThemeParkList.Routers.Router = Backbone.Router.extend({
       remove: false,
       data: { page: 1 }
     })
-    var exploreView = new ThemeParkList.Views.
-                          Explore({ collection: this.collection });
+    var exploreView = new ThemeParkList.Views.Explore({ 
+      collection: this.collection,
+      CURRENT_USER: ThemeParkList.CURRENT_USER
+    });
 
     this._swapView(exploreView);
   },

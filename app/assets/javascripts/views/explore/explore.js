@@ -3,10 +3,11 @@ ThemeParkList.Views.Explore = Backbone.CompositeView.extend({
 
   events: {
     "click #btn-filter": "filterParks",
-    "click .btn": "search"
+    "input #search-box": "search"
   },
 
-  initialize: function () {
+  initialize: function (options) {
+    this.CURRENT_USER = options.CURRENT_USER;
     this.parksIndexView = new ThemeParkList.Views.ParksIndex({ 
       collection: this.collection 
     });
@@ -15,6 +16,10 @@ ThemeParkList.Views.Explore = Backbone.CompositeView.extend({
       collection: this.collection 
     });
     this.addSubview("#filters", this.filterView);
+    this.navView = new ThemeParkList.Views.Nav({ 
+      CURRENT_USER: this.CURRENT_USER
+    });
+    this.addSubview("#nav", this.navView);
 
     $(".typeahead").typeahead({
         minLength: 3
@@ -45,11 +50,8 @@ ThemeParkList.Views.Explore = Backbone.CompositeView.extend({
     var filters = [];
     $(".selected-filter").each(function (index, filterBtn) {
       filters.push($(filterBtn).text());
-    });
-    
+    });    
     this.filters = filters;
-
-    debugger;
 
     this.collection = new ThemeParkList.Collections.Parks();
     this.collection.fetch({

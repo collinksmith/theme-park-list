@@ -1,10 +1,6 @@
 ThemeParkList.Views.Nav = Backbone.View.extend({
   template: JST["nav"],
 
-  evnts: {
-    "click .btn": "search"
-  },
-
   initialize: function (options) {
     this.CURRENT_USER = options.CURRENT_USER;
   },
