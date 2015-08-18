@@ -5,7 +5,12 @@
     </div>
     <ul class="nav navbar-nav navbar-right">
       <li>
-        <input type="text" id="searchbox">
+          <button type="button" class="btn btn-default" aria-label="Left Align">
+            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+          </button>
+          <input type="text" 
+                 class="form-control typeahead"
+                 id="searchbox">
       </li>
       <% if (CURRENT_USER) { %>
         <li>

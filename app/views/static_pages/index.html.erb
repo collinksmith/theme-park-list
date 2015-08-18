@@ -11,6 +11,7 @@
     <% else %>
       ThemeParkList.CURRENT_USER = undefined;
     <% end %>
+    ThemeParkList.PARK_NAMES = <%= Park.pluck(:name).to_json.html_safe %>;
     ThemeParkList.initialize();
   })
 </script>

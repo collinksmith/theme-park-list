@@ -2,7 +2,8 @@ ThemeParkList.Views.Explore = Backbone.CompositeView.extend({
   template: JST["explore/explore"],
 
   events: {
-    "click #btn-filter": "filterParks"
+    "click #btn-filter": "filterParks",
+    "click .btn": "search"
   },
 
   initialize: function () {
@@ -14,6 +15,15 @@ ThemeParkList.Views.Explore = Backbone.CompositeView.extend({
       collection: this.collection 
     });
     this.addSubview("#filters", this.filterView);
+
+    $(".typeahead").typeahead({
+        minLength: 3
+      },
+      {
+        name: "parks",
+        source: this.substringMatcher(ThemeParkList.PARK_NAMES)
+    });
+    
     $(window).scroll(this.fetchIfAtBottom.bind(this));
   },
 
@@ -39,6 +49,8 @@ ThemeParkList.Views.Explore = Backbone.CompositeView.extend({
     
     this.filters = filters;
 
+    debugger;
+
     this.collection = new ThemeParkList.Collections.Parks();
     this.collection.fetch({
       remove: false,
@@ -60,5 +72,31 @@ ThemeParkList.Views.Explore = Backbone.CompositeView.extend({
         data: { page: page + 1, filters: this.filters }
       });
     }
+  },
+
+  search: function (event) {
+    console.log("got to search function");
+  },
+
+  substringMatcher: function(strs) {
+    return function findMatches(q, cb) {
+      var matches, substringRegex;
+
+      // an array that will be populated with substring matches
+      matches = [];
+
+      // regex used to determine if a string contains the substring `q`
+      substrRegex = new RegExp(q, 'i');
+
+      // iterate through the pool of strings and for any string that
+      // contains the substring `q`, add it to the `matches` array
+      $.each(strs, function(i, str) {
+        if (substrRegex.test(str)) {
+          matches.push(str);
+        }
+      });
+
+      cb(matches);
+    };
   }
 });
