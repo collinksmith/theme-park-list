@@ -30,13 +30,16 @@ class Api::ParksController < ApplicationController
   private
 
   FILTERS = {
-    "cool" => "high < 65",
-    "warm" => "high >= 65 AND high < 85",
-    "hot" => "high >= 85",
     "some roller coasters" => "roller_coasters > 2",
     "many roller coasters" => "roller_coasters > 5",
     "some water rides" => "water_rides > 2",
     "many water rides" => "water_rides > 5"
+  }
+
+  WEATHER_FILTERS = {
+    "cool" => Proc.new { |p| p.high < 65 },
+    "warm" => Proc.new { |p| p.high >= 65 && p.high < 80 },
+    "hot" => Proc.new { |p| p.high >= 80 },
   }
 
   SORTS = {
@@ -48,9 +51,15 @@ class Api::ParksController < ApplicationController
   }
 
   def apply_filters(parks, filters)
+    weather_filters = []
     filters.each do |filter|
+      if WEATHER_FILTERS.keys.include?(filter.downcase)
+        weather_filters << filter
+        next
+      end
       parks = parks.where(FILTERS[filter.downcase])
     end
+    parks = apply_weather_filters(parks, weather_filters)
 
     # Convert parks to ActiveRecord relation if it was turned into an array
     parks = convert_to_relation(parks) if parks.is_a?(Array)
@@ -63,12 +72,6 @@ class Api::ParksController < ApplicationController
   end
 
   def apply_sort(parks, sort)
-
-    if parks.is_a?(Array)
-      parks = Park.with_weather_data_and_associations(season).
-              where(id: r.map(&:id))
-    end
-
     sort = SORTS[sort.downcase]
     if sort == "weather_score"
       parks = parks.to_a.sort_by { |park| park.weather_score }.reverse!
@@ -79,8 +82,14 @@ class Api::ParksController < ApplicationController
     parks
   end
 
-  def apply_weather_filters(filters)
+  def apply_weather_filters(parks, filters)
+    parks = parks.to_a
+    filters.each do |filter|
+      selector = WEATHER_FILTERS[filter.downcase]
+      parks = parks.select(&selector)
+    end
 
+    parks
   end
 
   def select_page(parks, page, per = 25)
