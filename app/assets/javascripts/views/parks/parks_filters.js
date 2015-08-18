@@ -10,12 +10,23 @@ ThemeParkList.Views.ParksFilters = Backbone.View.extend({
 
   initialize: function () {
     this.listenTo(this.collection, "sync", this.render);
+    this.listenTo(this.collection, "all", this.updateItemCount)
   },
 
   render: function () {
     this.$el.html(this.template({ parks: this.collection }));
     this.addSlider();
     return this;
+  },
+
+  setCollection: function (collection) {
+    this.collection = collection;
+    this.updateItemCount();
+  },
+
+  updateItemCount: function () {
+    this.$('.filter-num').text(this.collection.total_items + 
+                               " Theme Parks Found");
   },
 
   addSlider: function () {

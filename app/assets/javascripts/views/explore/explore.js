@@ -24,12 +24,6 @@ ThemeParkList.Views.Explore = Backbone.CompositeView.extend({
   },
 
   updateParks: function () {
-    this.removeSubview(".filters", this.filterView);
-    this.filterView = new ThemeParkList.Views.ParksFilters({ 
-      collection: this.collection 
-    });
-    this.addSubview(".filters", this.filterView);
-
     this.removeSubview(".parks-index", this.parksIndexView);
     this.parksIndexView = new ThemeParkList.Views.ParksIndex({ 
       collection: this.collection 
@@ -49,6 +43,9 @@ ThemeParkList.Views.Explore = Backbone.CompositeView.extend({
     this.collection.fetch({
       remove: false,
       data: { page: 1, filters: filters },
+      success: function (collection) {
+        this.filterView.setCollection(collection);
+      }.bind(this)
     });
 
     this.updateParks();
