@@ -17,6 +17,7 @@
 //= require underscore
 //= require backbone
 //= require backbone.bootstrap-modal
+//= require typeahead.bundle.js
 //= require theme_park_list
 //= require_tree ../templates
 //= require_tree ./utils
