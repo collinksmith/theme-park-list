@@ -33,7 +33,7 @@ ThemeParkList.Views.Explore = Backbone.CompositeView.extend({
 
   filterParks: function () {
     var filters = [];
-    $("#selected-filter").each(function (index, filterBtn) {
+    $(".selected-filter").each(function (index, filterBtn) {
       filters.push($(filterBtn).text());
     });
     
