@@ -5,6 +5,7 @@ window.ThemeParkList = {
   Routers: {},
   initialize: function() {
     var $rootEl = $("#content");
+    var $navEl = $("#nav");
     var parks = new ThemeParkList.Collections.Parks();
     new ThemeParkList.Routers.Router({
       $rootEl: $rootEl,
