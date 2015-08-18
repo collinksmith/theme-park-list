@@ -53,10 +53,14 @@ ThemeParkList.Views.Explore = Backbone.CompositeView.extend({
     });    
     this.filters = filters;
 
+    this.fetchParks({ page: 1, filters: filters })
+  },
+
+  fetchParks: function (data) {
     this.collection = new ThemeParkList.Collections.Parks();
     this.collection.fetch({
       remove: false,
-      data: { page: 1, filters: filters },
+      data: data,
       success: function (collection) {
         this.filterView.setCollection(collection);
       }.bind(this)
@@ -78,6 +82,7 @@ ThemeParkList.Views.Explore = Backbone.CompositeView.extend({
 
   search: function (event) {
     console.log("got to search function");
+    this.collection.fetch
   },
 
   substringMatcher: function(strs) {
