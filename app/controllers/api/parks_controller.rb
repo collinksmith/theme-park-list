@@ -4,6 +4,8 @@ class Api::ParksController < ApplicationController
     @parks = Park.with_weather_data_and_associations(params[:season])
 
     @parks = apply_filters(@parks, params[:filters]) if params[:filters]
+    @parks = apply_search(@parks, params[:query]) if params[:query]
+
     @total_pages = (@parks.all.length.to_f / 25).ceil
     @total_items = (@parks.all.length)
     @parks = select_page(@parks, @page)
@@ -32,6 +34,10 @@ class Api::ParksController < ApplicationController
       parks = parks.where(FILTERS[filter.downcase])
     end
     parks
+  end
+
+  def apply_search(parks, query)
+    parks.where("LOWER(parks.name) LIKE '%#{query.downcase}%'")
   end
 
   def apply_weather_filters(filters)

@@ -53,7 +53,7 @@ ThemeParkList.Views.Explore = Backbone.CompositeView.extend({
     });    
     this.filters = filters;
 
-    this.fetchParks({ page: 1, filters: filters })
+    this.fetchParks({ page: 1, filters: filters });
   },
 
   fetchParks: function (data) {
@@ -69,6 +69,12 @@ ThemeParkList.Views.Explore = Backbone.CompositeView.extend({
     this.updateParks();
   },
 
+  search: function (event) {
+    var query = $(event.currentTarget).val();
+    console.log(query);
+    this.fetchParks({ page: 1, query: query })
+  },
+
   fetchIfAtBottom: function () {
     var page = this.collection.page;
     if ((window.innerHeight + window.scrollY) >= $(document).height() && 
@@ -78,11 +84,6 @@ ThemeParkList.Views.Explore = Backbone.CompositeView.extend({
         data: { page: page + 1, filters: this.filters }
       });
     }
-  },
-
-  search: function (event) {
-    console.log("got to search function");
-    this.collection.fetch
   },
 
   substringMatcher: function(strs) {
