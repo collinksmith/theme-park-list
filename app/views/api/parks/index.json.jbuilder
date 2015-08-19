@@ -1,5 +1,5 @@
 json.parks do
-  json.array! @parks do |park|
+  json.array! @parks.each_with_index do |park, index|
     json.partial! "park", park: park
   end
 end

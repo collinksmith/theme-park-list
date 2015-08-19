@@ -14,7 +14,9 @@ ThemeParkList.Views.ParksIndex = Backbone.CompositeView.extend({
   },
 
   addParkView: function (park) {
-    var parkView = new ThemeParkList.Views.ParksIndexItem({ model: park });
+    var parkView = new ThemeParkList.Views.ParksIndexItem({ 
+      model: park
+    });
     this.addSubview(".parks", parkView);
   }
 });

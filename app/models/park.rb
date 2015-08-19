@@ -27,7 +27,7 @@ class Park < ActiveRecord::Base
             'jul', 'aug', 'sep', 'oct', 'nov', 'dec')"
   }
 
-  def self.with_weather_data_and_associations(season)
+  def self.with_weather_data_and_associations(season = :year)
     season ||= :year
     months = SEASONS[season]
 
@@ -51,6 +51,7 @@ class Park < ActiveRecord::Base
   has_many :weather_data, through: :city
 
   attr_reader :avg_high, :avg_low, :avg_precip
+  attr_accessor :ord
 
   def weather_score
     scores = []

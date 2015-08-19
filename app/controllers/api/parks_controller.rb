@@ -18,6 +18,7 @@ class Api::ParksController < ApplicationController
       @total_items = (@parks.all.length)
     end
 
+    @parks.to_a.map.with_index { |park, i| park.ord = i + 1 }
     @parks = select_page(@parks, @page)
   end
 

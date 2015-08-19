@@ -1,5 +1,5 @@
 json.(park, :id, :name, :latitude, :longitude, :city_id, :image_url, :url,
-            :tripadv_rating, :rides, :roller_coasters, :water_rides)
+            :tripadv_rating, :rides, :roller_coasters, :water_rides, :ord)
 
 json.city park.city.name
 json.state park.city.state
