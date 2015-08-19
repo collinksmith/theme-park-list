@@ -23,7 +23,7 @@ ThemeParkList.Views.ParksFilters = Backbone.View.extend({
     this.collection = options.collection;
     this.sort = options.sort
     this.updateItemCount();
-    this.updateSortText();
+    if (this.sort) { this.updateSortText(); }
   },
 
   updateItemCount: function () {

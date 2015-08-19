@@ -3,7 +3,8 @@ ThemeParkList.Views.Explore = Backbone.CompositeView.extend({
 
   events: {
     "click #btn-filter": "filterParks",
-    "input #search-box": "searchParks",
+    "keyup #search-box": "searchParks",
+    // "keypress #search-box": "handleKeypress",
     "click .sort-criterion": "sortParks"
   },
 
@@ -34,7 +35,11 @@ ThemeParkList.Views.Explore = Backbone.CompositeView.extend({
   },
 
   searchParks: function (event) {
-    var query = $(event.currentTarget).val();
+    // Don't search if user presses tab or arrow keys
+    var code = event.keyCode;
+    if (code === 9 || (code >= 37 && code <= 40)) { return }
+      
+    var query = $("#search-box").val();
     this.fetchParks({ page: 1, query: query })
   },
 
