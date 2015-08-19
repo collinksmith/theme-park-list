@@ -12,14 +12,17 @@ ThemeParkList.Views.Explore = Backbone.CompositeView.extend({
     this.parksIndexView = new ThemeParkList.Views.ParksIndex({ 
       collection: this.collection 
     });
+
     this.addSubview("#parks-index", this.parksIndexView);
     this.filterView = new ThemeParkList.Views.ParksFilters({ 
       collection: this.collection 
     });
+
     this.addSubview("#filters", this.filterView);
     this.navView = new ThemeParkList.Views.Nav({ 
       CURRENT_USER: this.CURRENT_USER
     });
+
     this.addSubview("#nav", this.navView);
     $(window).scroll(this.fetchIfAtBottom.bind(this));
   },
@@ -55,7 +58,10 @@ ThemeParkList.Views.Explore = Backbone.CompositeView.extend({
       remove: false,
       data: data,
       success: function (collection) {
-        this.filterView.setCollection(collection);
+        this.filterView.setOptions({
+          collection: collection,
+          sort: this.sort
+        });
       }.bind(this)
     });
 

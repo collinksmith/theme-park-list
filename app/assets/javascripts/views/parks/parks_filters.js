@@ -19,14 +19,20 @@ ThemeParkList.Views.ParksFilters = Backbone.View.extend({
     return this;
   },
 
-  setCollection: function (collection) {
-    this.collection = collection;
+  setOptions: function (options) {
+    this.collection = options.collection;
+    this.sort = options.sort
     this.updateItemCount();
+    this.updateSortText();
   },
 
   updateItemCount: function () {
     this.$('.filter-num').text(this.collection.total_items + 
                                " Theme Parks Found");
+  },
+
+  updateSortText: function () {
+    this.$("#sort-text").text(this.sort.toUpperCase())
   },
 
   addSlider: function () {
