@@ -46,7 +46,8 @@ ThemeParkList.Views.Explore = Backbone.CompositeView.extend({
 
   setSeason: function (event) {
     this.season = $(event.currentTarget).text();
-    if ( !this.mapViewPresent) { this.fetchParks(); }
+    // Fetch parks, but don't re-render if map view is present
+    this.fetchParks(null, this.mapViewPresent);
   },
 
   searchParks: function (event) {
@@ -80,7 +81,7 @@ ThemeParkList.Views.Explore = Backbone.CompositeView.extend({
     this.fetchParks();
   },
 
-  fetchParks: function (data) {
+  fetchParks: function (data, preventParksIndex) {
     data = data || {
       filters: this.filters,
       sort: this.sort,
@@ -98,10 +99,10 @@ ThemeParkList.Views.Explore = Backbone.CompositeView.extend({
       }.bind(this)
     });
 
-    this.updateParks();
+    if (!preventParksIndex) { this.updateParksIndex(); }
   },
 
-  updateParks: function () {
+  updateParksIndex: function () {
     this.removeSubview("#parks-index", this.parksIndexView);
     this.parksIndexView = new ThemeParkList.Views.ParksIndex({ 
       collection: this.collection 
