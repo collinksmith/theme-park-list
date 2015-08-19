@@ -56,7 +56,11 @@ ThemeParkList.Views.Explore = Backbone.CompositeView.extend({
     if (code === 9 || (code >= 37 && code <= 40)) { return; }
       
     var query = $("#search-box").val();
-    this.setGrid(null, { query: query });
+    if (this.mapViewPresent) {
+      this.setGrid(null, { query: query });
+    } else {
+      this.fetchParks({query: query });
+    }
   },
 
   filterParks: function () {
@@ -137,7 +141,7 @@ ThemeParkList.Views.Explore = Backbone.CompositeView.extend({
     // Don't do anything if the map is already shown and not updating filters
     if (this.mapViewPresent && !updateFilter) { return; }
     this.mapViewPresent = true;
-    $(".sort-group").css("display", "none")
+    $(".sort-group").css("display", "none");
 
     this.removeSubview("#parks-index", this.parksIndexView);
     if (this.mapView) { this.removeSubview("#map", this.mapView); }
@@ -157,7 +161,9 @@ ThemeParkList.Views.Explore = Backbone.CompositeView.extend({
 
   setGrid: function (event, data) {
     this.mapViewPresent = false;
-    $(".sort-group").css("display", "block")
+    $(".sort-group").css("display", "block");
+    $(".btn.grid").addClass("selected-format");
+    $(".btn.map").removeClass("selected-format");
     this.removeSubview("#map", this.mapView);
     this.fetchParks(data);
   }
