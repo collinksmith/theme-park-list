@@ -26,10 +26,16 @@ ThemeParkList.Views.Map = Backbone.View.extend({
       map: this._map,
       title: listing.get('name')
     });
-    // google.maps.event.addListener(marker, 'click', function (event) {
-    //   view.showMarkerInfo(event, marker);
-    // });
+
+    google.maps.event.addListener(marker, 'click', function (event) {
+      view.addParkShowView(event, marker, listing);
+    });
 
     this._markers[listing.id] = marker;
-  }
+  },
+
+  addParkShowView: function (event, marker, park) {
+    var parkShowView = new ThemeParkList.Views.ParkShow({ model: park });
+    $("body").append(parkShowView.render().$el);
+  },
 });
