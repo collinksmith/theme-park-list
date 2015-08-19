@@ -56,7 +56,7 @@ ThemeParkList.Views.Explore = Backbone.CompositeView.extend({
     if (code === 9 || (code >= 37 && code <= 40)) { return; }
       
     var query = $("#search-box").val();
-    this.fetchParks({ query: query });
+    this.setGrid(null, { query: query });
   },
 
   filterParks: function () {
@@ -155,10 +155,10 @@ ThemeParkList.Views.Explore = Backbone.CompositeView.extend({
     });
   },
 
-  setGrid: function () {
+  setGrid: function (event, data) {
     this.mapViewPresent = false;
     $(".sort-group").css("display", "block")
     this.removeSubview("#map", this.mapView);
-    this.fetchParks();
+    this.fetchParks(data);
   }
 });
