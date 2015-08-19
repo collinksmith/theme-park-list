@@ -9,8 +9,7 @@ ThemeParkList.Views.ParksFilters = Backbone.View.extend({
   },
 
   initialize: function () {
-    this.listenTo(this.collection, "sync", this.render);
-    this.listenTo(this.collection, "all", this.updateItemCount)
+    this.listenTo(this.collection, "sync", this.updateItemCount)
   },
 
   render: function () {
