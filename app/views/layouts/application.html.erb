@@ -6,6 +6,12 @@
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
   
+  
+</head>
+<body>
+
+<%= yield %>
+
   <% if Rails.env.production? %>
     <% api_key = "key=AIzaSyCMbj0gpGFgpi5Ykk9VI5frmW6-1umo5lE" %>
   <% else %>
@@ -13,10 +19,6 @@
   <% end %>
   <script type="text/javascript"
           src="https://maps.googleapis.com/maps/api/js?<%= api_key %>"></script>
-</head>
-<body>
-
-<%= yield %>
 
 </body>
 </html>
