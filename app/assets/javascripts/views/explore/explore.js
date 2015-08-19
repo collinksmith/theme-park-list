@@ -113,6 +113,10 @@ ThemeParkList.Views.Explore = Backbone.CompositeView.extend({
   },
 
   setMap: function () {
+    // Don't do anything if the map is already shown
+    if (this.mapViewPresent) { return; }
+    this.mapViewPresent = true;
+    
     this.removeSubview("#parks-index", this.parksIndexView);
     
     this.collection.fetch({
@@ -128,6 +132,7 @@ ThemeParkList.Views.Explore = Backbone.CompositeView.extend({
   },
 
   setGrid: function () {
+    this.mapViewPresent = false;
     this.removeSubview("#map", this.mapView);
     this.fetchParks();
   }
