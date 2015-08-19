@@ -37,9 +37,9 @@ ThemeParkList.Views.ParksFilters = Backbone.View.extend({
   addSlider: function () {
     this.$("#slider-range").slider({
       range: true,
-      min: 20,
-      max: 300,
-      values: [ 20, 300 ]
+      min: 0,
+      max: 100,
+      values: [ 0, 100 ]
     });
 
     // Set initial values for price indicator
