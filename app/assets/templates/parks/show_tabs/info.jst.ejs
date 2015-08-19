@@ -31,10 +31,21 @@
       </ul>
     </div>
     <div class="col-md-6">
-      <span class="show-label info-left">Location</span>
-      <span class="show-value info-right">
-        <%= park.escape("city") %>, <%= park.escape("state") %>, <%= park.escape("country") %>
-      </span>
+      <h4>Number of Rides</h4>
+      <ul>
+        <li class="group">
+          <span class="show-label info-left">Total Rides</span>
+          <span class="show-value info-right"><%= park.escape("rides") %></span>
+        </li>
+        <li class="group">
+          <span class="show-label info-left">Roller Coasters</span>
+          <span class="show-value info-right"><%= park.escape("roller_coasters") %></span>
+        </li>
+        <li class="group">
+          <span class="show-label info-left">Water Rides</span>
+          <span class="show-value info-right"><%= park.escape("water_rides") %></span>
+        </li>
+      </ul>
     </div>
   </div>
 
