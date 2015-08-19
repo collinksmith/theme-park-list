@@ -113,10 +113,11 @@ ThemeParkList.Views.Explore = Backbone.CompositeView.extend({
 
   setMap: function () {
     this.removeSubview("#parks-index", this.parksIndexView);
-    this.mapView = new ThemeParkList.Views.mapView({ 
+    this.mapView = new ThemeParkList.Views.Map({ 
       collection: this.collection
     });
-    this.addSubview("#parks-index", this.parksIndexView)
+    this.addSubview("#map", this.mapView)
     this.mapView.initMap();
+    this.render();
   }
 });
