@@ -41,7 +41,7 @@ ThemeParkList.Views.Explore = Backbone.CompositeView.extend({
     var tempUnit = $(event.currentTarget).text();
     this.parksIndexView.eachSubview(function (subview, selector) {
       subview.setTemp(tempUnit);
-    })
+    });
   },
 
   setSeason: function (event) {
@@ -52,32 +52,40 @@ ThemeParkList.Views.Explore = Backbone.CompositeView.extend({
   searchParks: function (event) {
     // Don't search if user presses tab or arrow keys
     var code = event.keyCode;
-    if (code === 9 || (code >= 37 && code <= 40)) { return }
+    if (code === 9 || (code >= 37 && code <= 40)) { return; }
       
     var query = $("#search-box").val();
-    this.fetchParks({ query: query })
+    this.fetchParks({ query: query });
   },
 
   filterParks: function () {
+    // Set filters
     var filters = [];
     $(".selected-filter").each(function (index, filterBtn) {
       filters.push($(filterBtn).text());
     });
     this.filters = filters;
-    this.fetchParks();
+
+    // If the map button is already selected, update the map.
+    // Otherwise, update the parks index.
+    if ($(".map.selected-format").text() === "Map") {
+      this.setMap(true);
+    } else {
+      this.fetchParks();
+    }
   },
 
   sortParks: function (event) {
-    this.sort = $(event.currentTarget).children().text()
-    this.fetchParks()
+    this.sort = $(event.currentTarget).children().text();
+    this.fetchParks();
   },
 
   fetchParks: function (data) {
-    var data = data || {
+    data = data || {
       filters: this.filters,
       sort: this.sort,
       season: this.season
-    }
+    };
     this.collection = new ThemeParkList.Collections.Parks();
     this.collection.fetch({
       remove: false,
@@ -112,12 +120,13 @@ ThemeParkList.Views.Explore = Backbone.CompositeView.extend({
     }
   },
 
-  setMap: function () {
-    // Don't do anything if the map is already shown
-    if (this.mapViewPresent) { return; }
+  setMap: function (updateFilter) {
+    // Don't do anything if the map is already shown and not updating filters
+    if (this.mapViewPresent && !updateFilter) { return; }
     this.mapViewPresent = true;
-    
+
     this.removeSubview("#parks-index", this.parksIndexView);
+    if (this.mapView) { this.removeSubview("#map", this.mapView); }
     
     this.collection.fetch({
       data: { page: "all", filters: this.filters },
@@ -125,10 +134,10 @@ ThemeParkList.Views.Explore = Backbone.CompositeView.extend({
         this.mapView = new ThemeParkList.Views.Map({ 
           collection: collection
         });
-        this.addSubview("#map", this.mapView)
+        this.addSubview("#map", this.mapView);
         this.mapView.initMap();
       }.bind(this)
-    })
+    });
   },
 
   setGrid: function () {
