@@ -5,8 +5,8 @@ ThemeParkList.Views.Map = Backbone.View.extend({
 
   initMap: function () {
     var mapOptions = {
-      center: { lat: 37.7833, lng: -122.4167 },
-      zoom: 12
+      center: { lat: 39.5, lng: -98.35 },
+      zoom: 4
     };
 
     this._map = new google.maps.Map(this.el, mapOptions);
