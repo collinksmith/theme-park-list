@@ -23,7 +23,7 @@ class Api::ParksController < ApplicationController
     @parks.to_a.map.with_index { |park, i| park.ord = i + 1 }
 
     # Select the corrent page
-    @parks = select_page(@parks, @page)
+    @parks = select_page(@parks, @page) unless params[:page] == "all"
   end
 
   def show
