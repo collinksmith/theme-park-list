@@ -9,10 +9,10 @@ Theme Park List inspired by of Nomadlist and is built on Rails and Backbone. Use
 
 <!-- This is a Markdown checklist. Use it to keep track of your progress! -->
 
-- [ ] View a list of theme parks with their basic info
-- [ ] Filter the list based on predetermined options
-- [ ] Sort the list by any attribute
-- [ ] Search for theme parks by name
+- [X] View a list of theme parks with their basic info
+- [X] Filter the list based on predetermined options
+- [X] Sort the list by any attribute
+- [X] Search for theme parks by name
 - [ ] View a map of theme parks
 - [ ] View calculated scores for each theme park
 - [ ] View specific data and information for each theme park
@@ -60,8 +60,8 @@ I'll allow users to view a map of parks on the main page. I'll also add a "nearb
 - [ ] Places to sleep near each theme park
 - [ ] Users can submit information to be edited and/or aggregated
 - [ ] Forum, with a link to relevant threads on each park's show view
-- [ ] Infinite scroll
-- [ ] Typeahead search bar
+- [X] Infinite scroll
+- [X] Typeahead search bar
 - [ ] Nav bar appears on scroll up
 - [ ] Button to bring up a relevant youtube video on each park's show view
 - [ ] Activity history (previously viewed theme parks)
