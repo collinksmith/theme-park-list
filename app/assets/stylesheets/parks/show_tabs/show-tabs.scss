@@ -3,6 +3,10 @@
   padding: 1.2em 1em;
   font-size: 1.2em;
 
+  h4 {
+    font-weight: bold;
+  }
+
   .show-label {
     font-weight: bold;
     float: left;
@@ -13,6 +17,6 @@
   }
 
   .row {
-    padding: 1.3em 0;
+    padding: 0.4em 0;
   }
 }

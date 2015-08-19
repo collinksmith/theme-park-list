@@ -51,14 +51,12 @@
 
   <div class="row">
     <div class="col-md-6">
-      <span class="show-label info-left">Number of TripAdvisor Ratings</span>
-      <span class="show-value info-right"><%= park.escape("num_tripadv_ratings") %></span>
-    </div>
-    <div class="col-md-6">
-      <span class="show-label info-left">Location</span>
-      <span class="show-value info-right">
-        <%= park.escape("city") %>, <%= park.escape("state") %>, <%= park.escape("country") %>
-      </span>
+      <h4>Costs</h4>
+      <ul>
+        <% park.costs().each(function (cost) { %>
+          <%= JST["parks/show_tabs/_cost"]({ cost: cost }) %>
+        <% }); %>
+      </ul>
     </div>
   </div>
 </div>
