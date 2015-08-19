@@ -46,7 +46,7 @@ ThemeParkList.Views.Explore = Backbone.CompositeView.extend({
 
   setSeason: function (event) {
     this.season = $(event.currentTarget).text();
-    this.fetchParks();
+    if ( !this.mapViewPresent) { this.fetchParks(); }
   },
 
   searchParks: function (event) {
