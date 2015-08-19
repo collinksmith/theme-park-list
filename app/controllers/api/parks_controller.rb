@@ -1,7 +1,7 @@
 class Api::ParksController < ApplicationController
   def index
-    @page = params[:page].to_i
-    @season = params[:season]
+    @page = params[:page] ? params[:page].to_i : 1
+    @season = params[:season] ? params[:season].downcase.to_sym : :year
     sort = params[:sort] || "Trip Advisor Score"
 
     @parks = Park.with_weather_data_and_associations(@season)
@@ -10,6 +10,7 @@ class Api::ParksController < ApplicationController
     @parks = apply_filters(@parks, params[:filters]) if params[:filters]
     @parks = apply_sort(@parks, sort)
 
+    # Set total pages and total_items
     if @parks.is_a?(Array)
       @total_pages = (@parks.length.to_f / 25).ceil
       @total_items = (@parks.length)
@@ -18,7 +19,10 @@ class Api::ParksController < ApplicationController
       @total_items = (@parks.all.length)
     end
 
+    # Set ord attribute of parks
     @parks.to_a.map.with_index { |park, i| park.ord = i + 1 }
+
+    # Select the corrent page
     @parks = select_page(@parks, @page)
   end
 

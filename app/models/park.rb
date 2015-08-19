@@ -28,7 +28,6 @@ class Park < ActiveRecord::Base
   }
 
   def self.with_weather_data_and_associations(season = :year)
-    season ||= :year
     months = SEASONS[season]
 
     Park.

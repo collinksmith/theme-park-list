@@ -5,7 +5,8 @@ ThemeParkList.Views.Explore = Backbone.CompositeView.extend({
     "click #btn-filter": "filterParks",
     "keyup #search-box": "searchParks",
     "click .sort-criterion": "sortParks",
-    "click .temp": "setTemp"
+    "click .temp": "setTemp",
+    "click .season": "setSeason"
   },
 
   initialize: function (options) {
@@ -41,13 +42,18 @@ ThemeParkList.Views.Explore = Backbone.CompositeView.extend({
     })
   },
 
+  setSeason: function (event) {
+    this.season = $(event.currentTarget).text();
+    this.fetchParks();
+  },
+
   searchParks: function (event) {
     // Don't search if user presses tab or arrow keys
     var code = event.keyCode;
     if (code === 9 || (code >= 37 && code <= 40)) { return }
       
     var query = $("#search-box").val();
-    this.fetchParks({ page: 1, query: query })
+    this.fetchParks({ query: query })
   },
 
   filterParks: function () {
@@ -56,15 +62,20 @@ ThemeParkList.Views.Explore = Backbone.CompositeView.extend({
       filters.push($(filterBtn).text());
     });    
     this.filters = filters;
-    this.fetchParks({ page: 1, filters: this.filters, sort: this.sort });
+    this.fetchParks();
   },
 
   sortParks: function (event) {
     this.sort = $(event.currentTarget).children().text()
-    this.fetchParks({ page: 1, filters: this.filters, sort: this.sort })
+    this.fetchParks()
   },
 
   fetchParks: function (data) {
+    var data = data || {
+      filters: this.filters,
+      sort: this.sort,
+      season: this.season
+    }
     this.collection = new ThemeParkList.Collections.Parks();
     this.collection.fetch({
       remove: false,
@@ -87,7 +98,6 @@ ThemeParkList.Views.Explore = Backbone.CompositeView.extend({
     });
     this.addSubview("#parks-index", this.parksIndexView);
   },
-
 
   fetchIfAtBottom: function () {
     var page = this.collection.page;
