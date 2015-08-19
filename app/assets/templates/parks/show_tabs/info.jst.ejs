@@ -1,0 +1,53 @@
+<div class="containter">
+  <div class="row">
+    <div class="col-md-6">
+      <span class="show-label info-left">Number of TripAdvisor Ratings</span>
+      <span class="show-value info-right"><%= park.escape("num_tripadv_ratings") %></span>
+    </div>
+    <div class="col-md-6">
+      <span class="show-label info-left">Location</span>
+      <span class="show-value info-right">
+        <%= park.escape("city") %>, <%= park.escape("state") %>, <%= park.escape("country") %>
+      </span>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <h4>Weather (<%= $(".season.selected-format").text() %>)</h4>
+      <ul>
+        <li class="group">
+          <span class="show-label info-left">Average High</span>
+          <span class="show-value info-right"><%= park.temp(tempUnit, "high") %></span>
+        </li>
+        <li class="group">
+          <span class="show-label info-left">Average Low</span>
+          <span class="show-value info-right"><%= park.temp(tempUnit, "low") %></span>
+        </li>
+        <li class="group">
+          <span class="show-label info-left">Average Precipitation</span>
+          <span class="show-value info-right"><%= park.weather().precip %> in.</span>
+        </li>
+      </ul>
+    </div>
+    <div class="col-md-6">
+      <span class="show-label info-left">Location</span>
+      <span class="show-value info-right">
+        <%= park.escape("city") %>, <%= park.escape("state") %>, <%= park.escape("country") %>
+      </span>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <span class="show-label info-left">Number of TripAdvisor Ratings</span>
+      <span class="show-value info-right"><%= park.escape("num_tripadv_ratings") %></span>
+    </div>
+    <div class="col-md-6">
+      <span class="show-label info-left">Location</span>
+      <span class="show-value info-right">
+        <%= park.escape("city") %>, <%= park.escape("state") %>, <%= park.escape("country") %>
+      </span>
+    </div>
+  </div>
+</div>

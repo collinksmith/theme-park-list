@@ -2,19 +2,20 @@
 #
 # Table name: parks
 #
-#  id              :integer          not null, primary key
-#  name            :string           not null
-#  latitude        :float            not null
-#  longitude       :float            not null
-#  image_url       :string
-#  tripadv_rating  :integer
-#  roller_coasters :integer
-#  water_rides     :integer
-#  created_at      :datetime         not null
-#  updated_at      :datetime         not null
-#  rides           :integer
-#  url             :string
-#  city_id         :integer
+#  id                  :integer          not null, primary key
+#  name                :string           not null
+#  latitude            :float            not null
+#  longitude           :float            not null
+#  image_url           :string
+#  tripadv_rating      :integer
+#  roller_coasters     :integer
+#  water_rides         :integer
+#  created_at          :datetime         not null
+#  updated_at          :datetime         not null
+#  rides               :integer
+#  url                 :string
+#  city_id             :integer
+#  num_tripadv_ratings :integer
 #
 
 class Park < ActiveRecord::Base

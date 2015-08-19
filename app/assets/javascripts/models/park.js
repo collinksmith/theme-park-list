@@ -22,10 +22,10 @@ ThemeParkList.Models.Park = Backbone.Model.extend({
 
   weather: function (weather_data) {
     if (weather_data) {
-      this._weather = { score: weather_data.score ,
+      this._weather = { score: weather_data.score,
                         high: weather_data.high,
                         low:  weather_data.low,
-                        precip: weather_data.precip }
+                        precip: weather_data.precip.toFixed(2) }
     }
     return this._weather;
   },
@@ -34,12 +34,19 @@ ThemeParkList.Models.Park = Backbone.Model.extend({
     return (temp - 32) * (5 / 9)
   },
 
-  temp: function (unit) {
-    var temp;
-    if (unit === "°C") {
-      return Math.round(this.toC(this.weather().high)) + "°C";
+  temp: function (unit, highOrLow) {
+    if (highOrLow === "low") {
+      if (unit === "°C") {
+        return Math.round(this.toC(this.weather().low)) + "°C";
+      } else {
+        return Math.round(this.weather().low) + "°F";
+      }
     } else {
-      return Math.round(this.weather().high) + "°F";
+      if (unit === "°C") {
+        return Math.round(this.toC(this.weather().high)) + "°C";
+      } else {
+        return Math.round(this.weather().high) + "°F";
+      }
     }
   },
 

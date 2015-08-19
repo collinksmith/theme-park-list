@@ -1,0 +1,14 @@
+.show-details {
+  width: 100%;
+  padding: 1.2em 1em;
+  font-size: 1.2em;
+
+  .show-label {
+    font-weight: bold;
+    float: left;
+  }
+
+  .show-value {
+    float: right;
+  }
+}
