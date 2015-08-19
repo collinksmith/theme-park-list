@@ -143,6 +143,7 @@ ThemeParkList.Views.Explore = Backbone.CompositeView.extend({
 
   setGrid: function () {
     this.mapViewPresent = false;
+    $(".sort-group").css("display", "block")
     this.removeSubview("#map", this.mapView);
     this.fetchParks();
   }
