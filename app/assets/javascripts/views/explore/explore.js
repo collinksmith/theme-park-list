@@ -47,7 +47,7 @@ ThemeParkList.Views.Explore = Backbone.CompositeView.extend({
   setSeason: function (event) {
     this.season = $(event.currentTarget).text();
     // Fetch parks, but don't re-render if map view is present
-    this.fetchParks(null, this.mapViewPresent);
+    this.updateCurrentView(); 
   },
 
   searchParks: function (event) {
@@ -67,9 +67,13 @@ ThemeParkList.Views.Explore = Backbone.CompositeView.extend({
     });
     this.filters = filters;
 
+    this.updateCurrentView();
+  },
+
+  updateCurrentView: function () {
     // If the map button is already selected, update the map.
     // Otherwise, update the parks index.
-    if ($(".map.selected-format").text() === "Map") {
+    if (this.mapViewPresent) {
       this.setMap(true);
     } else {
       this.fetchParks();
@@ -81,7 +85,7 @@ ThemeParkList.Views.Explore = Backbone.CompositeView.extend({
     this.fetchParks();
   },
 
-  fetchParks: function (data, preventParksIndex) {
+  fetchParks: function (data) {
     data = data || {
       filters: this.filters,
       sort: this.sort,
@@ -99,7 +103,7 @@ ThemeParkList.Views.Explore = Backbone.CompositeView.extend({
       }.bind(this)
     });
 
-    if (!preventParksIndex) { this.updateParksIndex(); }
+    this.updateParksIndex();
   },
 
   updateParksIndex: function () {
@@ -131,13 +135,14 @@ ThemeParkList.Views.Explore = Backbone.CompositeView.extend({
     if (this.mapView) { this.removeSubview("#map", this.mapView); }
     
     this.collection.fetch({
-      data: { page: "all", filters: this.filters },
+      data: { page: "all", filters: this.filters, season: this.season },
       success: function (collection) {
         this.mapView = new ThemeParkList.Views.Map({ 
           collection: collection
         });
         this.addSubview("#map", this.mapView);
         this.mapView.initMap();
+        this.filterView.setOptions({ collection: collection });
       }.bind(this)
     });
   },
