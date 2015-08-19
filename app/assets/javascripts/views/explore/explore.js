@@ -6,7 +6,8 @@ ThemeParkList.Views.Explore = Backbone.CompositeView.extend({
     "keyup #search-box": "searchParks",
     "click .sort-criterion": "sortParks",
     "click .temp": "setTemp",
-    "click .season": "setSeason"
+    "click .season": "setSeason",
+    "click .btn.map": "setMap"
   },
 
   initialize: function (options) {
@@ -108,5 +109,14 @@ ThemeParkList.Views.Explore = Backbone.CompositeView.extend({
         data: { page: page + 1, filters: this.filters, sort: this.sort }
       });
     }
+  },
+
+  setMap: function () {
+    this.removeSubview("#parks-index", this.parksIndexView);
+    this.mapView = new ThemeParkList.Views.mapView({ 
+      collection: this.collection
+    });
+    this.addSubview("#parks-index", this.parksIndexView)
+    this.mapView.initMap();
   }
 });
