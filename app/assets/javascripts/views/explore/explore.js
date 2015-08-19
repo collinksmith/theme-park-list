@@ -117,12 +117,18 @@ ThemeParkList.Views.Explore = Backbone.CompositeView.extend({
   },
 
   fetchIfAtBottom: function () {
+    if ( this.mapViewPresent ) { return; }
     var page = this.collection.page;
     if ((window.innerHeight + window.scrollY) >= $(document).height() && 
          page > 0 && page < this.collection.total_pages) {
       this.collection.fetch({
         remove: false,
-        data: { page: page + 1, filters: this.filters, sort: this.sort }
+        data: { 
+          page: page + 1,
+          filters: this.filters,
+          sort: this.sort,
+          season: this.season
+        }
       });
     }
   },

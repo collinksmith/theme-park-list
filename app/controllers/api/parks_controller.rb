@@ -22,7 +22,7 @@ class Api::ParksController < ApplicationController
     # Set ord attribute of parks
     @parks.to_a.map.with_index { |park, i| park.ord = i + 1 }
 
-    # Select the corrent page
+    # Select the correct page
     @parks = select_page(@parks, @page) unless params[:page] == "all"
   end
 
