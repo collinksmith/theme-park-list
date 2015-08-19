@@ -7,7 +7,8 @@ ThemeParkList.Views.Explore = Backbone.CompositeView.extend({
     "click .sort-criterion": "sortParks",
     "click .temp": "setTemp",
     "click .season": "setSeason",
-    "click .btn.map": "setMap"
+    "click .btn.map": "setMap",
+    "click .btn.grid": "setGrid"
   },
 
   initialize: function (options) {
@@ -61,7 +62,7 @@ ThemeParkList.Views.Explore = Backbone.CompositeView.extend({
     var filters = [];
     $(".selected-filter").each(function (index, filterBtn) {
       filters.push($(filterBtn).text());
-    });    
+    });
     this.filters = filters;
     this.fetchParks();
   },
@@ -124,5 +125,10 @@ ThemeParkList.Views.Explore = Backbone.CompositeView.extend({
         this.mapView.initMap();
       }.bind(this)
     })
+  },
+
+  setGrid: function () {
+    this.removeSubview("#map", this.mapView);
+    this.fetchParks();
   }
 });
