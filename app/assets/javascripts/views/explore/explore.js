@@ -124,6 +124,7 @@ ThemeParkList.Views.Explore = Backbone.CompositeView.extend({
     // Don't do anything if the map is already shown and not updating filters
     if (this.mapViewPresent && !updateFilter) { return; }
     this.mapViewPresent = true;
+    $(".sort-group").css("display", "none")
 
     this.removeSubview("#parks-index", this.parksIndexView);
     if (this.mapView) { this.removeSubview("#map", this.mapView); }
