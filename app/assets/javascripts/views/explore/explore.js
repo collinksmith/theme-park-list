@@ -4,8 +4,8 @@ ThemeParkList.Views.Explore = Backbone.CompositeView.extend({
   events: {
     "click #btn-filter": "filterParks",
     "keyup #search-box": "searchParks",
-    // "keypress #search-box": "handleKeypress",
-    "click .sort-criterion": "sortParks"
+    "click .sort-criterion": "sortParks",
+    "click .temp": "setTemp"
   },
 
   initialize: function (options) {
@@ -32,6 +32,13 @@ ThemeParkList.Views.Explore = Backbone.CompositeView.extend({
     this.$el.html(this.template());
     this.attachSubviews();
     return this;
+  },
+
+  setTemp: function (event) {
+    var tempUnit = $(event.currentTarget).text();
+    this.parksIndexView.eachSubview(function (subview, selector) {
+      subview.setTemp(tempUnit);
+    })
   },
 
   searchParks: function (event) {

@@ -9,8 +9,14 @@ ThemeParkList.Views.ParksIndexItem = Backbone.View.extend({
   },
 
   render: function () {
-    this.$el.html(this.template({ park: this.model }));
+    var tempUnit = $(".temp.selected-format").text();
+    this.$el.html(this.template({ park: this.model, tempUnit: tempUnit }));
     return this;
+  },
+
+  setTemp: function (tempUnit) {
+    var temp = this.model.temp(tempUnit);
+    this.$(".temp-text").text(temp)
   },
 
   addParkShowView: function () {

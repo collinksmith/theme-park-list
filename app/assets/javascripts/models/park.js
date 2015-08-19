@@ -30,6 +30,19 @@ ThemeParkList.Models.Park = Backbone.Model.extend({
     return this._weather;
   },
 
+  toC: function (temp) {
+    return (temp - 32) * (5 / 9)
+  },
+
+  temp: function (unit) {
+    var temp;
+    if (unit === "°C") {
+      return Math.round(this.toC(this.weather().high)) + "°C";
+    } else {
+      return Math.round(this.weather().high) + "°F";
+    }
+  },
+
   scoreClass: function (score) {
     if (score >= 75) {
       return "progress-success"
