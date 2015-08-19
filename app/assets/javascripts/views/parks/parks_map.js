@@ -14,6 +14,7 @@ ThemeParkList.Views.Map = Backbone.View.extend({
       zoom: 4,
       panControl: false,
       streetViewControl: false,
+      mapTypeControl: false,
       zoomControl: true,
       zoomControlOptions: {
         style: google.maps.ZoomControlStyle.SMALL
