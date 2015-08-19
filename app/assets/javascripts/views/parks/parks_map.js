@@ -5,12 +5,20 @@ ThemeParkList.Views.Map = Backbone.View.extend({
 
   initialize: function () {
     this._markers = {};
+    this.styles = [{"stylers":[{"hue":"#ff1a00"},{"invert_lightness":true},{"saturation":-100},{"lightness":33},{"gamma":0.5}]},{"featureType":"water","elementType":"geometry","stylers":[{"color":"#2D333C"}]}]
   },
 
   initMap: function () {
     var mapOptions = {
       center: { lat: 39.5, lng: -98.35 },
-      zoom: 4
+      zoom: 4,
+      panControl: false,
+      streetViewControl: false,
+      zoomControl: true,
+      zoomControlOptions: {
+        style: google.maps.ZoomControlStyle.SMALL
+      },
+      styles: this.styles
     };
 
     this._map = new google.maps.Map(this.el, mapOptions);
@@ -37,5 +45,5 @@ ThemeParkList.Views.Map = Backbone.View.extend({
   addParkShowView: function (event, marker, park) {
     var parkShowView = new ThemeParkList.Views.ParkShow({ model: park });
     $("body").append(parkShowView.render().$el);
-  },
+  }
 });
