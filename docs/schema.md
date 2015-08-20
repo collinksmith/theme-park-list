@@ -62,6 +62,7 @@ atmosphere          | integer   |
 family_friendliness | integer   |
 intesity            | integer   |
 wait_times          | integer   |
+cost                | integer   |
 
 ## followings
 column name | data type | details
