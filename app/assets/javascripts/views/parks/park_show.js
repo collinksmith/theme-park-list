@@ -4,6 +4,7 @@ ThemeParkList.Views.ParkShow = Backbone.CompositeView.extend({
   events: {
     "click .show-tab": "updatePanel",
     "click .m-background": "remove",
+    "click #write-review": "addReviewForm"
   },
 
   initialize: function () {
@@ -24,9 +25,8 @@ ThemeParkList.Views.ParkShow = Backbone.CompositeView.extend({
     $newTab.parent().find(".active").removeClass("active");
     $newTab.addClass("active");
 
-
     var newSubview;
-    switch ($newTab.text()) {
+    switch ($.trim($newTab.text())) {
       case "Scores":
         newSubview = new ThemeParkList.Views.Scores({ model: this.model });
         break;
@@ -38,6 +38,9 @@ ThemeParkList.Views.ParkShow = Backbone.CompositeView.extend({
         break;
       case "Parks Nearby":
         newSubview = new ThemeParkList.Views.Nearby({ model: this.model });
+        break;
+      case "Write a Review":
+        newSubview = new ThemeParkList.Views.ReviewForm();
         break;
     }
 
