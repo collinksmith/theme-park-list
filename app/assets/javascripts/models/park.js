@@ -10,6 +10,10 @@ ThemeParkList.Models.Park = Backbone.Model.extend({
       this.weather(response.weather);
       delete response.weather;
     }
+    if (response.reviews) {
+      this.reviews().set(response.reviews);
+      delete response.reviews;
+    }
     return response;
   },
 
@@ -18,6 +22,13 @@ ThemeParkList.Models.Park = Backbone.Model.extend({
       this._costs = new ThemeParkList.Collections.Costs([], { park: this });
     }
     return this._costs;
+  },
+
+  reviews: function () {
+    if (!this._reviews) {
+      this._reviews = new ThemeParkList.Collections.Reviews([], { park: this });
+    }
+    return this._reviews;
   },
 
   weather: function (weather_data) {
