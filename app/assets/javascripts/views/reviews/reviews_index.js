@@ -38,6 +38,7 @@ ThemeParkList.Views.ReviewsIndex = Backbone.CompositeView.extend({
     this.$(id).raty({
       readOnly: true,
       score: score,
+      hints: [score, score, score, score, score],
       starOn: "/icons/star-on.png",
       starOff: "/icons/star-off.png",
       starHalf: "/icons/star-half.png"
