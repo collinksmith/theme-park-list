@@ -65,6 +65,7 @@ ThemeParkList.Views.Explore = Backbone.CompositeView.extend({
 
   filterParks: function () {
     this.setFilters();
+    this.setCosts();
     this.updateCurrentView();
   },
 
@@ -74,6 +75,10 @@ ThemeParkList.Views.Explore = Backbone.CompositeView.extend({
       filters.push($(filterBtn).text());
     });
     this.filters = filters;
+  },
+
+  setCosts: function () {
+    this.costs = this.$("#slider-range").slider("values");
   },
 
   updateCurrentView: function () {
@@ -92,7 +97,6 @@ ThemeParkList.Views.Explore = Backbone.CompositeView.extend({
   },
 
   fetchParks: function (data) {
-    this.costs = this.$("#slider-range").slider("values");
     data = data || {
       filters: this.filters,
       sort: this.sort,
