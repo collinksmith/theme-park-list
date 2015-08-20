@@ -22,8 +22,7 @@ ThemeParkList.Views.ParkShow = Backbone.CompositeView.extend({
   updatePanel: function (event) {
     $newTab = $(event.currentTarget);
     if ($newTab.hasClass("active")) { return; }
-    $newTab.parent().find(".active").removeClass("active");
-    $newTab.addClass("active");
+    this.updateActiveTab($newTab.text());
 
     var newSubview;
     switch ($.trim($newTab.text())) {
@@ -45,6 +44,14 @@ ThemeParkList.Views.ParkShow = Backbone.CompositeView.extend({
     }
 
     this.swapInSubview(newSubview);
+  },
+
+  // Takes the text of the tab to be activated. Removes any other active tabs
+  // and adds the 'active' class to the new tab.
+  updateActiveTab: function (newTabText) {
+    this.$(".nav-tabs").find(".active").removeClass("active");
+    var $newTab = $(".nav-tabs li:contains(" + newTabText + ")");
+    $newTab.addClass("active");
   },
 
   handleKeyup: function (event) {
@@ -73,6 +80,7 @@ ThemeParkList.Views.ParkShow = Backbone.CompositeView.extend({
           success: function (model) {
             var newView = new ThemeParkList.Views.Reviews({ model: model });
             view.swapInSubview(newView);
+            view.updateActiveTab("Reviews");
           }
         })
       },
@@ -83,7 +91,5 @@ ThemeParkList.Views.ParkShow = Backbone.CompositeView.extend({
         });
       }
     });
-
-
   },
 });
