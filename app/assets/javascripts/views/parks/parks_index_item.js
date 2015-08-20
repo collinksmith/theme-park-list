@@ -20,8 +20,12 @@ ThemeParkList.Views.ParksIndexItem = Backbone.View.extend({
   },
 
   addParkShowView: function () {
-    var parkShowView = new ThemeParkList.Views.ParkShow({ model: this.model });
-    $("body").append(parkShowView.render().$el);
+    this.model.fetch({
+      success: function (model) {
+        var parkShowView = new ThemeParkList.Views.ParkShow({ model: model });
+        $("body").append(parkShowView.render().$el);
+      }
+    })
   },
 
   addScoreBars: function () {

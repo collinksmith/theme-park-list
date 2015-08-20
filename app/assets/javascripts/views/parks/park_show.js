@@ -8,8 +8,8 @@ ThemeParkList.Views.ParkShow = Backbone.CompositeView.extend({
   },
 
   initialize: function () {
-    var scoresView = new ThemeParkList.Views.Scores({ model: this.model });
-    this.addSubview(".show-panel", scoresView);
+    this.subview = new ThemeParkList.Views.Scores({ model: this.model });
+    this.addSubview(".show-panel", this.subview);
     $(document).on("keyup", this.handleKeyup.bind(this));
   },
 
@@ -33,7 +33,9 @@ ThemeParkList.Views.ParkShow = Backbone.CompositeView.extend({
         newSubview = new ThemeParkList.Views.Info({ model: this.model });
         break;
       case "Reviews":
-        newSubview = new ThemeParkList.Views.Reviews({ model: this.model });
+        newSubview = new ThemeParkList.Views.ReviewsIndex({ 
+          collection: this.model.reviews()
+        });
         break;
       case "Parks Nearby":
         newSubview = new ThemeParkList.Views.Nearby({ model: this.model });
@@ -61,8 +63,9 @@ ThemeParkList.Views.ParkShow = Backbone.CompositeView.extend({
   },
 
   swapInSubview: function (newSubview) {
-    this.removeModelSubview(".show-panel", this.model);
-    this.addSubview(".show-panel", newSubview);
+    this.removeSubview(".show-panel", this.subview);
+    this.subview = newSubview;
+    this.addSubview(".show-panel", this.subview);
   },
 
   submitReview: function (event) {
