@@ -82,7 +82,9 @@ ThemeParkList.Views.ParkShow = Backbone.CompositeView.extend({
       success: function () {
         view.model.fetch({
           success: function (model) {
-            var newView = new ThemeParkList.Views.Reviews({ model: model });
+            var newView = new ThemeParkList.Views.ReviewsIndex({ 
+              collection: view.model.reviews()
+            });
             view.swapInSubview(newView);
             view.updateActiveTab("Reviews");
           }
