@@ -1,1 +1,7 @@
+<% if (reviewsPresent) { %>
+  <h3>Average Ratings</h3>
+  <%= JST["reviews/_ratings_lg"]({ avg: "-avg" }) %>
+<% } else { %>
+  <h3>No Reviews Yet!</h3>
+<% } %>
 <div class="reviews"></div>

@@ -1,19 +1,6 @@
 <div class="errors"></div>
 <form id="review-form">
-  <div class="review-ratings">
-    <div class="row">
-      <%= JST["reviews/_rating"]({ name: "overall", text: "Overall"}) %>
-      <%= JST["reviews/_rating"]({ name: "atmosphere", text: "Atmosphere"}) %>
-      <%= JST["reviews/_rating"]({ name: "family_friendliness", text: "Family Friendliness"}) %>
-    </div>
-    <div class="row">
-      <%= JST["reviews/_rating"]({ name: "intensity", text: "Intensity"}) %>
-      <%= JST["reviews/_rating"]({ name: "wait_times", text: "Wait Times"}) %>
-      <%= JST["reviews/_rating"]({ name: "cost", text: "Cost"}) %>
-    </div>
-  </div>
-
-  <hr>
+  <%= JST["reviews/_ratings_lg"]({ avg: "" }) %>
 
   <div class="form-group review-form">
     <label for="review_title">Title</label>
