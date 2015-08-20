@@ -41,7 +41,7 @@ class Park < ActiveRecord::Base
       joins("LEFT JOIN weather_data ON weather_data.city_id = cities.id").
       joins("INNER JOIN costs ON costs.park_id = parks.id").
       where("weather_data.city_id IS NULL OR 
-             weather_data.month IN ('jun', 'jul', 'aug')").
+             weather_data.month IN #{months}").
       where("costs.cost_type = 'adult_ticket'").
       group("id").group("costs.amount").
       includes(:costs, :city)
