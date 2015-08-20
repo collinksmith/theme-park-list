@@ -53,7 +53,7 @@ session_token   | string    | not null, unique
 column name         | data type | details
 --------------------|-----------|-----------------------
 id                  | integer   | not null, primary key
-author_id           | integer   | not null, foreign key (references users)
+user_id             | integer   | not null, foreign key (references users)
 park_id             | integer   | not null, foreign key (references parks)
 title               | string    |
 body                | text      |
