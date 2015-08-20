@@ -13,9 +13,9 @@ Theme Park List inspired by of Nomadlist and is built on Rails and Backbone. Use
 - [X] Filter the list based on predetermined options
 - [X] Sort the list by any attribute
 - [X] Search for theme parks by name
-- [ ] View a map of theme parks
-- [ ] View calculated scores for each theme park
-- [ ] View specific data and information for each theme park
+- [X] View a map of theme parks
+- [X] View calculated scores for each theme park
+- [X] View specific data and information for each theme park
 - [X] Create accounts
 - [X] Create sessions (log in)
 - [ ] Write reviews
