@@ -53,6 +53,7 @@ class Park < ActiveRecord::Base
   belongs_to :city
   has_many :costs
   has_many :weather_data, through: :city
+  has_many :reviews
 
   attr_reader :avg_high, :avg_low, :avg_precip
   attr_accessor :ord
