@@ -59,16 +59,22 @@
 #write-review {
   float: right;
   padding-right: 1em;
+}
 
-  .btn {
+.review-btn {
+  background-color: $primary-brand-color;
+  color: white;
+  border: none;
+
+  &:hover {
+    background-color: white;
+    color: $primary-brand-color;
+    border: solid 1px $primary-brand-color;
+  }
+
+  &:focus {
     background-color: $primary-brand-color;
     color: white;
     border: none;
-
-    &:hover {
-      background-color: white;
-      color: $primary-brand-color;
-      border: solid 1px $primary-brand-color;
-    }
   }
 }

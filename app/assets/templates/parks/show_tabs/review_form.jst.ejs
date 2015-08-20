@@ -1,13 +1,33 @@
-<div class="review-ratings">
-  <div class="row">
-    <%= JST["parks/show_tabs/_rating"]({ name: "overall", text: "Overall"}) %>
-    <%= JST["parks/show_tabs/_rating"]({ name: "atmosphere", text: "Atmosphere"}) %>
-    <%= JST["parks/show_tabs/_rating"]({ name: "family_friendliness", text: "Family Friendliness"}) %>
+<form>
+  <div class="review-ratings">
+    <div class="row">
+      <%= JST["parks/show_tabs/_rating"]({ name: "overall", text: "Overall"}) %>
+      <%= JST["parks/show_tabs/_rating"]({ name: "atmosphere", text: "Atmosphere"}) %>
+      <%= JST["parks/show_tabs/_rating"]({ name: "family_friendliness", text: "Family Friendliness"}) %>
+    </div>
+    <div class="row">
+      <%= JST["parks/show_tabs/_rating"]({ name: "intensity", text: "Intensity"}) %>
+      <%= JST["parks/show_tabs/_rating"]({ name: "wait_times", text: "Wait Times"}) %>
+      <%= JST["parks/show_tabs/_rating"]({ name: "cost", text: "Cost"}) %>
+    </div>
   </div>
-  <div class="row">
-    <%= JST["parks/show_tabs/_rating"]({ name: "intensity", text: "Intensity"}) %>
-    <%= JST["parks/show_tabs/_rating"]({ name: "wait_times", text: "Wait Times"}) %>
-    <%= JST["parks/show_tabs/_rating"]({ name: "cost", text: "Cost"}) %>
-  </div>
-</div>
 
+  <div class="divider"></div>
+
+  <div class="form-group review-form">
+    <label for="review_title">Title</label>
+    <input type="text"
+           name="review[title]"
+           class="form-control"
+           id="review_title">
+
+    <label for="review_body">Body</label>
+    <textarea name="review[body]"
+              id="review_body"
+              class="form-control"
+              value="Write your review here...">
+    </textarea>
+
+    <input type="submit" value="Submit Review" class="btn btn-primary review-btn"></form>
+  </div>
+</form>
