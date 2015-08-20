@@ -92,10 +92,12 @@ ThemeParkList.Views.Explore = Backbone.CompositeView.extend({
   },
 
   fetchParks: function (data) {
+    this.costs = this.$("#slider-range").slider("values");
     data = data || {
       filters: this.filters,
       sort: this.sort,
-      season: this.season
+      season: this.season,
+      costs: this.costs
     };
     this.collection = new ThemeParkList.Collections.Parks();
     this.collection.fetch({
@@ -131,7 +133,8 @@ ThemeParkList.Views.Explore = Backbone.CompositeView.extend({
           page: page + 1,
           filters: this.filters,
           sort: this.sort,
-          season: this.season
+          season: this.season,
+          costs: this.costs
         }
       });
     }
@@ -147,7 +150,12 @@ ThemeParkList.Views.Explore = Backbone.CompositeView.extend({
     if (this.mapView) { this.removeSubview("#map", this.mapView); }
     
     this.collection.fetch({
-      data: { page: "all", filters: this.filters, season: this.season },
+      data: { 
+        page: "all",
+        filters: this.filters,
+        season: this.season,
+        costs: this.costs
+      },
       success: function (collection) {
         this.mapView = new ThemeParkList.Views.Map({ 
           collection: collection

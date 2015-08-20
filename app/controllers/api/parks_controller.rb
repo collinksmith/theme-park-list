@@ -3,15 +3,20 @@ class Api::ParksController < ApplicationController
     @page = params[:page] ? params[:page].to_i : 1
     @season = params[:season] ? params[:season].downcase.to_sym : :year
     sort = params[:sort] || "Trip Advisor Score"
-    low_cost = params[:costs][0] || 0
-    high_cost = params[:costs][1] || 250
+    low_cost = params[:costs] ? params[:costs][0].to_i : 0
+    high_cost = params[:costs] ? params[:costs][1].to_i : 250
 
     @parks = Park.with_weather_data_and_associations(@season)
+
 
     @parks = apply_search(@parks, params[:query]) if params[:query]
     @parks = apply_filters(@parks, params[:filters]) if params[:filters]
     @parks = apply_sort(@parks, sort)
 
+    # Apply cost filter if necessary
+    if low_cost > 0 || high_cost < 250
+      @parks = apply_cost_filter(@parks, low_cost, high_cost)
+    end
 
     # Set total pages and total_items
     if @parks.is_a?(Array)
@@ -22,13 +27,9 @@ class Api::ParksController < ApplicationController
       @total_items = (@parks.all.length)
     end
 
+
     # Set ord attribute of parks
     @parks.to_a.map.with_index { |park, i| park.ord = i + 1 }
-
-    # Apply cost filter if necessary
-    if low_cost > 0 || high_cost < 250
-      @parks = apply_cost_filter(@parks, low_cost, high_cost)
-    end
 
     # Select the correct page
     @parks = select_page(@parks, @page) unless params[:page] == "all"
@@ -106,7 +107,7 @@ class Api::ParksController < ApplicationController
   end
 
   def apply_cost_filter(parks, low_cost, high_cost)
-    parks.select { |park| park.ticket_price.to_f > low_cost &&
+    parks.to_a.select { |park| park.ticket_price.to_f > low_cost &&
                           park.ticket_price.to_f < high_cost }
   end
 

@@ -32,19 +32,19 @@ class Park < ActiveRecord::Base
     months = SEASONS[season]
 
     Park.
-    select("parks.*, 
-            AVG(avg_high) AS high, 
-            AVG(avg_low) AS low, 
-            AVG(avg_precip) AS precip,
-            costs.amount AS ticket_price ").
-    joins("INNER JOIN cities ON parks.city_id = cities.id").
-    joins("LEFT JOIN weather_data ON weather_data.city_id = cities.id").
-    joins("INNER JOIN costs ON costs.park_id = parks.id").
-    where("weather_data.city_id IS NULL OR 
-           weather_data.month IN ('jun', 'jul', 'aug')").
-    where("costs.cost_type = 'adult_ticket'").
-    group("id").group("costs.amount")
-    includes(:costs, :city)
+      select("parks.*, 
+              AVG(avg_high) AS high, 
+              AVG(avg_low) AS low, 
+              AVG(avg_precip) AS precip,
+              costs.amount AS ticket_price ").
+      joins("INNER JOIN cities ON parks.city_id = cities.id").
+      joins("LEFT JOIN weather_data ON weather_data.city_id = cities.id").
+      joins("INNER JOIN costs ON costs.park_id = parks.id").
+      where("weather_data.city_id IS NULL OR 
+             weather_data.month IN ('jun', 'jul', 'aug')").
+      where("costs.cost_type = 'adult_ticket'").
+      group("id").group("costs.amount").
+      includes(:costs, :city)
   end
 
   validates :name, :latitude, :longitude, :city_id, presence: true
