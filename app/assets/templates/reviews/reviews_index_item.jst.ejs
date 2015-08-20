@@ -1,4 +1,5 @@
-<div class="review-ratings">
+<div class="review-container group">
+  <div class="review-show-ratings">
     <div class="row">
       <%= JST["reviews/_rating_show"]({ name: "overall", text: "Overall"}) %>
       <%= JST["reviews/_rating_show"]({ name: "atmosphere", text: "Atmosphere"}) %>
@@ -12,3 +13,9 @@
       <%= JST["reviews/_rating_show"]({ name: "wait_times", text: "Wait Times"}) %>
     </div>
   </div>
+  <div class="review-text">
+    <h4><%= review.escape('title') %></h4>
+    <p><%= review.escape('body') %></p>
+  </div>
+</div>
+<div class="divider"></div>
