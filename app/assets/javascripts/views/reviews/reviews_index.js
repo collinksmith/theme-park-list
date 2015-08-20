@@ -3,8 +3,6 @@ ThemeParkList.Views.ReviewsIndex = Backbone.CompositeView.extend({
 
   initialize: function () {
     this.collection.each(this.addReviewSubview.bind(this));
-
-    this.listenTo(this.collection, "add", this.addReviewSubview);
   },
 
   render: function () {
