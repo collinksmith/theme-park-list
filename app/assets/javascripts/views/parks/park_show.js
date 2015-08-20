@@ -67,6 +67,9 @@ ThemeParkList.Views.ParkShow = Backbone.CompositeView.extend({
     var newReview = new ThemeParkList.Models.Review();
     var view = this;
 
+    debugger;
+
+
     newReview.save(formData, {
       success: function () {
         this.model.fetch({
@@ -83,7 +86,6 @@ ThemeParkList.Views.ParkShow = Backbone.CompositeView.extend({
         });
       }
     });
-    debugger;
 
 
   },
