@@ -1,26 +1,8 @@
 <div class="review-ratings">
-  <div class="overall">
-    <div>Overall</div>
-    <div class="stars" id="overall-rating"></div>
-  </div>
-  <div class="atmosphere">
-    <div>Atmosphere</div>
-    <div class="stars" id="atmosphere-rating"></div>
-  </div>
-  <div class="family_friendliness">
-    <div>Family Friendliness</div>
-    <div class="stars" id="family_friendliness-rating"></div>
-  </div>
-  <div class="intensity">
-    <div>Intensity</div>
-    <div class="stars" id="intensity-rating"></div>
-  </div>
-  <div class="wait_times">
-    <div>Wait Times</div>
-    <div class="stars" id="wait_times-rating"></div>
-  </div>
-  <div class="cost">
-    <div>Cost</div>
-    <div class="stars" id="cost-rating"></div>
-  </div>
+  <%= JST["parks/show_tabs/_rating"]({ name: "overall", text: "Overall"}) %>
+  <%= JST["parks/show_tabs/_rating"]({ name: "atmosphere", text: "Atmosphere"}) %>
+  <%= JST["parks/show_tabs/_rating"]({ name: "family_friendliness", text: "Family Friendliness"}) %>
+  <%= JST["parks/show_tabs/_rating"]({ name: "intensity", text: "Intensity"}) %>
+  <%= JST["parks/show_tabs/_rating"]({ name: "wait_times", text: "Wait Times"}) %>
+  <%= JST["parks/show_tabs/_rating"]({ name: "cost", text: "Cost"}) %>
 </div>
