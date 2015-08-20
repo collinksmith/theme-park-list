@@ -1,4 +1,4 @@
-<form>
+<form id="review-form">
   <div class="review-ratings">
     <div class="row">
       <%= JST["parks/show_tabs/_rating"]({ name: "overall", text: "Overall"}) %>
@@ -28,6 +28,9 @@
               value="Write your review here...">
     </textarea>
 
-    <input type="submit" value="Submit Review" class="btn btn-primary review-btn"></form>
+    <input type="submit" 
+           value="Submit Review"
+           class="btn btn-primary review-btn"
+           id="submit-review">
   </div>
 </form>

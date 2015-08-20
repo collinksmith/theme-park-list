@@ -4,7 +4,6 @@ ThemeParkList.Views.ParkShow = Backbone.CompositeView.extend({
   events: {
     "click .show-tab": "updatePanel",
     "click .m-background": "remove",
-    "click #write-review": "addReviewForm"
   },
 
   initialize: function () {
@@ -40,7 +39,7 @@ ThemeParkList.Views.ParkShow = Backbone.CompositeView.extend({
         newSubview = new ThemeParkList.Views.Nearby({ model: this.model });
         break;
       case "Write a Review":
-        newSubview = new ThemeParkList.Views.ReviewForm();
+        newSubview = new ThemeParkList.Views.ReviewForm({ model: this.model });
         break;
     }
 
