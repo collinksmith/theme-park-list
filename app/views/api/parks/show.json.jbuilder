@@ -1,1 +1,1 @@
-json.partial! "park", park: @park, park_with_weather: @park_with_weather
+json.partial! "park", park: @park

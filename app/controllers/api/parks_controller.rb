@@ -36,9 +36,7 @@ class Api::ParksController < ApplicationController
   end
 
   def show
-    @park = Park.find(params[:id])
-    @park_with_weather = Park.with_weather_data_and_associations(params[:season]).
-                         select { |park| park.id == params[:id].to_i }.first
+    @park = Park.with_weather_data_and_associations(params[:season]).find(params[:id])
   end
 
   private
