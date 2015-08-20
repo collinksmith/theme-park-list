@@ -25,7 +25,7 @@ ThemeParkList.Views.ParkShow = Backbone.CompositeView.extend({
     this.updateActiveTab($newTab.text());
 
     var newSubview;
-    switch ($.trim($newTab.text())) {
+    switch ($newTab.text()) {
       case "Scores":
         newSubview = new ThemeParkList.Views.Scores({ model: this.model });
         break;
@@ -75,6 +75,7 @@ ThemeParkList.Views.ParkShow = Backbone.CompositeView.extend({
     var view = this;
 
     newReview.save(formData, {
+      // On success, fetch the park model and switch to the Reviews tab
       success: function () {
         view.model.fetch({
           success: function (model) {
@@ -86,10 +87,11 @@ ThemeParkList.Views.ParkShow = Backbone.CompositeView.extend({
       },
       error: function (model, response) {
         var errors = _(response.responseJSON);
-        // debugger
         errors.each(function (error) {
-          view.eachSubview(function (subview) { subview.addError.call(subview, error)})
-          // view.subviews(".show-panel")[0].addError(error);
+          // Add an error subview to the current subview (will be reviewForm)
+          view.eachSubview(function (subview) { 
+            subview.addError.call(subview, error)
+          })
         });
       }
     });
