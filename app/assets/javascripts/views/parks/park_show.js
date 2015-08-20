@@ -3,7 +3,7 @@ ThemeParkList.Views.ParkShow = Backbone.CompositeView.extend({
 
   events: {
     "click .show-tab": "updatePanel",
-    "click .m-background": "remove",
+    "click .m-background": "myRemove",
     "submit #review-form": "submitReview"
   },
 
@@ -11,6 +11,9 @@ ThemeParkList.Views.ParkShow = Backbone.CompositeView.extend({
     this.subview = new ThemeParkList.Views.Scores({ model: this.model });
     this.addSubview(".show-panel", this.subview);
     $(document).on("keyup", this.handleKeyup.bind(this));
+
+    // Prevent scrolling in main window
+    $("body").css({ overflow: "hidden" });
   },
 
   render: function () {
@@ -57,9 +60,13 @@ ThemeParkList.Views.ParkShow = Backbone.CompositeView.extend({
   },
 
   handleKeyup: function (event) {
-    if (event.keyCode === 27) {
-      this.remove();
-    }
+    if (event.keyCode === 27) { this.myRemove(); }
+  },
+
+  myRemove: function () {
+    // Allow scrolling in the main window
+    $("body").css({ overflow: "inherit" });
+    this.remove();
   },
 
   swapInSubview: function (newSubview) {
@@ -88,15 +95,15 @@ ThemeParkList.Views.ParkShow = Backbone.CompositeView.extend({
             view.swapInSubview(newView);
             view.updateActiveTab("Reviews");
           }
-        })
+        });
       },
       error: function (model, response) {
         var errors = _(response.responseJSON);
         errors.each(function (error) {
           // Add an error subview to the current subview (will be reviewForm)
           view.eachSubview(function (subview) { 
-            subview.addError.call(subview, error)
-          })
+            subview.addError.call(subview, error);
+          });
         });
       }
     });
