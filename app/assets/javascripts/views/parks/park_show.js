@@ -86,8 +86,10 @@ ThemeParkList.Views.ParkShow = Backbone.CompositeView.extend({
       },
       error: function (model, response) {
         var errors = _(response.responseJSON);
+        // debugger
         errors.each(function (error) {
-          view.subvews(".show-panel")[0].addError(error);
+          view.eachSubview(function (subview) { subview.addError.call(subview, error)})
+          // view.subviews(".show-panel")[0].addError(error);
         });
       }
     });
