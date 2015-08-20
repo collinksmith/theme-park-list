@@ -67,14 +67,11 @@ ThemeParkList.Views.ParkShow = Backbone.CompositeView.extend({
     var newReview = new ThemeParkList.Models.Review();
     var view = this;
 
-    debugger;
-
-
     newReview.save(formData, {
       success: function () {
-        this.model.fetch({
+        view.model.fetch({
           success: function (model) {
-            var newView = ThemeParkList.Views.Reviews({ model: this.model });
+            var newView = new ThemeParkList.Views.Reviews({ model: model });
             view.swapInSubview(newView);
           }
         })

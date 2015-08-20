@@ -9,7 +9,7 @@ class Api::ReviewsController < ApplicationController
     @review = Review.new(review_params)
 
     if @review.save
-      render @review
+      render :show
     else
       render @review.errors.full_messages, status: 422
     end
