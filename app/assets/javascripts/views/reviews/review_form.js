@@ -1,5 +1,5 @@
 ThemeParkList.Views.ReviewForm = Backbone.CompositeView.extend({
-  template: JST["parks/show_tabs/review_form"],
+  template: JST["reviews/review_form"],
 
   render: function () {
     this.$el.html(this.template());
@@ -9,7 +9,6 @@ ThemeParkList.Views.ReviewForm = Backbone.CompositeView.extend({
 
   addError: function (error) {
     var errorView = new ThemeParkList.Views.Error({ error: error });
-    debugger
     this.addSubview(".errors", errorView);
   },
 

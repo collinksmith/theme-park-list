@@ -1,2 +1,14 @@
-<%= review.escape('overall') %>
-<%= review.escape('title') %>
+<div class="review-ratings">
+    <div class="row">
+      <%= JST["reviews/_rating_show"]({ name: "overall", text: "Overall"}) %>
+      <%= JST["reviews/_rating_show"]({ name: "atmosphere", text: "Atmosphere"}) %>
+    </div>
+    <div class="row">
+      <%= JST["reviews/_rating_show"]({ name: "family_friendliness", text: "Family Friendliness"}) %>
+      <%= JST["reviews/_rating_show"]({ name: "cost", text: "Cost"}) %>
+    </div>
+    <div class="row">
+      <%= JST["reviews/_rating_show"]({ name: "intensity", text: "Intensity"}) %>
+      <%= JST["reviews/_rating_show"]({ name: "wait_times", text: "Wait Times"}) %>
+    </div>
+  </div>
