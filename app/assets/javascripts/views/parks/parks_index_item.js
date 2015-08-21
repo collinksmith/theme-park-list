@@ -29,6 +29,7 @@ ThemeParkList.Views.ParksIndexItem = Backbone.View.extend({
   },
 
   addScoreBars: function () {
+    this.$(".bar").css("width", 0);
     this.$(".bar").each(function(index, bar) {
       var $bar = $(bar);
       var score = $bar.data("score");
