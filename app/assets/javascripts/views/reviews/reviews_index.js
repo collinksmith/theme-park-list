@@ -53,7 +53,7 @@ ThemeParkList.Views.ReviewsIndex = Backbone.CompositeView.extend({
     });
 
     // Don't include null values when calculating the average
-    var avg = total / (_.without(array, null).length);
+    var avg = total / (_.without(array, null).length) ;
     return avg.toFixed(2);
   }
 });
