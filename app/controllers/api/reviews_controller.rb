@@ -2,9 +2,13 @@ class Api::ReviewsController < ApplicationController
   before_action :require_login, only: [:create, :update, :destroy]
 
   def index
+    @reviews= Review.all.includes(:user)
+    render :index
   end
 
   def show
+    @review = Review.find(params[:id])
+    render :show
   end
 
   def create
