@@ -3,7 +3,7 @@ ThemeParkList.Views.Auth = Backbone.View.extend({
 
   events: {
     "click #sign-up": "showSignUp",
-    "click #log-in": "showLogIn",
+    "click .log-in": "showLogIn",
   },
 
   showSignUp: function (event) {

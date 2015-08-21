@@ -15,7 +15,11 @@
       <li class="show-tab"><a href="javascript:void(0)">Info</a></li>
       <li class="show-tab"><a href="javascript:void(0)">Reviews</a></li>
       <li class="show-tab"><a href="javascript:void(0)">Parks Nearby</a></li>
-      <li class="show-tab" id="write-review"><button class="btn btn-primary review-btn">Write a Review</button></li>
+      <% if (ThemeParkList.CURRENT_USER) { %>
+        <li class="show-tab" id="write-review"><button class="btn btn-primary review-btn">Write a Review</button></li>
+      <% } else { %>
+        <li id="review-log-in" class="log-in"><button class="btn btn-primary">Log in to write a review!</a></li>
+      <% } %>
     </ul>
   </div>
 
