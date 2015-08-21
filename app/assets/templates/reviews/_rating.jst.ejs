@@ -1,4 +1,9 @@
 <div class="<%= name %> col-md-4 col-sm-6 rating-container">
-  <div><%= text %></div>
+  <% if (text === "Overall" && avg === "") { %>
+    <% var req = " (required)" %>
+  <% } else { %>
+    <% req = "" %>
+  <% } %>
+  <div><%= text + req %></div>
   <div class="stars" id="<%= name %>-rating<%= avg %>"></div>
 </div>
