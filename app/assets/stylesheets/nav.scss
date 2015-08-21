@@ -24,6 +24,18 @@ body {
   transform: translate3d(0,-50px,0);
 }
 
+.navbar-container {
+  margin-left: 10%;
+}
+
+.navbar-brand {
+  padding: 5px;
+  img {
+    height: 40px;
+
+  }
+}
+
 #menu-btn {
   background-color: $primary-brand-color;
   color: white;
