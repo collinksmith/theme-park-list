@@ -15,7 +15,7 @@
   </div>
   <div class="review-text">
     <h4><%= review.escape('title') %></h4>
-    <p><%= review.escape('written_on') %> by <%= ThemeParkList.CURRENT_USER.username %></p>
+    <p><%= review.escape('written_on') %> by <%= review.escape('author') %></p>
     <p><%= review.escape('body') %></p>
   </div>
 </div>
