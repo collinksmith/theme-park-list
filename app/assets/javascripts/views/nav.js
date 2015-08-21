@@ -20,7 +20,7 @@ ThemeParkList.Views.Nav = Backbone.View.extend({
     var currentScroll = window.scrollY;
     var isDown = currentScroll > this.previousScroll;
 
-    if ( isDown && !$("navbar").hasClass('scrolled') ){
+    if ( isDown && !$(".navbar").hasClass('scrolled') ){
       // scrolling down, didn't add class yet
       $(".navbar").addClass('scrolled'); // we hide the navbar
     } else if ( !isDown ){
