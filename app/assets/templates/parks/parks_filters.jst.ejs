@@ -52,20 +52,24 @@
   <div class="col-xs-12 col-sm-6 col-lg-4 filter-col">
     <div class="btn-container">
       <div class="btn-group btn-group-justified filter-group" role="group">
-        <a class="btn btn-md btn-default" href="javascript:void(0)">Some Roller Coasters</a>
-        <a class="btn btn-md btn-default" href="javascript:void(0)">Many Roller Coasters</a>
+        <a class="btn btn-md btn-default" href="javascript:void(0)">Some Coasters</a>
+        <a class="btn btn-md btn-default" href="javascript:void(0)">Many Coasters</a>
       </div>
     </div>
   </div>
 
 
   <br>
-  <div class="col-xs-6 col-sm-4 col-lg-4 filter-col filter-num-container">
-    <p class="filter-num"><%= parks.total_items %> Theme Parks Found</p>
+  <div class="col-xs-6 col-sm-4 col-lg-3 filter-col filter-num-container">
+    <div class="btn-container">
+      <p class="filter-num"><%= parks.total_items %> Theme Parks Found</p>
+    </div>
   </div>
 
-  <div class="col-xs-6 col-sm-8 col-lg-4 filter-col">
-    <button type="button" class="btn btn-md" id="btn-filter">Filter Theme Parks</button>
+  <div class="col-xs-6 col-sm-8 col-lg-5 filter-col">
+    <div class="btn-container">
+      <button type="button" class="btn btn-md" id="btn-filter">Filter Theme Parks</button>
+    </div>
   </div>
 
 
