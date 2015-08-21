@@ -1,6 +1,6 @@
 ThemeParkList.Views.ParksIndexItem = Backbone.View.extend({
   template: JST['parks/parks_index_item'],
-  className: "parks-index-item",
+  className: "parks-index-item col-xs-12 col-sm-6 col-lg-4",
 
   events: {
     "click": "addParkShowView",
