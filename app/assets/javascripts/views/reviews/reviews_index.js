@@ -17,10 +17,13 @@ ThemeParkList.Views.ReviewsIndex = Backbone.CompositeView.extend({
   },
 
   addReviewSubview: function (review) {
+    // Only show the review if it has a title or body
+    if (review.escape("title") !== "" || review.escape("body") !== "") {
       var reviewSubview = new ThemeParkList.Views.
                               ReviewsIndexItem({ model : review});
       this.addSubview(".reviews", reviewSubview);
-    },
+    }
+  },
 
   initRaty: function () {
     var ratings = ["overall", "atmosphere", "family_friendliness",
@@ -48,7 +51,9 @@ ThemeParkList.Views.ReviewsIndex = Backbone.CompositeView.extend({
     _.each(array, function(el) {
       total += el;
     });
-    var avg = total / array.length;
+
+    // Don't include null values when calculating the average
+    var avg = total / (_.without(array, null).length);
     return avg.toFixed(2);
   }
 });

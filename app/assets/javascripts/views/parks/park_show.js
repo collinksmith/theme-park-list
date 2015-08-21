@@ -108,4 +108,8 @@ ThemeParkList.Views.ParkShow = Backbone.CompositeView.extend({
       }
     });
   },
+
+  convertZeroToNull: function (el) {
+    if (el === 0) { el = null; }
+  }
 });
