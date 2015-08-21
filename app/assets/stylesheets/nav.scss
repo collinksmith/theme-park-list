@@ -2,6 +2,27 @@
   top: 1em;
 }
 
+body {
+  padding-top: 70px;
+}
+
+/* Navbar adapted from https://stackoverflow.com/questions/17713389/how-to-hide-show-nav-bar-when-user-scrolls-up-down */
+.navbar {
+    -webkit-transform: translate3d(0,0,0);
+    -moz-transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0);
+    -webkit-transition: -webkit-transform .1s;
+    -moz-transition: -moz-transform .1s;
+    -o-transition: transform .1s;
+    transition: transform .1s;
+}
+.navbar.scrolled {
+    /* subtract your height */
+    -webkit-transform: translate3d(0,-50px,0);
+    -moz-transform: translate3d(0,-50px,0);
+    transform: translate3d(0,-50px,0);
+}
+
 .typeahead,
 .tt-query,
 .tt-hint {
