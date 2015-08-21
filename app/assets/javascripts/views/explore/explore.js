@@ -148,6 +148,7 @@ ThemeParkList.Views.Explore = Backbone.CompositeView.extend({
     // Don't do anything if the map is already shown and not updating filters
     if (this.mapViewPresent && !updateFilter) { return; }
     this.mapViewPresent = true;
+    $("#map").css("height", "80%");
     $(".sort-group").css("display", "none");
 
     this.removeSubview("#parks-index", this.parksIndexView);
@@ -173,6 +174,7 @@ ThemeParkList.Views.Explore = Backbone.CompositeView.extend({
 
   setGrid: function (event, data) {
     this.mapViewPresent = false;
+    $("#map").css("height", "0px");
     $(".sort-group").css("display", "block");
     $(".btn.grid").addClass("selected-format");
     $(".btn.map").removeClass("selected-format");
