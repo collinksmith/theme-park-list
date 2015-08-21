@@ -92,6 +92,8 @@ $button-border-radius: 10px;
 
 .dropdown-menu {
   background: $primary-brand-color;
+  padding: 0;
+  width: 200px;
 
   li a:hover {
     color: white;

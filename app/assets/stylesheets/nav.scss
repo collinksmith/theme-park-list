@@ -8,6 +8,8 @@ body {
 
 /* Navbar adapted from https://stackoverflow.com/questions/17713389/how-to-hide-show-nav-bar-when-user-scrolls-up-down */
 .navbar {
+  background-color: white;
+
   -webkit-transform: translate3d(0,0,0);
   -moz-transform: translate3d(0,0,0);
   transform: translate3d(0,0,0);
@@ -20,6 +22,29 @@ body {
   -webkit-transform: translate3d(0,-50px,0);
   -moz-transform: translate3d(0,-50px,0);
   transform: translate3d(0,-50px,0);
+}
+
+#menu-btn {
+  background-color: $primary-brand-color;
+  color: white;
+  font-weight: bold;
+}
+
+#nav-dropdown {
+  background-color: white;
+  padding: 0;
+
+  a {
+    background-color: white;
+    color: black;
+    font-weight: bold;
+    padding: 0.8em;
+    
+    &:hover {
+      background-color: $primary-brand-color;
+      color: white;
+    }
+  }
 }
 
 .typeahead,
