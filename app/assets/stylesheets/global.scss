@@ -4,6 +4,10 @@ $primary-brand-color: #71cb48;
 $secondary-brand-color: #094F1A;
 $gray-text-color: #8D8D8D;
 
+$break-xs: 776px;
+$break-sm: 992px;
+
+
 .group:after {
   content: "";
   display: block;

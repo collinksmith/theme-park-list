@@ -73,6 +73,10 @@ body {
           border-radius: 8px;
   outline: none;
   transform: translateY(25%);
+
+  @media screen and (max-width: $break-sm) {
+    width: 150px;
+  }
 }
 
 .typeahead {
