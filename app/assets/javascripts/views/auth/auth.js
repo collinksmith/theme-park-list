@@ -4,6 +4,7 @@ ThemeParkList.Views.Auth = Backbone.View.extend({
   events: {
     "click #sign-up": "showSignUp",
     "click .log-in": "showLogIn",
+    "click #guest-log-in": "guestLogIn"
   },
 
   showSignUp: function (event) {
@@ -44,9 +45,9 @@ ThemeParkList.Views.Auth = Backbone.View.extend({
   },
 
   showLogIn: function () {
-    var logInView = new ThemeParkList.Views.AuthModal({ new_user: false });
+    this.logInView = new ThemeParkList.Views.AuthModal({ new_user: false });
     var modal = new Backbone.BootstrapModal({
-      content: logInView,
+      content: this.logInView,
       title: "Log In",
       okText: "Log In!",
       okFocus: false,
@@ -54,11 +55,11 @@ ThemeParkList.Views.Auth = Backbone.View.extend({
       animate: true,
       enterTriggersOk: true,
       okCloses: false
-    }).open(this.logIn.bind(this, logInView));
+    }).open(this.logIn.bind(this));
   },
 
-  logIn: function (logInView) {
-    var userData = logInView.$el.serializeJSON();
+  logIn: function () {
+    var userData = this.logInView.$el.serializeJSON();
     newSession = new ThemeParkList.Models.Session();
     
     newSession.save(userData, {
@@ -68,9 +69,52 @@ ThemeParkList.Views.Auth = Backbone.View.extend({
       error: function (model, response) {
         var errors = _(response.responseJSON);
         errors.each(function (error) {
-          logInView.addError(error);
-        });
+          this.logInView.addError(error);
+        }.bind(this));
       }
     });
+  },
+
+  guestLogIn: function (event) {
+    event.preventDefault();
+    this.fillInForms();
+  },
+
+  fillInForms: function () {
+    var eid = setInterval(fillInEmail, 40);
+
+    var view = this
+    var email = "guest@themeparklist.info".split('');
+    var emailIdx = 0;
+    var $emailInput = $("#user_email");
+    function fillInEmail() {
+      var letter = email[emailIdx];
+      var currentEmail = $emailInput.val();
+      $emailInput.val(currentEmail + letter);
+      emailIdx++;
+      if (emailIdx >= email.length) { 
+        clearInterval(eid);
+        view.fillInPassword();
+      }
+    }
+  },
+
+  fillInPassword: function () {
+    var pid = setInterval(fillInPassword, 40);
+
+    var view = this;
+    var password = "guestguest".split('');
+    var passwordIdx = 0;
+    var $passwordInput = $("#user_password");
+    function fillInPassword() {
+      var letter = password[passwordIdx];
+      var currentPassword = $passwordInput.val();
+      $passwordInput.val(currentPassword + letter);
+      passwordIdx++;
+      if (passwordIdx >= password.length) {
+        clearInterval(pid);
+        view.logIn();
+      }
+    }
   }
 });
