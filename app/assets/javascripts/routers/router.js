@@ -1,6 +1,7 @@
 ThemeParkList.Routers.Router = Backbone.Router.extend({
   routes: {
-    "": "explore"
+    "": "explore",
+    "user/:id": "userShow"
   },
 
   initialize: function (options) {
