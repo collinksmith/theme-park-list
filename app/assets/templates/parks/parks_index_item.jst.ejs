@@ -1,50 +1,52 @@
-<div class="park-image park-image-background"
-     style="background-image: url('/park_images/<%= park.escape('image_url') %>')">
-</div>
-<div class="parks-index-item-content">
-  <div class="parks-index-item-normal">
-    <div class="park-basic-info">
-      <p><%= park.escape('name') %></p>
-      <p><%= park.escape('city') %>, <%= park.escape('state') %></p>
-    </div>
-    <div class="park-extra-info">
-      <div class="top-left">
-        <div><%= park.escape('ord') %></div>
-      </div>
-      <div class="top-right">
-        <span class="left"></span>
-        <span class="right temp-text"><%= park.temp(tempUnit) %></span>
-      </div>
-      <div class="bottom-left">
-        <span class="left">
-          <img class="coaster-img" src="/icons/coaster.png">
-        </span>
-        <span class="right"><%= park.escape('roller_coasters') %></span>
-      </div>
-      <div class="bottom-right">
-        <span class="left">
-        <img class="water-img" src="/icons/water.png">
-        </span>
-        <span class="right"><%= park.escape('water_rides') %></span>
-      </div>
-    </div>
+<div class="parks-index-item ">
+  <div class="park-image park-image-background"
+       style="background-image: url('/park_images/<%= park.escape('image_url') %>')">
   </div>
-
-  <div class="parks-index-item-hover">
-    <div class="rating-row group">
-      <div class="rating-label">TripAdvisor Score</div>
-      <div class="index-item-score-bar">
-        <%= JST["parks/show_tabs/_score_bar"]({
-          score: park.escape('tripadv_rating'), scoreClass: park.scoreClass
-        }) %>
+  <div class="parks-index-item-content">
+    <div class="parks-index-item-normal">
+      <div class="park-basic-info">
+        <p><%= park.escape('name') %></p>
+        <p><%= park.escape('city') %>, <%= park.escape('state') %></p>
+      </div>
+      <div class="park-extra-info">
+        <div class="top-left">
+          <div><%= park.escape('ord') %></div>
+        </div>
+        <div class="top-right">
+          <span class="left"></span>
+          <span class="right temp-text"><%= park.temp(tempUnit) %></span>
+        </div>
+        <div class="bottom-left">
+          <span class="left">
+            <img class="coaster-img" src="/icons/coaster.png">
+          </span>
+          <span class="right"><%= park.escape('roller_coasters') %></span>
+        </div>
+        <div class="bottom-right">
+          <span class="left">
+          <img class="water-img" src="/icons/water.png">
+          </span>
+          <span class="right"><%= park.escape('water_rides') %></span>
+        </div>
       </div>
     </div>
-    <div class="rating-row group">
-      <div class="rating-label">Weather Score</div>
-      <div class="index-item-score-bar">
-        <%= JST["parks/show_tabs/_score_bar"]({
-          score: park.weather().score, scoreClass: park.scoreClass
-        }) %>
+
+    <div class="parks-index-item-hover">
+      <div class="rating-row group">
+        <div class="rating-label">TripAdvisor Score</div>
+        <div class="index-item-score-bar">
+          <%= JST["parks/show_tabs/_score_bar"]({
+            score: park.escape('tripadv_rating'), scoreClass: park.scoreClass
+          }) %>
+        </div>
+      </div>
+      <div class="rating-row group">
+        <div class="rating-label">Weather Score</div>
+        <div class="index-item-score-bar">
+          <%= JST["parks/show_tabs/_score_bar"]({
+            score: park.weather().score, scoreClass: park.scoreClass
+          }) %>
+        </div>
       </div>
     </div>
   </div>
