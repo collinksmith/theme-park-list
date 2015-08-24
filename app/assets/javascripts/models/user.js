@@ -6,7 +6,7 @@ ThemeParkList.Models.User = Backbone.Model.extend({
       this.reviews().set(response.reviews)
       delete response.reviews;
     }
-    if (reponse.parks) {
+    if (response.parks) {
       this.parks().set(response.parks);
       delete response.parks;
     }

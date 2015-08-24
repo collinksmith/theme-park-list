@@ -25,8 +25,8 @@ ThemeParkList.Routers.Router = Backbone.Router.extend({
 
   userShow: function (id) {
     var user = new ThemeParkList.Models.User({ id: id });
-    user.fetch();
     var userView = new ThemeParkList.Views.UserShow({ model: user });
+    user.fetch();
     this._swapView(userView);
   },
 

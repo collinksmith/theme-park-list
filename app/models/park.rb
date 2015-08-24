@@ -55,6 +55,7 @@ class Park < ActiveRecord::Base
   has_many :weather_data, through: :city
   has_many :reviews
   has_many :favorites
+  has_many :users, through: :favorites
 
   attr_reader :avg_high, :avg_low, :avg_precip
   attr_accessor :ord

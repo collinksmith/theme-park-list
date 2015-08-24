@@ -6,7 +6,12 @@ class Api::ParksController < ApplicationController
     low_cost = params[:costs] ? params[:costs][0].to_i : 0
     high_cost = params[:costs] ? params[:costs][1].to_i : 250
 
-    @parks = Park.with_weather_data_and_associations(@season)
+    if params[:user_id]
+      user = User.find(params[:user_id])
+      @parks = user.parks.with_weather_data_and_associations(:year)
+    else
+      @parks = Park.with_weather_data_and_associations(@season)
+    end
 
 
     @parks = apply_search(@parks, params[:query]) if params[:query]
