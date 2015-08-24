@@ -16,12 +16,14 @@
       <ul class="nav navbar-nav">
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li class="search-li">
-        <span class="glyphicon glyphicon-search search-icon" aria-hidden="true"></span>
-        <input type="text" 
-               class="typeahead"
-               id="search-box">
-        </li>
+        <% if (search) { %>
+          <li class="search-li">
+          <span class="glyphicon glyphicon-search search-icon" aria-hidden="true"></span>
+          <input type="text" 
+                 class="typeahead"
+                 id="search-box">
+          </li>
+        <% } %>
         <% if (CURRENT_USER) { %>
           <li>
             <a rel="nofollow" data-method="delete" href="/api/session">Log Out</a>

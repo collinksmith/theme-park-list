@@ -18,7 +18,6 @@ ThemeParkList.Routers.Router = Backbone.Router.extend({
     })
     var exploreView = new ThemeParkList.Views.Explore({ 
       collection: this.collection,
-      CURRENT_USER: ThemeParkList.CURRENT_USER
     });
 
     this._swapView(exploreView);

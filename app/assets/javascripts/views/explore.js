@@ -12,22 +12,21 @@ ThemeParkList.Views.Explore = Backbone.CompositeView.extend({
   },
 
   initialize: function (options) {
-    this.CURRENT_USER = options.CURRENT_USER;
     this.parksIndexView = new ThemeParkList.Views.ParksIndex({ 
       collection: this.collection 
     });
-
     this.addSubview("#parks-index", this.parksIndexView);
+
     this.filterView = new ThemeParkList.Views.ParksFilters({ 
       collection: this.collection 
     });
-
     this.addSubview("#filters", this.filterView);
+    
     this.navView = new ThemeParkList.Views.Nav({ 
-      CURRENT_USER: this.CURRENT_USER
+      search: true
     });
-
     this.addSubview("#nav", this.navView);
+
     $(window).scroll(this.fetchIfAtBottom.bind(this));
   },
 

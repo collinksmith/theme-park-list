@@ -3,13 +3,17 @@ ThemeParkList.Views.Nav = Backbone.View.extend({
   className: "group",
 
   initialize: function (options) {
-    this.CURRENT_USER = options.CURRENT_USER;
+    this.CURRENT_USER = ThemeParkList.CURRENT_USER;
+    this.search = options.search;
     this.previousScroll = 0;
     $(window).on("scroll", this.handleScroll.bind(this));
   },
 
   render: function () {
-    this.$el.html(this.template({ CURRENT_USER: this.CURRENT_USER }));
+    this.$el.html(this.template({
+      CURRENT_USER: this.CURRENT_USER,
+      search: this.search
+    }));
     this.setTypeahead();
     return this;
   },
