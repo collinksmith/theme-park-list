@@ -2,8 +2,12 @@ ThemeParkList.Views.ReviewsIndexItem = Backbone.View.extend({
   template: JST["reviews/reviews_index_item"],
   className: "reviews-index-item group",
 
+  initialize: function (options) {
+    this.user = options.user
+  },
+
   render: function () {
-    this.$el.html(this.template({ review: this.model }));
+    this.$el.html(this.template({ review: this.model, user: this.user }));
     this.initRaty();
     return this;
   },

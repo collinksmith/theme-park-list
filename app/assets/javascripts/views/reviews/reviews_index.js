@@ -20,10 +20,14 @@ ThemeParkList.Views.ReviewsIndex = Backbone.CompositeView.extend({
   },
 
   addReviewSubview: function (review) {
-    // Only show the review if it has a title or body
-    if (review.escape("title") !== "" || review.escape("body") !== "") {
-      var reviewSubview = new ThemeParkList.Views.
-                              ReviewsIndexItem({ model : review});
+    // Only show the review if it has a title or body, 
+    // or if it's on the user show page
+    if (this.collection.user || 
+         (review.escape("title") !== "" || review.escape("body") !== "")) {
+      var reviewSubview = new ThemeParkList.Views.ReviewsIndexItem({
+        model : review,
+        user: this.collection.user
+      });
       this.addSubview(".reviews", reviewSubview);
     }
   },
