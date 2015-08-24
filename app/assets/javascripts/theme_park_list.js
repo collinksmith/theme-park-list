@@ -11,6 +11,7 @@ window.ThemeParkList = {
       $rootEl: $rootEl,
       collection: parks
     });
+    Backbone.history.start();
   }
 };
 
