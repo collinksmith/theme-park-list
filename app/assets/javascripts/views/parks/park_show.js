@@ -113,6 +113,16 @@ ThemeParkList.Views.ParkShow = Backbone.CompositeView.extend({
 
   toggleFavorite: function () {
     this.model.toggleFavorite();
+    this.toggleFavoriteButton();
+  },
+
+  toggleFavoriteButton: function () {
+    $btn = this.$("#favorite");
+    if ($btn.text() === "Favorite Park") {
+      $btn.text("Unfavorite Park");
+    } else {
+      $btn.text("Favorite Park")
+    }
   },
 
   convertZeroToNull: function (el) {
