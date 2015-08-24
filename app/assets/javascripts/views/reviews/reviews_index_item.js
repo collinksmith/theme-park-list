@@ -30,7 +30,8 @@ ThemeParkList.Views.ReviewsIndexItem = Backbone.CompositeView.extend({
   },
 
   deleteReview: function () {
-
+    this.model.destroy();
+    this.remove();
   },
 
   updateReview: function (event) {
