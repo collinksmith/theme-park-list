@@ -3,20 +3,7 @@
   <button class="btn btn-danger" id="delete-review">Delete Review</button>
 <% } %>
 <div class="review-container group">
-  <div class="review-show-ratings">
-    <div class="row">
-      <%= JST["reviews/_rating_show"]({ name: "overall", text: "Overall"}) %>
-      <%= JST["reviews/_rating_show"]({ name: "atmosphere", text: "Atmosphere"}) %>
-    </div>
-    <div class="row">
-      <%= JST["reviews/_rating_show"]({ name: "family_friendliness", text: "Family Friendliness"}) %>
-      <%= JST["reviews/_rating_show"]({ name: "cost", text: "Cost"}) %>
-    </div>
-    <div class="row">
-      <%= JST["reviews/_rating_show"]({ name: "intensity", text: "Intensity"}) %>
-      <%= JST["reviews/_rating_show"]({ name: "wait_times", text: "Wait Times"}) %>
-    </div>
-  </div>
+  <%= JST["reviews/_ratings_sm"]() %>
   <div class="review-text">
     <h4><%= review.escape('title') %></h4>
     <p><%= review.escape('written_on') %> by <%= review.escape('author') %></p>
