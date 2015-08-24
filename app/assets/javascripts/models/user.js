@@ -6,6 +6,10 @@ ThemeParkList.Models.User = Backbone.Model.extend({
       this.reviews().set(response.reviews)
       delete response.reviews;
     }
+    if (reponse.parks) {
+      this.parks().set(response.parks);
+      delete response.parks;
+    }
     return response;
   },
 
@@ -14,5 +18,12 @@ ThemeParkList.Models.User = Backbone.Model.extend({
       this._reviews = new ThemeParkList.Collections.Reviews([], { user: this });
     }
     return this._reviews;
+  },
+
+  parks: function () {
+    if (!this._parks) {
+      this._parks = new ThemeParkList.Collections.Parks([], { user: this });
+    }
+    return this._parks;
   }
 })

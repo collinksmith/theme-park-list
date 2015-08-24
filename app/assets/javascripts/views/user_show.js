@@ -28,9 +28,13 @@ ThemeParkList.Views.UserShow = Backbone.CompositeView.extend({
     this.swapInSubview(this.subview);
   },
 
+  addParks: function () {
+    
+  }, 
+
   swapInSubview: function (newSubview) {
     this.removeSubview(".show-panel", this.subview);
     this.subview = newSubview;
     this.addSubview(".show-panel", this.subview);
-  },
+  }
 });
