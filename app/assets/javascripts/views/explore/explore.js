@@ -30,7 +30,6 @@ ThemeParkList.Views.Explore = Backbone.CompositeView.extend({
 
   render: function () {
     this.$el.html(this.template());
-    debugger;
     this.attachSubviews();
     return this;
   },
