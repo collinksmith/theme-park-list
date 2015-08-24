@@ -5,8 +5,7 @@
   <div class="show-header">
     <div class="top-left ">
       <% if (ThemeParkList.CURRENT_USER) { %>
-        <% debugger %>
-        <% if (park.favorite().isNew) { %>
+        <% if (park.favorite().isNew()) { %>
           <button class="btn btn-primary favorite-btn" id="favorite">Favorite Park</button>
         <% } else { %>
           <button class="btn btn-primary favorite-btn" id="favorite">Unfavorite Park</button>
