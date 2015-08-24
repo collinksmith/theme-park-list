@@ -1,5 +1,5 @@
-ThemeParkList.Views.User = Backbone.CompositeView.extend({
-  template: JST["user"],
+ThemeParkList.Views.UserShow = Backbone.CompositeView.extend({
+  template: JST["user_show"],
 
   initialize: function () {
     this.listenTo(this.model, "sync", this.render);
