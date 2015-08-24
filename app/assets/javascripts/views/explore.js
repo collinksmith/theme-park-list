@@ -22,9 +22,7 @@ ThemeParkList.Views.Explore = Backbone.CompositeView.extend({
     });
     this.addSubview("#filters", this.filterView);
     
-    this.navView = new ThemeParkList.Views.Nav({ 
-      search: true
-    });
+    this.navView = new ThemeParkList.Views.Nav({ search: true });
     this.addSubview("#nav", this.navView);
 
     $(window).scroll(this.fetchIfAtBottom.bind(this));
