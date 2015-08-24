@@ -2,9 +2,7 @@
   <h2><%= review.escape("park_name") %></h2>
 <% } %>
 <% if (form) { %>
-  <%= JST["reviews/_review_index_item_form"]({ review: review }) %>
+  <%= JST["reviews/_reviews_index_item_form"]({ review: review }) %>
 <% } else { %>
-  <%= JST["reviews/_review_index_item_show"]({ review: review }) %>
+  <%= JST["reviews/_reviews_index_item_show"]({ review: review }) %>
 <% } %>
-
-

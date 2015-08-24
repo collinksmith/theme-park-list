@@ -1,6 +1,8 @@
 <% if (ThemeParkList.CURRENT_USER.id === review.get("user_id")) { %>
-  <button class="btn btn-primary" id="edit-review">Edit Review</button>
-  <button class="btn btn-danger" id="delete-review">Delete Review</button>
+  <div class="reviews-index-item-btn">
+    <button class="btn btn-primary" id="edit-review">Edit Review</button>
+    <button class="btn btn-danger" id="delete-review">Delete Review</button>
+  </div>
 <% } %>
 <div class="review-container group">
   <%= JST["reviews/_ratings_sm"]() %>

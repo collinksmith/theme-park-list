@@ -1,27 +1,27 @@
 <div class="review-container group">
-  <div class="review-text">
     <div class="errors"></div>
     <form id="review-form">
     <%= JST["reviews/_ratings_sm"]() %>
+    <div class="review-text">
       <div class="form-group review-form">
         <label for="review_title">Title</label>
         <input type="text"
                name="review[title]"
+               value="<%= review.escape('title') %>"
                class="form-control"
                id="review_title">
 
         <label for="review_body">Body</label>
         <textarea name="review[body]"
                   id="review_body"
-                  class="form-control"
-                  value="Write your review here..."></textarea>
+                  class="form-control"><%= review.escape('body') %></textarea>
 
         <input type="submit" 
                value="Submit Review"
                class="btn btn-primary review-btn"
                id="submit-review">
       </div>
+    </div>
     </form>
-  </div>
 </div>
 <div class="divider"></div>
