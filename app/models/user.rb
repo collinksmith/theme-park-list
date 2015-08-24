@@ -18,6 +18,7 @@ class User < ActiveRecord::Base
   before_validation :ensure_session_token
 
   has_many :reviews
+  has_many :favorites
 
   attr_reader :password
 
