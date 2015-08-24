@@ -1,11 +1,15 @@
-<% if (reviewsPresent) { %>
-  <div class="heading-container">
-    <h3 class="review-heading">Average Ratings</h3>
-  </div>
-  <%= JST["reviews/_ratings_lg"]({ avg: "-avg" }) %>
-<% } else { %>
-  <div class="heading-container">
-    <h3 class="review-heading">No Reviews Yet!</h3>
-  </div>
+<% if (!user) { %>
+  <% if (reviewsPresent) { %>
+    <% if (!user) { %>
+    <div class="heading-container">
+      <h3 class="review-heading">Average Ratings</h3>
+    </div>
+      <%= JST["reviews/_ratings_lg"]({ avg: "-avg" }) %>
+    <% } %>
+  <% } else { %>
+    <div class="heading-container">
+      <h3 class="review-heading">No Reviews Yet!</h3>
+    </div>
+  <% } %>
 <% } %>
 <div class="reviews"></div>

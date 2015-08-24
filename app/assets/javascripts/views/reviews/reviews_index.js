@@ -7,7 +7,10 @@ ThemeParkList.Views.ReviewsIndex = Backbone.CompositeView.extend({
 
   render: function () {
     var reviewsPresent = this.collection.length > 0;
-    this.$el.html(this.template({ reviewsPresent: reviewsPresent }));
+    this.$el.html(this.template({ 
+      reviewsPresent: reviewsPresent,
+      user: this.collection.user
+    }));
     this.attachSubviews();
 
     if (reviewsPresent) {
