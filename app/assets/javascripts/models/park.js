@@ -39,7 +39,7 @@ ThemeParkList.Models.Park = Backbone.Model.extend({
     if (!this._favorite) {
       this._favorite = new ThemeParkList.Models.Favorite();
     }
-    return this._favorite
+    return this._favorite;
   },
 
   weather: function (weather_data) {
@@ -47,13 +47,13 @@ ThemeParkList.Models.Park = Backbone.Model.extend({
       this._weather = { score: weather_data.score,
                         high: weather_data.high,
                         low:  weather_data.low,
-                        precip: weather_data.precip.toFixed(2) }
+                        precip: weather_data.precip.toFixed(2) };
     }
     return this._weather;
   },
 
   toC: function (temp) {
-    return (temp - 32) * (5 / 9)
+    return (temp - 32) * (5 / 9);
   },
 
   temp: function (unit, highOrLow) {
@@ -74,11 +74,32 @@ ThemeParkList.Models.Park = Backbone.Model.extend({
 
   scoreClass: function (score) {
     if (score >= 75) {
-      return "progress-success"
+      return "progress-success";
     } else if (score >= 50) {
-      return "progress-warning"
+      return "progress-warning";
     } else {
-      return "progress-danger"
+      return "progress-danger";
     }
+  },
+
+  toggleFavorite: function () {
+    if (this.favorite().isNew()) {
+      this.createFavorite();
+    } else {
+      this.destroyFavorite();
+    }
+  },
+
+  createFavorite: function () {
+    this.favorite().set({park_id: this.id});
+    this.favorite().save();
+  },
+
+  destroyFavorite: function () {
+    this.favorite().destroy({
+      success: function (model) {
+        model.unset("id");
+      }
+    });
   }
 });
