@@ -36,7 +36,9 @@ class Api::ParksController < ApplicationController
   end
 
   def show
-    @park = Park.with_weather_data_and_associations(params[:season]).find(params[:id])
+    @park = Park.with_weather_data_and_associations(params[:season]).
+                 includes(:favorites).
+                 find(params[:id])
   end
 
   private
