@@ -1,6 +1,10 @@
 <% if (user) { %>
   <h2><%= review.escape("park_name") %></h2>
 <% } %>
+<% if (ThemeParkList.CURRENT_USER.id === review.get("user_id")) { %>
+  <button class="btn btn-primary" id="edit-review">Edit Review</button>
+  <button class="btn btn-danger" id="delete-review">Delete Review</button>
+<% } %>
 <div class="review-container group">
   <div class="review-show-ratings">
     <div class="row">
