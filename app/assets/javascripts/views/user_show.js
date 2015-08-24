@@ -4,7 +4,7 @@ ThemeParkList.Views.UserShow = Backbone.CompositeView.extend({
   events: {
     "click #my-reviews": "addReviews",
     "click #my-parks": "addParks"
-  }
+  },
 
   initialize: function () {
     this.listenTo(this.model, "sync", this.render);
@@ -12,20 +12,20 @@ ThemeParkList.Views.UserShow = Backbone.CompositeView.extend({
     this.navView = new ThemeParkList.Views.Nav({ search: false });
     this.addSubview("#nav", this.navView);
 
-
   },
 
   render: function () {
     this.$el.html(this.template({ user: this.model }));
+    this.addReviews();
     this.attachSubviews();
     return this;
   },
 
   addReviews: function () {
-    var reviewsView = new ThemeParkList.Views.ReviewsIndex({
+    this.subview = new ThemeParkList.Views.ReviewsIndex({
       collection: this.model.reviews()
     });
-    this.swapInSubview(reviewsView);
+    this.swapInSubview(this.subview);
   },
 
   swapInSubview: function (newSubview) {
