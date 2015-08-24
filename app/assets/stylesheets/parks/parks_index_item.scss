@@ -29,7 +29,7 @@ $hover-blur: 5px;
 }
 
 .park-image-background {
-  background-size: 100% auto;
+  background-size: cover;
 
   filter: blur($normal-blur) brightness($brightness);
   // Browser Specific
