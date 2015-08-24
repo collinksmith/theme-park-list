@@ -39,6 +39,9 @@
             <a href="#" class="btn cancel">{{cancelText}}</a>\
           <% } %>\
         <% } %>\
+        <% if (guestLogin) { %>\
+          <button class="btn btn-primary" id="guest-log-in">Log In As Guest</button>\
+        <% } %>\
         <a href="#" class="btn ok btn-primary">{{okText}}</a>\
       </div>\
     <% } %>\
@@ -130,7 +133,8 @@
         escape: true,
         animate: false,
         template: template,
-        enterTriggersOk: false
+        enterTriggersOk: false,
+        guestLogin: false
       }, options);
     },
 

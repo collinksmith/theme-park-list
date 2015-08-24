@@ -54,7 +54,8 @@ ThemeParkList.Views.Auth = Backbone.View.extend({
       cancelText: false,
       animate: true,
       enterTriggersOk: true,
-      okCloses: false
+      okCloses: false,
+      guestLogin: true
     }).open(this.logIn.bind(this));
   },
 
