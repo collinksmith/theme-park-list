@@ -5,7 +5,7 @@ ThemeParkList.Views.ReviewsIndexItem = Backbone.CompositeView.extend({
   events: {
     "click #edit-review": "editReview",
     "click #delete-review": "deleteReview",
-    "submit #review-form": "updateReview"
+    "submit #edit-review-form": "updateReview"
   },
 
   initialize: function (options) {
@@ -39,9 +39,8 @@ ThemeParkList.Views.ReviewsIndexItem = Backbone.CompositeView.extend({
     var view = this;
 
     var formData = $(event.currentTarget).serializeJSON();
-    
     view.model.save(formData, {
-      // On success, re-render without a form
+      // On success, re-render without the form
       success: function () {
         view.form = false;
         view.render();
@@ -49,7 +48,7 @@ ThemeParkList.Views.ReviewsIndexItem = Backbone.CompositeView.extend({
       error: function (model, response) {
         var errors = _(response.responseJSON);
         errors.each(function (error) {
-          // Add an error subview to the current subview (will be reviewForm)
+          // Add an error subview
           var errorView = new ThemeParkList.Views.Errors({ error: error })
           view.addSubview(".errors", errorView);
         });
