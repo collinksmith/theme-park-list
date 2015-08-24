@@ -44,7 +44,8 @@ ThemeParkList.Views.ParkShow = Backbone.CompositeView.extend({
         newSubview = new ThemeParkList.Views.Nearby({ model: this.model });
         break;
       case "Write a Review":
-        newSubview = new ThemeParkList.Views.ReviewForm({ model: this.model });
+        var newReview = new ThemeParkList.Models.Review();
+        newSubview = new ThemeParkList.Views.ReviewForm({ model: newReview });
         break;
     }
 
