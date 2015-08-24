@@ -1,6 +1,6 @@
 class Api::FavoritesController < ApplicationController
   def create
-    @favorite = Favorite.new(favorite_params)
+    @favorite = current_user.favorites.new(favorite_params)
     if @favorite.save
       render json: @favorite
     else
@@ -17,6 +17,6 @@ class Api::FavoritesController < ApplicationController
   private
 
   def favorite_params
-    params.require(:favorite).permit(:park_id, :user_id)
+    params.require(:favorite).permit(:park_id)
   end
 end

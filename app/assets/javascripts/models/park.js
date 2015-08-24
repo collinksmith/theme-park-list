@@ -15,7 +15,7 @@ ThemeParkList.Models.Park = Backbone.Model.extend({
       delete response.reviews;
     }
     if (response.favorite) {
-      this.favorite().set(response.favorite);
+      this.favorite().set({ id: response.favorite });
       delete response.favorite;
     }
     return response;
