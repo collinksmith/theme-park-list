@@ -113,12 +113,6 @@ ThemeParkList.Views.ParkShow = Backbone.CompositeView.extend({
 
   toggleFavorite: function () {
     this.model.toggleFavorite();
-    if (this.model.follow()) {
-      this.model.follow().destroy();
-
-    } else {
-      this.model.follow().save({park_id: this.model.id})
-    }
   },
 
   convertZeroToNull: function (el) {

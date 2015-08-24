@@ -42,6 +42,13 @@
   }
 }
 
+.favorite-btn {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  z-index: 1033;
+}
+
 .park-show-image {
   width: 100%;
   height: 100%;
