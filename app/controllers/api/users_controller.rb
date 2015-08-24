@@ -18,6 +18,7 @@ class Api::UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @reviews = @user.reviews.includes(:park)
+    @parks = @user.parks.with_weather_data_and_associations(:year)
     render :show
   end
 
