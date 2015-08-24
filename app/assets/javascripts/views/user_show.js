@@ -24,7 +24,13 @@ ThemeParkList.Views.UserShow = Backbone.CompositeView.extend({
     return this;
   },
 
-  addReviews: function () {
+  addReviews: function (event) {
+    if (event) {
+      $newTab = $(event.currentTarget);
+      if ($newTab.hasClass("active")) { return; }
+    }
+    this.updateActiveTab("My Reviews");
+
     var reviewsView = new ThemeParkList.Views.ReviewsIndex({
       collection: this.model.reviews()
     });
@@ -32,7 +38,11 @@ ThemeParkList.Views.UserShow = Backbone.CompositeView.extend({
     this.render();
   },
 
-  addParks: function () {
+  addParks: function (event) {
+    $newTab = $(event.currentTarget);
+    if ($newTab.hasClass("active")) { return; }
+    this.updateActiveTab($newTab.text());
+
     var view = this;
     this.model.parks().fetch({
       data: { user_id: view.model.id },
@@ -45,6 +55,14 @@ ThemeParkList.Views.UserShow = Backbone.CompositeView.extend({
     })
 
   }, 
+
+  // Takes the text of the tab to be activated. Removes any other active tabs
+  // and adds the 'active' class to the new tab.
+  updateActiveTab: function (newTabText) {
+    this.$(".nav-tabs").find(".active").removeClass("active");
+    var $newTab = $(".nav-tabs li:contains(" + newTabText + ")");
+    $newTab.addClass("active");
+  },
 
   swapInSubview: function (newSubview) {
     if (this._currentSubview) {

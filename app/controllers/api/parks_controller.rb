@@ -13,7 +13,6 @@ class Api::ParksController < ApplicationController
       @parks = Park.with_weather_data_and_associations(@season)
     end
 
-
     @parks = apply_search(@parks, params[:query]) if params[:query]
     @parks = apply_filters(@parks, params[:filters]) if params[:filters]
     @parks = apply_sort(@parks, sort)
@@ -31,7 +30,6 @@ class Api::ParksController < ApplicationController
       @total_pages = (@parks.all.length.to_f / 25).ceil
       @total_items = (@parks.all.length)
     end
-
 
     # Set ord attribute of parks
     @parks.to_a.map.with_index { |park, i| park.ord = i + 1 }
