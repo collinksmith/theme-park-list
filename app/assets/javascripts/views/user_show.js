@@ -11,9 +11,11 @@ ThemeParkList.Views.UserShow = Backbone.CompositeView.extend({
         this.addReviews();
       }.bind(this)
     })
+    this.activeTab = "My Reviews";
     this.navView = new ThemeParkList.Views.Nav({ search: false });
     this.addSubview("#nav", this.navView);
 
+    this.listenTo(this.model, "sync", this.render);
     this.listenTo(this.model.parks(), "showRemoved", this.refreshParks);
   },
 
@@ -28,6 +30,7 @@ ThemeParkList.Views.UserShow = Backbone.CompositeView.extend({
 
   render: function () {
     this.$el.html(this.template({ user: this.model }));
+    this.updateActiveTab(this.activeTab);
     this.attachSubviews();
     return this;
   },
@@ -35,7 +38,6 @@ ThemeParkList.Views.UserShow = Backbone.CompositeView.extend({
   updatePanel: function (event) {
     $newTab = $(event.currentTarget);
     if ($newTab.hasClass("active")) { return; }
-    this.updateActiveTab($newTab.text());
 
     var newSubview;
     switch ($newTab.text()) {
@@ -49,6 +51,9 @@ ThemeParkList.Views.UserShow = Backbone.CompositeView.extend({
   },
 
   addReviews: function (event) {
+    this.activeTab = "My Reviews";
+    this.updateActiveTab(this.activeTab);
+
     var reviewsView = new ThemeParkList.Views.ReviewsIndex({
       collection: this.model.reviews()
     });
@@ -56,6 +61,9 @@ ThemeParkList.Views.UserShow = Backbone.CompositeView.extend({
   },
 
   addParks: function (event) {
+    this.activeTab = "My Parks";
+    this.updateActiveTab(this.activeTab);
+
     var view = this;
     this.model.parks().fetch({
       data: { user_id: view.model.id },
