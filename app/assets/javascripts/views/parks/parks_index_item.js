@@ -14,7 +14,7 @@ ThemeParkList.Views.ParksIndexItem = Backbone.View.extend({
   },
 
   unfavorite: function () {
-    this.model.trigger("unfavorited", this);
+    this.model.trigger("showRemoved", this);
   },
 
   render: function () {
@@ -36,7 +36,7 @@ ThemeParkList.Views.ParksIndexItem = Backbone.View.extend({
         var parkShowView = new ThemeParkList.Views.ParkShow({ model: model });
         $("body").append(parkShowView.render().$el);
         if (view.userPage) {
-          $("#favorite").on("click", view.unfavorite.bind(view));
+          parkShowView.on("remove", view.unfavorite.bind(view));
         }
       }
     });

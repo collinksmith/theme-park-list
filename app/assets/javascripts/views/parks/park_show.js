@@ -68,6 +68,7 @@ ThemeParkList.Views.ParkShow = Backbone.CompositeView.extend({
   myRemove: function () {
     // Allow scrolling in the main window
     $("body").css({ overflow: "inherit" });
+    this.trigger("remove");
     this.remove();
   },
 

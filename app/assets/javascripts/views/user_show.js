@@ -15,9 +15,10 @@ ThemeParkList.Views.UserShow = Backbone.CompositeView.extend({
     this.addSubview("#nav", this.navView);
 
     this.listenTo(this.model, "sync", this.render);
-    this.listenTo(this.model.parks(), "unfavorited", this.refreshParks);
+    this.listenTo(this.model.parks(), "showRemoved", this.refreshParks);
   },
 
+  // Refresh parks in case the favorite status was changed
   refreshParks: function () {
     this.model.fetch({
       success: function () {
