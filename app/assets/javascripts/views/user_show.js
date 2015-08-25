@@ -2,12 +2,13 @@ ThemeParkList.Views.UserShow = Backbone.CompositeView.extend({
   template: JST["user_show"],
 
   events: {
-    "click #my-reviews": "addReviews",
-    "click #my-parks": "addParks"
+    // "click #my-reviews": "addReviews",
+    // "click #my-parks": "addParks",
+    "click .user-tab": "updatePanel",
+    "click #favorite": ""
   },
 
   initialize: function () {
-    this.listenTo(this.model, "sync", this.render);
     this.model.fetch({
       success: function () {
         this.addReviews();
@@ -24,25 +25,30 @@ ThemeParkList.Views.UserShow = Backbone.CompositeView.extend({
     return this;
   },
 
-  addReviews: function (event) {
-    if (event) {
-      $newTab = $(event.currentTarget);
-      if ($newTab.hasClass("active")) { return; }
-    }
-    this.updateActiveTab("My Reviews");
-
-    var reviewsView = new ThemeParkList.Views.ReviewsIndex({
-      collection: this.model.reviews()
-    });
-    this.swapInSubview(reviewsView);
-    this.render();
-  },
-
-  addParks: function (event) {
+  updatePanel: function (event) {
     $newTab = $(event.currentTarget);
     if ($newTab.hasClass("active")) { return; }
     this.updateActiveTab($newTab.text());
 
+    var newSubview;
+    switch ($newTab.text()) {
+      case "My Reviews":
+        this.addReviews();
+        break;
+      case "My Parks":
+        this.addParks();
+        break;
+    }
+  },
+
+  addReviews: function (event) {
+    var reviewsView = new ThemeParkList.Views.ReviewsIndex({
+      collection: this.model.reviews()
+    });
+    this.swapInSubview(reviewsView);
+  },
+
+  addParks: function (event) {
     var view = this;
     this.model.parks().fetch({
       data: { user_id: view.model.id },
@@ -53,7 +59,6 @@ ThemeParkList.Views.UserShow = Backbone.CompositeView.extend({
         view.swapInSubview(parksIndexView);
       }
     })
-
   }, 
 
   // Takes the text of the tab to be activated. Removes any other active tabs
