@@ -1,4 +1,4 @@
 <li class="group">
-  <span class="show-label info-left"><%= cost.escape('cost_type') %></span>
+  <span class="show-label info-left"><%= cost.toS() %></span>
   <span class="show-value info-right">$<%= parseFloat(cost.escape('amount')).toFixed(2) %></span>
 </li>
