@@ -13,8 +13,7 @@ ThemeParkList.Views.ParksIndexItem = Backbone.View.extend({
   },
 
   unfavorite: function () {
-    this.model.trigger("unfavorited");
-    this.remove();
+    this.model.trigger("unfavorited", this);
   },
 
   render: function () {

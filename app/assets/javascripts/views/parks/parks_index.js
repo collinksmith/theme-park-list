@@ -5,7 +5,12 @@ ThemeParkList.Views.ParksIndex = Backbone.CompositeView.extend({
     this.userPage = options.userPage;
     this.collection.each(this.addParkView.bind(this));
     this.listenTo(this.collection, "add", this.addParkView);
-    this.listenTo(this.collection, "sync unfavorited", this.render);
+    this.listenTo(this.collection, "sync", this.render);
+    this.listenTo(this.collection, "unfavorited", this.unfavorite);
+  },
+
+  unfavorite: function (subview) {
+    this.removeSubview(".parks", subview);
   },
 
   render: function () {
