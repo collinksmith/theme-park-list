@@ -9,7 +9,8 @@ ThemeParkList.Views.ParksIndexItem = Backbone.View.extend({
   },
 
   initialize: function (options) {
-    this.userPage = options.userPage
+    this.userPage = options.userPage;
+    this.listenTo(this.collection, "sync", this.render);
   },
 
   unfavorite: function () {

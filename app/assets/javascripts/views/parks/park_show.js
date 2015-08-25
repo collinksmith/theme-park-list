@@ -57,7 +57,7 @@ ThemeParkList.Views.ParkShow = Backbone.CompositeView.extend({
   // and adds the 'active' class to the new tab.
   updateActiveTab: function (newTabText) {
     this.$(".nav-tabs").find(".active").removeClass("active");
-    var $newTab = $(".nav-tabs li:contains(" + newTabText + ")");
+    var $newTab = this.$(".nav-tabs li:contains(" + newTabText + ")");
     $newTab.addClass("active");
   },
 
