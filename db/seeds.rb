@@ -12,6 +12,7 @@ require_relative "seed_data/weather_data"
 require_relative "seed_data/costs"
 require_relative "seed_data/users"
 require_relative "seed_data/reviews"
+require_relative "seed_data/favorites"
 
 PARKS.each { |park| Park.create(park) }
 CITIES.each { |city| City.create(city) }
@@ -19,3 +20,4 @@ WEATHER_DATA.each { |weather_data| WeatherDatum.create(weather_data) }
 COSTS.each { |cost| Cost.create(cost) }
 USERS.each { |user| User.create(user) }
 REVIEWS.each { |review| Review.create(review) }
+FAVORITES.each { |favorite| Favorite.create(favorite) }
