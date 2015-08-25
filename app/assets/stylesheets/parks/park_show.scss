@@ -16,6 +16,21 @@
   z-index: 1032;
 }
 
+.show-tab {
+  a {
+    color: $gray-text-color;
+    font-weight: bold;
+  }
+}
+
+.nav-tabs {
+  .show-tab.active {
+    a, a:hover, a:focus {
+      color: $primary-brand-color;
+    }
+  }
+}
+
 .show-value {
   .progress {
     background-color: rgba(0, 0, 0, 0.0470588);
