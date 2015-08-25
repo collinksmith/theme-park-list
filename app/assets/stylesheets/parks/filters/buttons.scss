@@ -84,12 +84,20 @@ $button-border-radius: 25px;
   color: $primary-brand-color;
   border-top-left-radius: 4px;
   border-bottom-left-radius: 4px;
+
+  @media screen and (max-width: $break-sm) {
+    font-size: 0.9em;
+  }
 }
 
 #sort-selector {
   background: $primary-brand-color;
   color: white;
   border: 1px solid $primary-brand-color;
+
+  @media screen and (max-width: $break-sm) {
+    font-size: 0.9em;
+  }
 }
 
 .dropdown-menu {
