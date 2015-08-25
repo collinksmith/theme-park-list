@@ -13,7 +13,7 @@ Theme Park List helps you find the best theme parks for you. It contains data on
   * Trip Advisor rating
   * Costs
 
-The site offers many ways to organize the parks in order to find the ones that you're most interested in. You can
+The site offers many ways to organize the parks in order to find the ones that you're looking for. You can:
   * Filter by cost of entrance, weather, number of roller coasters, or number of water rides
   * Select a time of year for which to get weather data
   * Sort by various attributes
@@ -49,7 +49,7 @@ Additional filtering and sorting is handled in the Parks Controller. This is whe
 
 These operations are done via the Active Record query interface where possible to maximize speed, although in some cases it was necessary to convert the relation into an array first.
 
-## TODOS / 
+## TODOS
 
 ### Minor Improvements
 - [ ] Improve design of user page
