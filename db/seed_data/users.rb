@@ -1,9 +1,12 @@
 USERS = [{ email: "guest@themeparklist.info",
            username: "Guest",
            password: "guestguest" },
-         { email: "joe@gmail.com",
+         { email: "joe@email.com",
            username: "Joe",
            password: "joejoe" },
-         { email: "bob@yahoo.com",
+         { email: "bob@email.com",
            username: "Bob",
-           password: "bobbob" }]
+           password: "bobbob" },
+         { email: "jane@email.com",
+           username: "Jane",
+           password: "janejane" }]
