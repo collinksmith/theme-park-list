@@ -36,6 +36,7 @@ class Api::ParksController < ApplicationController
 
     # Select the correct page
     @parks = select_page(@parks, @page) unless params[:page] == "all"
+    # debugger
   end
 
   def show
