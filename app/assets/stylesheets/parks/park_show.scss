@@ -16,6 +16,13 @@
   z-index: 1032;
 }
 
+.show-value {
+  .progress {
+    background-color: rgba(0, 0, 0, 0.0470588);
+    height: 30px;
+  }
+}
+
 .show-header {
   background: $secondary-brand-color;
   text-align: center;

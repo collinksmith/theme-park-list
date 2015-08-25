@@ -2,6 +2,27 @@ $brightness: 0.5;
 $normal-blur: 1px;
 $hover-blur: 5px;
 
+.index-item-score-bar {
+  .progress {
+    background-color: rgba(255, 255, 255, 0.0980392);
+    height: 25px;
+  }
+}
+
+.index-item-score-bar, .show-value {
+  .progress-success .bar {
+    background: #2bde73;
+  }
+
+  .progress-warning .bar {
+    background: #ffe700;
+  }
+
+  .progress-danger .bar {
+    background: #ff4742;
+  }
+}
+
 .parks-index-item {
   float: left;
   line-height: 200px;
