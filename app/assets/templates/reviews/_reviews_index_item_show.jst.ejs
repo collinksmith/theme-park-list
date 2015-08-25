@@ -1,4 +1,5 @@
-<% if (ThemeParkList.CURRENT_USER.id === review.get("user_id")) { %>
+<% if (ThemeParkList.CURRENT_USER && 
+       ThemeParkList.CURRENT_USER.id === review.get("user_id")) { %>
   <div class="reviews-index-item-btn">
     <button class="btn btn-primary" id="edit-review">Edit Review</button>
     <button class="btn btn-danger" id="delete-review">Delete Review</button>
