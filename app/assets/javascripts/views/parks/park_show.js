@@ -3,6 +3,7 @@ ThemeParkList.Views.ParkShow = Backbone.CompositeView.extend({
 
   events: {
     "click .show-tab": "updatePanel",
+    "click .close-btn": "myRemove",
     "click .m-background": "myRemove",
     "submit #review-form": "submitReview",
     "click #favorite": "toggleFavorite"
