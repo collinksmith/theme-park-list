@@ -126,7 +126,7 @@ ThemeParkList.Views.Explore = Backbone.CompositeView.extend({
   fetchIfAtBottom: function () {
     if ( this.mapViewPresent ) { return; }
     var page = this.collection.page;
-    if ((window.innerHeight + window.scrollY) >= $(document).height() && 
+    if ((window.innerHeight + window.scrollY) >= $(document).height() - 700 && 
          page > 0 && page < this.collection.total_pages) {
       this.collection.fetch({
         remove: false,
