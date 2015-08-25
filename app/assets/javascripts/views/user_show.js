@@ -3,7 +3,6 @@ ThemeParkList.Views.UserShow = Backbone.CompositeView.extend({
 
   events: {
     "click .user-tab": "updatePanel",
-    // "click #favorite": "addParks"
   },
 
   initialize: function () {
@@ -14,7 +13,17 @@ ThemeParkList.Views.UserShow = Backbone.CompositeView.extend({
     })
     this.navView = new ThemeParkList.Views.Nav({ search: false });
     this.addSubview("#nav", this.navView);
+
     this.listenTo(this.model, "sync", this.render);
+    this.listenTo(this.model.parks(), "unfavorited", this.refreshParks);
+  },
+
+  refreshParks: function () {
+    this.model.fetch({
+      success: function () {
+        this.addParks();
+      }.bind(this)
+    })
   },
 
   render: function () {

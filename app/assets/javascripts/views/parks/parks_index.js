@@ -6,11 +6,6 @@ ThemeParkList.Views.ParksIndex = Backbone.CompositeView.extend({
     this.collection.each(this.addParkView.bind(this));
     this.listenTo(this.collection, "add", this.addParkView);
     this.listenTo(this.collection, "sync", this.render);
-    this.listenTo(this.collection, "unfavorited", this.unfavorite);
-  },
-
-  unfavorite: function (subview) {
-    this.removeSubview(".parks", subview);
   },
 
   render: function () {
