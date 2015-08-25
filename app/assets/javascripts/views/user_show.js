@@ -2,10 +2,8 @@ ThemeParkList.Views.UserShow = Backbone.CompositeView.extend({
   template: JST["user_show"],
 
   events: {
-    // "click #my-reviews": "addReviews",
-    // "click #my-parks": "addParks",
     "click .user-tab": "updatePanel",
-    "click #favorite": ""
+    // "click #favorite": "addParks"
   },
 
   initialize: function () {
@@ -54,7 +52,8 @@ ThemeParkList.Views.UserShow = Backbone.CompositeView.extend({
       data: { user_id: view.model.id },
       success: function () {
         var parksIndexView = new ThemeParkList.Views.ParksIndex({ 
-          collection: view.model.parks()
+          collection: view.model.parks(),
+          userPage: true,
         });
         view.swapInSubview(parksIndexView);
       }

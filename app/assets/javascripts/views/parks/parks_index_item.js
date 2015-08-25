@@ -8,6 +8,15 @@ ThemeParkList.Views.ParksIndexItem = Backbone.View.extend({
     "mouseleave": "removeScoreBars"
   },
 
+  initialize: function (options) {
+    this.userPage = options.userPage
+  },
+
+  unfavorite: function () {
+    this.model.trigger("unfavorited");
+    this.remove();
+  },
+
   render: function () {
     var tempUnit = $(".temp.selected-format").text();
     this.$el.html(this.template({ park: this.model, tempUnit: tempUnit }));
@@ -20,11 +29,15 @@ ThemeParkList.Views.ParksIndexItem = Backbone.View.extend({
   },
 
   addParkShowView: function () {
+    var view = this;
     var showModel = new ThemeParkList.Models.Park({ id: this.model.id });
     showModel.fetch({
       success: function (model) {
         var parkShowView = new ThemeParkList.Views.ParkShow({ model: model });
         $("body").append(parkShowView.render().$el);
+        if (view.userPage) {
+          $("#favorite").on("click", view.unfavorite.bind(view));
+        }
       }
     });
   },
