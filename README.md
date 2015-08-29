@@ -2,7 +2,7 @@
 
 [Live link][live]
 
-[live]: https://www.themeparklist.info
+[live]: http://www.themeparklist.info
 
 ## Description
 
