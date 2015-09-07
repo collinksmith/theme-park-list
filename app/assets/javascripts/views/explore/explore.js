@@ -128,6 +128,11 @@ ThemeParkList.Views.Explore = Backbone.CompositeView.extend({
     var page = this.collection.page;
     if ((window.innerHeight + window.scrollY) >= $(document).height() - 700 && 
          page > 0 && page < this.collection.total_pages) {
+
+      // Don't fetch the same page multiple times
+      if ( this.fetching ) { return; }
+      this.fetching = true;
+
       this.collection.fetch({
         remove: false,
         data: { 
@@ -136,7 +141,11 @@ ThemeParkList.Views.Explore = Backbone.CompositeView.extend({
           sort: this.sort,
           season: this.season,
           costs: this.costs
-        }
+        },
+        success: function () {
+          // Allow fetching again after this page is loaded
+          this.fetching = false;
+        }.bind(this)
       });
     }
   },
