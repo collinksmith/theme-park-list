@@ -1,5 +1,6 @@
 class Api::ParksController < ApplicationController
   def index
+    @current_user = current_user
     @page = params[:page] ? params[:page].to_i : 1
     @season = params[:season] ? params[:season].downcase.to_sym : :year
     sort = params[:sort] || "Trip Advisor Score"
@@ -39,6 +40,7 @@ class Api::ParksController < ApplicationController
   end
 
   def show
+    @current_user = current_user
     @park = Park.with_weather_data_and_associations(params[:season]).
                  includes(:favorites).
                  find(params[:id])

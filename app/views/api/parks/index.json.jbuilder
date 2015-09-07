@@ -1,6 +1,6 @@
 json.parks do
   json.array! @parks.each_with_index do |park, index|
-    json.partial! "park", park: park
+    json.partial! "park", park: park, user: @current_user
   end
 end
 
