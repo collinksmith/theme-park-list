@@ -16,8 +16,3 @@ json.weather do
   json.low park.low
   json.precip park.precip
 end
-
-favorite = current_user.favorites.where(park_id: park.id)[0] if user
-if favorite
-  json.favorite favorite.id
-end
