@@ -88,6 +88,7 @@ ThemeParkList.Views.Auth = Backbone.View.extend({
     var email = "guest@themeparklist.info".split('');
     var emailIdx = 0;
     var $emailInput = $("#user_email");
+    $emailInput.val("");
     function fillInEmail() {
       var letter = email[emailIdx];
       var currentEmail = $emailInput.val();
@@ -107,6 +108,7 @@ ThemeParkList.Views.Auth = Backbone.View.extend({
     var password = "guestguest".split('');
     var passwordIdx = 0;
     var $passwordInput = $("#user_password");
+    $passwordInput.val("");
     function fillInPassword() {
       var letter = password[passwordIdx];
       var currentPassword = $passwordInput.val();
