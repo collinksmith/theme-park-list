@@ -39,7 +39,7 @@ class Api::ParksController < ApplicationController
   end
 
   def show
-    season = params[:season].downcase.to_sym
+    season = params[:season] ? params[:season].downcase.to_sym : :year
     @park = Park.with_weather_data_and_associations(season).
                  includes(:favorites, :users, reviews: [:user]).
                  find(params[:id])

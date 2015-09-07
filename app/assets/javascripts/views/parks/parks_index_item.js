@@ -30,7 +30,9 @@ ThemeParkList.Views.ParksIndexItem = Backbone.View.extend({
 
   addParkShowView: function () {
     var view = this;
-    var season = $(".season.selected-format").text();
+    if ($(".season.selected-format").length > 0) {
+      var season = $(".season.selected-format").text();
+    }
     var showModel = new ThemeParkList.Models.Park({ id: this.model.id });
     showModel.fetch({
       data: { season: season },
