@@ -7,3 +7,10 @@ favorite = current_user.favorites.where(park_id: @park.id)[0] if current_user
 if favorite
   json.favorite favorite.id
 end
+
+json.weather do
+  json.score @park.weather_score
+  json.high @park.high
+  json.low @park.low
+  json.precip @park.precip
+end
