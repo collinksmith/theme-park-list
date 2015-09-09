@@ -69,26 +69,6 @@ $hover-blur: 5px;
   position: relative;
 }
 
-.parks-index-item-hover {
-  display: none;
-  position: relative;
-  margin: 2em;
-
-  .rating-row {
-    margin-bottom: 0.9em;
-  }
-
-  .rating-label {
-    float: left;
-    line-height: 1.2em;
-  }
-
-  .index-item-score-bar {
-    float: right;
-    width: 40%;
-  }
-}
-
 .attribute-list {
   list-style: none;
   font-size: 14px;
@@ -177,6 +157,13 @@ $hover-blur: 5px;
 }
 
 .parks-index-item:hover {
+  text-align: center;
+  line-height: 0;
+
+  .park-basic-info {
+    font-weight: bold;
+  }
+
   .parks-index-item-normal {
     display: none;
   }
@@ -195,3 +182,22 @@ $hover-blur: 5px;
   }
 }
 
+.parks-index-item-hover {
+  display: none;
+  position: relative;
+  margin: 2em 0;
+
+  .rating-row {
+    margin: 0 2em 0.9em;
+  }
+
+  .rating-label {
+    float: left;
+    line-height: 1.2em;
+  }
+
+  .index-item-score-bar {
+    float: right;
+    width: 40%;
+  }
+}

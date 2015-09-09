@@ -32,6 +32,10 @@
     </div>
 
     <div class="parks-index-item-hover">
+      <div class="park-basic-info">
+        <p><%= park.escape('name') %></p>
+        <p><%= park.escape('city') %>, <%= park.escape('state') %></p>
+      </div>
       <div class="rating-row group">
         <div class="rating-label">TripAdvisor Score</div>
         <div class="index-item-score-bar">
