@@ -89,6 +89,7 @@ $hover-blur: 5px;
   line-height: normal;
   vertical-align: middle;
   text-shadow: 1px 1px black;
+  margin: 0 1em;
 
   p:first-child {
     font-size: 1.3em;
@@ -188,7 +189,7 @@ $hover-blur: 5px;
   margin: 2em 0;
 
   .rating-row {
-    margin: 0 2em 0.9em;
+    margin: 0 1.8em 0.9em;
   }
 
   .rating-label {
