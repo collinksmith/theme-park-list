@@ -1,6 +1,6 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col-sm-12 col-md-6">
+    <div class="col-xs-12 col-md-6 show-col">
       <span class="show-label">Trip Advisor Rating</span>
       <span class="show-value rating">
         <%= JST["parks/show_tabs/_score_bar"]({
@@ -8,7 +8,7 @@
         }) %>
       </span>
     </div>
-    <div class="col-sm-12 col-md-6">
+    <div class="col-xs-12 col-md-6 show-col">
       <span class="show-label">Weather Score</span>
       <span class="show-value rating">
         <%= JST["parks/show_tabs/_score_bar"]({
@@ -18,11 +18,11 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-sm-12 col-md-6">
+    <div class="col-xs-12 col-md-6 show-col">
       <span class="show-label info-left">Number of TripAdvisor Ratings</span>
       <span class="show-value info-right"><%= park.escape("num_tripadv_ratings") %></span>
     </div>
-    <div class="col-sm-12 col-md-6">
+    <div class="col-xs-12 col-md-6 show-col">
       <span class="show-label info-left">Location</span>
       <span class="show-value info-right">
         <%= park.escape("city") %>, <%= park.escape("state") %>, <%= park.escape("country") %>
@@ -31,7 +31,7 @@
   </div>
 
   <div class="row">
-    <div class="col-sm-12 col-md-6">
+    <div class="col-xs-12 col-md-6 show-col">
       <h4 class="info-list-header">Weather (<%= $(".season.selected-format").text() || "Year" %>)</h4>
       <ul class="info-list">
         <li class="group">
@@ -48,7 +48,7 @@
         </li>
       </ul>
     </div>
-    <div class="col-sm-12 col-md-6">
+    <div class="col-xs-12 col-md-6 show-col">
       <h4 class="info-list-header">Number of Rides</h4>
       <ul class="info-list">
         <li class="group">
@@ -68,7 +68,7 @@
   </div>
 
   <div class="row">
-    <div class="col-sm-12 col-md-6">
+    <div class="col-xs-12 col-md-6 show-col">
       <h4 class="info-list-header">Costs</h4>
       <ul class="info-list">
         <% park.costs().each(function (cost) { %>

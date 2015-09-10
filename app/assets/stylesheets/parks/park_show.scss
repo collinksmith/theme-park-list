@@ -11,10 +11,13 @@
   left: 50%;
   transform: translateX(-50%);
   background: white;
-  width: 70%;
+  width: 100%;
+  max-width: 1000px;
   height: 100%;
   overflow: scroll;
   z-index: 1032;
+
+
 }
 
 .show-tab {
