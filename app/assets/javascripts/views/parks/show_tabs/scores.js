@@ -4,7 +4,7 @@ ThemeParkList.Views.Scores = Backbone.View.extend({
 
   render: function () {
     this.$el.html(this.template({ park: this.model }));
-    this.addScoreBars()
+    this.addScoreBars();
     return this;
   },
 
