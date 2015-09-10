@@ -98,6 +98,7 @@ ThemeParkList.Views.ParkShow = Backbone.CompositeView.extend({
             });
             view.swapInSubview(newView);
             view.updateActiveTab("Reviews");
+            this.$("#write-review").remove();
           }
         });
       },

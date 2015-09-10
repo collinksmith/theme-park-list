@@ -101,5 +101,13 @@ ThemeParkList.Models.Park = Backbone.Model.extend({
         model.unset("id");
       }
     });
+  },
+
+  reviewedBy: function (user) {
+    var reviewed = false;
+    this.reviews().forEach(function (review) {
+      if (review.get("user_id") === user.id) { reviewed = true; }
+    });
+    return reviewed;
   }
 });
