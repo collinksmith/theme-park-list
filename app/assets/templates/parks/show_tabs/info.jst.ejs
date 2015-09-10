@@ -32,8 +32,8 @@
 
   <div class="row">
     <div class="col-sm-12 col-md-6">
-      <h4>Weather (<%= $(".season.selected-format").text() || "Year" %>)</h4>
-      <ul>
+      <h4 class="info-list-header">Weather (<%= $(".season.selected-format").text() || "Year" %>)</h4>
+      <ul class="info-list">
         <li class="group">
           <span class="show-label info-left">Average High</span>
           <span class="show-value info-right"><%= park.temp(tempUnit, "high") %></span>
@@ -49,8 +49,8 @@
       </ul>
     </div>
     <div class="col-sm-12 col-md-6">
-      <h4>Number of Rides</h4>
-      <ul>
+      <h4 class="info-list-header">Number of Rides</h4>
+      <ul class="info-list">
         <li class="group">
           <span class="show-label info-left">Total Rides</span>
           <span class="show-value info-right"><%= park.escape("rides") %></span>
@@ -69,8 +69,8 @@
 
   <div class="row">
     <div class="col-sm-12 col-md-6">
-      <h4>Costs</h4>
-      <ul>
+      <h4 class="info-list-header">Costs</h4>
+      <ul class="info-list">
         <% park.costs().each(function (cost) { %>
           <%= JST["parks/show_tabs/_cost"]({ cost: cost }) %>
         <% }); %>
