@@ -10,7 +10,7 @@ ThemeParkList.Views.ParkShow = Backbone.CompositeView.extend({
   },
 
   initialize: function () {
-    this.subview = new ThemeParkList.Views.Scores({ model: this.model });
+    this.subview = new ThemeParkList.Views.Info({ model: this.model });
     this.addSubview(".show-panel", this.subview);
     $(document).on("keyup", this.handleKeyup.bind(this));
 
