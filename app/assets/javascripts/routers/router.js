@@ -5,7 +5,7 @@ ThemeParkList.Routers.Router = Backbone.Router.extend({
   },
 
   initialize: function (options) {
-    this.$rootEl = options  .$rootEl;
+    this.$rootEl = options.$rootEl;
     this.collection = options.collection;
     var authView = new ThemeParkList.Views.Auth();
     this.explore();
