@@ -43,7 +43,7 @@ CSS tools used include Bootstrap and SASS.
 
 ## Technical Details
 
-Efficiently retrieving the weather data for a particular season posed a technical challenge. It required a somewhat complication SQL query, which I wrote as a method on my Park model in Rails using the Active Record query interface.
+Efficiently retrieving the weather data for a particular season posed a technical challenge. It required a somewhat complicated SQL query, which I wrote as a method on my Park model in Rails using the Active Record query interface.
 
 Each city has average high, low, and precipitation data stored for every month of the year. All the work for selecting the correct city and months, and then getting the average of all those months, was done in the SQL query.
 
